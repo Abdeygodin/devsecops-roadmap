@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevSecOps Roadmap // operator-manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Major+Mono+Display&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e0d;
+  --bg-elev: #111715;
+  --bg-card: #141b18;
+  --line: #1f2925;
+  --line-bright: #2d3a35;
+  --text: #c5d3cd;
+  --text-dim: #6b7d75;
+  --text-bright: #e8f0ec;
+  --accent: #4ade80;
+  --accent-dim: #2d6e44;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --info: #38bdf8;
+  --purple: #a78bfa;
+  --pink: #f472b6;
+  --orange: #fb923c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 20% 0%, rgba(74, 222, 128, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 100%, rgba(56, 189, 248, 0.04) 0%, transparent 40%);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74, 222, 128, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* === HEADER === */
+
+.header {
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  padding: 32px 36px;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--info) 50%, var(--purple) 100%);
+}
+
+.header-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 24px;
+}
+
+.header-meta .blink {
+  color: var(--accent);
+  animation: blink 1.4s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+.title {
+  font-family: 'Major Mono Display', monospace;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 0.95;
+  color: var(--text-bright);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.title .accent { color: var(--accent); }
+.title .info { color: var(--info); }
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+  max-width: 720px;
+}
+
+.subtitle strong { color: var(--text-bright); font-weight: 500; }
+
+.briefing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.briefing-item {
+  background: var(--bg-elev);
+  padding: 16px 20px;
+}
+
+.briefing-item .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.briefing-item .value {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-bright);
+}
+
+.briefing-item .value.accent { color: var(--accent); }
+.briefing-item .value.info { color: var(--info); }
+.briefing-item .value.warn { color: var(--warn); }
+
+/* === PROGRESS TRACK === */
+
+.track-section {
+  margin-bottom: 48px;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.timeline-bar {
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  padding: 24px;
+  position: relative;
+}
+
+.timeline-track {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.timeline-segment {
+  height: 36px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--bg);
+}
+
+.timeline-segment.p0 { background: var(--text-dim); }
+.timeline-segment.p1 { background: var(--info); }
+.timeline-segment.p2 { background: var(--accent); }
+.timeline-segment.p3 { background: var(--purple); }
+.timeline-segment.p4 { background: var(--orange); }
+.timeline-segment.p5 { background: var(--pink); }
+.timeline-segment.p6 { background: var(--warn); }
+
+.timeline-segment:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.timeline-labels {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  font-size: 10px;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.timeline-labels span {
+  letter-spacing: 0.05em;
+}
+
+/* === PHASES === */
+
+.phases {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.phase {
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.phase:hover {
+  border-color: var(--line-bright);
+}
+
+.phase::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--phase-color);
+}
+
+.phase[data-phase="0"] { --phase-color: var(--text-dim); }
+.phase[data-phase="1"] { --phase-color: var(--info); }
+.phase[data-phase="2"] { --phase-color: var(--accent); }
+.phase[data-phase="3"] { --phase-color: var(--purple); }
+.phase[data-phase="4"] { --phase-color: var(--orange); }
+.phase[data-phase="5"] { --phase-color: var(--pink); }
+.phase[data-phase="6"] { --phase-color: var(--warn); }
+
+.phase-header {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 24px;
+  padding: 24px 32px;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.phase.open .phase-header {
+  border-bottom-color: var(--line);
+  background: var(--bg-elev);
+}
+
+.phase-id {
+  font-family: 'Major Mono Display', monospace;
+  font-size: 36px;
+  color: var(--phase-color);
+  line-height: 1;
+}
+
+.phase-info h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-bright);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.phase-info .phase-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.phase-info .phase-meta span {
+  color: var(--phase-color);
+}
+
+.phase-toggle {
+  font-size: 18px;
+  color: var(--text-dim);
+  transition: transform 0.3s;
+  font-family: 'Major Mono Display', monospace;
+}
+
+.phase.open .phase-toggle {
+  transform: rotate(45deg);
+  color: var(--phase-color);
+}
+
+.phase-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.phase.open .phase-body {
+  max-height: 4000px;
+}
+
+.phase-content {
+  padding: 32px;
+  display: grid;
+  gap: 28px;
+}
+
+.summary {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.summary strong {
+  color: var(--phase-color);
+  font-weight: 500;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.module {
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  padding: 18px 20px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.module:hover {
+  border-color: var(--phase-color);
+  background: var(--bg);
+}
+
+.module-num {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+.module-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 8px;
+  padding-right: 40px;
+}
+
+.module-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.module-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: var(--bg);
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+}
+
+.tag.hot {
+  color: var(--warn);
+  border-color: var(--warn);
+}
+
+.tag.crit {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* === EXIT CRITERIA === */
+
+.exit {
+  border: 1px solid var(--phase-color);
+  background: rgba(0,0,0,0.3);
+  padding: 20px 24px;
+  position: relative;
+}
+
+.exit::before {
+  content: '// EXIT_CRITERIA';
+  position: absolute;
+  top: -1px;
+  left: 16px;
+  background: var(--bg-card);
+  padding: 0 10px;
+  font-size: 10px;
+  color: var(--phase-color);
+  letter-spacing: 0.15em;
+  transform: translateY(-50%);
+}
+
+.exit-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.exit-list li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text);
+  align-items: start;
+}
+
+.exit-list li::before {
+  content: '[ ]';
+  color: var(--phase-color);
+  font-weight: 700;
+}
+
+.exit-list li.crit::before {
+  content: '[!]';
+  color: var(--danger);
+}
+
+/* === DELIVERABLES === */
+
+.deliverables {
+  background: rgba(74, 222, 128, 0.04);
+  border: 1px dashed var(--accent-dim);
+  padding: 16px 20px;
+}
+
+.deliverables-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.deliverables-text {
+  font-size: 12px;
+  color: var(--text);
+}
+
+/* === GLOSSARY / FOOTER === */
+
+.legend {
+  margin-top: 64px;
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+}
+
+.legend-title {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.foot {
+  text-align: center;
+  padding: 48px 0 24px;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+.foot strong { color: var(--accent); }
+
+/* === CONTROLS === */
+
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(74, 222, 128, 0.05);
+}
+
+@media (max-width: 720px) {
+  .container { padding: 20px 12px; }
+  .header { padding: 20px; }
+  .phase-header { grid-template-columns: 50px 1fr auto; gap: 16px; padding: 16px 20px; }
+  .phase-id { font-size: 24px; }
+  .phase-content { padding: 20px; }
+  .timeline-track { grid-template-columns: repeat(7, 1fr); }
+  .timeline-segment { height: 28px; font-size: 10px; }
+}
+
+/* Accent typing animation for header */
+.typing {
+  display: inline-block;
+  border-right: 2px solid var(--accent);
+  animation: cursor 1s infinite;
+}
+
+@keyframes cursor {
+  0%, 50% { border-color: var(--accent); }
+  51%, 100% { border-color: transparent; }
+}
+
+/* Connect line decoration between phases */
+.phase-link {
+  height: 24px;
+  margin-left: 39px;
+  border-left: 1px dashed var(--line-bright);
+  margin-top: -24px;
+  margin-bottom: -24px;
+  position: relative;
+  z-index: 1;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="header-meta">
+    <span>// operator: trainee_001</span>
+    <span><span class="blink">●</span> session active // school_21</span>
+  </div>
+  <h1 class="title">
+    devsec<span class="accent">ops</span><br>
+    road<span class="info">map</span><span class="typing">_</span>
+  </h1>
+  <p class="subtitle">
+    Поэтапная программа подготовки до уровня <strong>уверенный Junior / Middle DevSecOps Engineer</strong>.
+    План построен на основе твоих вводных: 30+ ч/нед, без жёсткого дедлайна, с прицелом на РФ-рынок и перспективу за рубеж.
+  </p>
+
+  <div class="briefing">
+    <div class="briefing-item">
+      <div class="label">Total horizon</div>
+      <div class="value accent">~14 мес</div>
+    </div>
+    <div class="briefing-item">
+      <div class="label">Phases</div>
+      <div class="value">7</div>
+    </div>
+    <div class="briefing-item">
+      <div class="label">Weekly load</div>
+      <div class="value warn">30+ ч</div>
+    </div>
+    <div class="briefing-item">
+      <div class="label">Target role</div>
+      <div class="value info">DevSecOps / AppSec</div>
+    </div>
+    <div class="briefing-item">
+      <div class="label">Market</div>
+      <div class="value">RU → INTL</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TIMELINE ============ -->
+<section class="track-section">
+  <div class="section-label">timeline / overview</div>
+  <div class="timeline-bar">
+    <div class="timeline-track">
+      <div class="timeline-segment p0" onclick="openPhase(0)" title="Foundation: Python, networks, English">P0</div>
+      <div class="timeline-segment p1" onclick="openPhase(1)" title="DevOps base">P1</div>
+      <div class="timeline-segment p2" onclick="openPhase(2)" title="AppSec foundation">P2</div>
+      <div class="timeline-segment p3" onclick="openPhase(3)" title="DevSecOps tooling">P3</div>
+      <div class="timeline-segment p4" onclick="openPhase(4)" title="Cloud / K8s / Supply Chain">P4</div>
+      <div class="timeline-segment p5" onclick="openPhase(5)" title="AppSec deep + RU specifics">P5</div>
+      <div class="timeline-segment p6" onclick="openPhase(6)" title="Job hunt">P6</div>
+    </div>
+    <div class="timeline-labels">
+      <span>~10 нед</span>
+      <span>~12 нед</span>
+      <span>~10 нед</span>
+      <span>~12 нед</span>
+      <span>~12 нед</span>
+      <span>~8 нед</span>
+      <span>~6 нед</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTROLS ============ -->
+<section class="track-section">
+  <div class="section-label">phases / detail view</div>
+  <div class="controls">
+    <button class="btn" onclick="openAll()">expand_all</button>
+    <button class="btn" onclick="closeAll()">collapse_all</button>
+    <button class="btn" onclick="window.print()">print / pdf</button>
+  </div>
+
+  <div class="phases">
+
+    <!-- ============ PHASE 0 ============ -->
+    <article class="phase open" data-phase="0" id="phase-0">
+      <div class="phase-header" onclick="togglePhase(0)">
+        <div class="phase-id">P0</div>
+        <div class="phase-info">
+          <h2>Foundation / закрытие пробелов</h2>
+          <div class="phase-meta">~ 8–10 недель // <span>prerequisite</span></div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-content">
+          <div class="summary">
+            <strong>Самая важная фаза.</strong> Без языка программирования и базы веба весь дальнейший
+            путь — карточный домик. Цель: научиться читать чужой код, писать автоматизацию своими руками
+            (без ИИ), уверенно понимать, что происходит в HTTP-запросе.
+          </div>
+
+          <div class="module-grid">
+            <div class="module">
+              <div class="module-num">01</div>
+              <div class="module-title">Python с нуля до автоматизации</div>
+              <div class="module-desc">
+                CS50P (Harvard, бесплатно) → Automate the Boring Stuff → easy-задачи на Codewars.
+                Без ИИ. Цель: писать скрипты 100+ строк руками.
+              </div>
+              <div class="module-tags">
+                <span class="tag crit">critical</span>
+                <span class="tag">python</span>
+                <span class="tag">automation</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">02</div>
+              <div class="module-title">JavaScript — read-only level</div>
+              <div class="module-desc">
+                Читать клиентский код, понимать XSS, prototype pollution, eval/innerHTML.
+                ~2 недели легкого знакомства, без углубления.
+              </div>
+              <div class="module-tags">
+                <span class="tag">js</span>
+                <span class="tag">read</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">03</div>
+              <div class="module-title">Сети / HTTP до уровня заголовков</div>
+              <div class="module-desc">
+                TCP/IP, DNS, TLS-handshake, прокси. HTTP до Secure/HttpOnly/SameSite, CORS, CSP.
+                Книга: Computer Networking (Kurose) — выборочно.
+              </div>
+              <div class="module-tags">
+                <span class="tag">networks</span>
+                <span class="tag">http</span>
+                <span class="tag">tls</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">04</div>
+              <div class="module-title">English ≥ B1</div>
+              <div class="module-desc">
+                Без английского зарубежный рынок и половина свежих материалов недоступны.
+                30–60 мин/день: техподкасты (Risky Business), документация, конференции с субтитрами.
+              </div>
+              <div class="module-tags">
+                <span class="tag crit">critical</span>
+                <span class="tag">soft</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">05</div>
+              <div class="module-title">Pet-проект: каркас</div>
+              <div class="module-desc">
+                Заведи Flask/FastAPI приложение. Пока без безопасности — просто работающее API + простой фронт.
+                Это будет твой сквозной проект на все 14 месяцев.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">flagship</span>
+                <span class="tag">flask</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exit">
+            <ul class="exit-list">
+              <li class="crit">Пишешь без ИИ Python-скрипт 100+ строк, работающий с API/файлами/regex</li>
+              <li>Читаешь чужой Python/JS-код и понимаешь, что он делает</li>
+              <li>Объясняешь словами, что происходит при открытии URL (DNS → TLS → HTTP → render)</li>
+              <li>Понимаешь и можешь настроить базовые HTTP security headers</li>
+              <li>Английский ≥ B1, читаешь документацию без словаря</li>
+            </ul>
+          </div>
+
+          <div class="deliverables">
+            <div class="deliverables-label">// deliverables</div>
+            <div class="deliverables-text">
+              GitHub: <strong>devsecops-journey</strong> (pet-проект, MVP) +
+              <strong>devsecops-blog</strong> (5–7 первых write-up'ов).
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ PHASE 1 ============ -->
+    <article class="phase" data-phase="1" id="phase-1">
+      <div class="phase-header" onclick="togglePhase(1)">
+        <div class="phase-id">P1</div>
+        <div class="phase-info">
+          <h2>DevOps base / Dev и Ops до Sec</h2>
+          <div class="phase-meta">~ 10–12 недель // <span>prerequisite</span></div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-content">
+          <div class="summary">
+            Прежде чем добавлять <strong>Sec</strong>, должен быть надёжный <strong>Dev</strong> и
+            <strong>Ops</strong>. Школа 21 даст часть, но останутся пробелы в Linux internals, K8s,
+            облаках. Закрываем их.
+          </div>
+
+          <div class="module-grid">
+            <div class="module">
+              <div class="module-num">01</div>
+              <div class="module-title">Linux internals</div>
+              <div class="module-desc">
+                Процессы, namespaces, cgroups (база Docker), systemd, права, SELinux/AppArmor,
+                bash 50+ строк. Книги: TLCL (Shotts), How Linux Works (Ward).
+              </div>
+              <div class="module-tags">
+                <span class="tag">linux</span>
+                <span class="tag">bash</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">02</div>
+              <div class="module-title">Git advanced</div>
+              <div class="module-desc">
+                Rebase, cherry-pick, конфликты, pre-commit hooks (пригодятся для secrets-scan),
+                workflow (trunk-based, GitFlow).
+              </div>
+              <div class="module-tags">
+                <span class="tag">git</span>
+                <span class="tag">hooks</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">03</div>
+              <div class="module-title">Docker уверенно</div>
+              <div class="module-desc">
+                Dockerfile best practices, multi-stage, compose, networks, volumes,
+                устройство под капотом — это ключ к контейнерной безопасности.
+              </div>
+              <div class="module-tags">
+                <span class="tag">docker</span>
+                <span class="tag">compose</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">04</div>
+              <div class="module-title">CI/CD: Actions + GitLab</div>
+              <div class="module-desc">
+                GitHub Actions (главный) + GitLab CI (доминирует в РФ). Уметь написать пайплайн
+                с нуля: lint → test → build → publish. Пока без security.
+              </div>
+              <div class="module-tags">
+                <span class="tag">ci</span>
+                <span class="tag">actions</span>
+                <span class="tag">gitlab</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">05</div>
+              <div class="module-title">IaC: Terraform basics</div>
+              <div class="module-desc">
+                LocalStack для эмуляции AWS бесплатно. Providers, resources, state, modules.
+                HCL-синтаксис.
+              </div>
+              <div class="module-tags">
+                <span class="tag">terraform</span>
+                <span class="tag">iac</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">06</div>
+              <div class="module-title">AWS Free Tier</div>
+              <div class="module-desc">
+                EC2, S3, IAM, VPC, RDS. Развернуть свой проект, понять Shared Responsibility.
+                Параллельно — обзорно Yandex Cloud (РФ-рынок).
+              </div>
+              <div class="module-tags">
+                <span class="tag">aws</span>
+                <span class="tag">cloud</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">07</div>
+              <div class="module-title">Kubernetes — базово</div>
+              <div class="module-desc">
+                Minikube/kind. Pods, Deployments, Services, ConfigMaps, Secrets, Ingress, kubectl.
+                Глубже — в фазе 4.
+              </div>
+              <div class="module-tags">
+                <span class="tag">k8s</span>
+                <span class="tag">kubectl</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exit">
+            <ul class="exit-list">
+              <li>Pet-проект работает в Docker + docker-compose</li>
+              <li>Настроен CI в Actions: lint, test, build, push image</li>
+              <li>Проект развёрнут в локальном K8s с Ingress</li>
+              <li>Написан Terraform-модуль 50–100 строк</li>
+              <li>Что-то развёрнуто в AWS Free Tier через Terraform</li>
+            </ul>
+          </div>
+
+          <div class="deliverables">
+            <div class="deliverables-label">// deliverables</div>
+            <div class="deliverables-text">
+              Pet-проект на этапе: <strong>контейнеризация + CI + базовый деплой в K8s/AWS</strong>.
+              Write-up'ы по Docker, K8s, Terraform, GitHub Actions.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ PHASE 2 ============ -->
+    <article class="phase" data-phase="2" id="phase-2">
+      <div class="phase-header" onclick="togglePhase(2)">
+        <div class="phase-id">P2</div>
+        <div class="phase-info">
+          <h2>AppSec foundation / веб-безопасность</h2>
+          <div class="phase-meta">~ 8–10 недель // <span>core skill</span></div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-content">
+          <div class="summary">
+            Теперь <strong>Sec</strong>. Цель — не «прочитал OWASP Top 10», а
+            <strong>уметь объяснить каждую уязвимость на уровне HTTP-запроса</strong> и продемонстрировать.
+          </div>
+
+          <div class="module-grid">
+            <div class="module">
+              <div class="module-num">01</div>
+              <div class="module-title">OWASP Top 10:2025 + API Top 10</div>
+              <div class="module-desc">
+                Актуальная редакция (2025), плюс отдельный API Security Top 10 — критичен для
+                современных приложений.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">owasp</span>
+                <span class="tag">api</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">02</div>
+              <div class="module-title">PortSwigger Web Security Academy</div>
+              <div class="module-desc">
+                Золотой стандарт. Бесплатно. Цель: все Apprentice + бóльшая часть Practitioner.
+                Каждая лаба → write-up в блог.
+              </div>
+              <div class="module-tags">
+                <span class="tag crit">must</span>
+                <span class="tag">labs</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">03</div>
+              <div class="module-title">Burp Suite Community</div>
+              <div class="module-desc">
+                Proxy, Repeater, Intruder, Decoder — как продолжение руки. Burp Pro — позже,
+                в работе. Параллельно: ZAP бесплатно.
+              </div>
+              <div class="module-tags">
+                <span class="tag">burp</span>
+                <span class="tag">zap</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">04</div>
+              <div class="module-title">OAuth 2.0 / OIDC / JWT — глубоко</div>
+              <div class="module-desc">
+                Не «что это», а типичные уязвимости: alg=none, key confusion, refresh token
+                leak, redirect_uri bypass. Очень частая тема на интервью.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">interview</span>
+                <span class="tag">jwt</span>
+                <span class="tag">oauth</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">05</div>
+              <div class="module-title">Crypto for engineers</div>
+              <div class="module-desc">
+                Симметричное/асимметричное, hashes, padding, TLS-suites, типичные ошибки
+                (ECB, MD5 для паролей, hardcoded keys). Crypto 101 (free book) + Cryptopals Set 1–3.
+              </div>
+              <div class="module-tags">
+                <span class="tag">crypto</span>
+                <span class="tag">tls</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">06</div>
+              <div class="module-title">Threat Modeling: STRIDE</div>
+              <div class="module-desc">
+                Книга Шостака. DFD на свой pet-проект → STRIDE-анализ → mitigations.
+                Tool: OWASP Threat Dragon.
+              </div>
+              <div class="module-tags">
+                <span class="tag">stride</span>
+                <span class="tag">tm</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">07</div>
+              <div class="module-title">Secure coding audit</div>
+              <div class="module-desc">
+                Самостоятельный security-аудит pet-проекта: валидация ввода, секреты, логи,
+                deps, CORS/CSP/HSTS. Найти и пофиксить.
+              </div>
+              <div class="module-tags">
+                <span class="tag">audit</span>
+                <span class="tag">review</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exit">
+            <ul class="exit-list">
+              <li>Закрыты все Apprentice + бóльшая часть Practitioner на PortSwigger</li>
+              <li class="crit">Без подсказок объясняешь и демонстрируешь: SQLi, XSS (S/R/DOM), SSRF, IDOR, XXE, deserialization, JWT-атаки</li>
+              <li>Threat model pet-проекта оформлен и в репозитории</li>
+              <li>Pet-проект прошёл собственный security-аудит и закрыты все находки</li>
+            </ul>
+          </div>
+
+          <div class="deliverables">
+            <div class="deliverables-label">// deliverables</div>
+            <div class="deliverables-text">
+              <strong>30+ PortSwigger write-up'ов</strong>, threat model, отчёт о собственном аудите проекта.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ PHASE 3 ============ -->
+    <article class="phase" data-phase="3" id="phase-3">
+      <div class="phase-header" onclick="togglePhase(3)">
+        <div class="phase-id">P3</div>
+        <div class="phase-info">
+          <h2>DevSecOps tooling / собираем pipeline</h2>
+          <div class="phase-meta">~ 10–12 недель // <span>core skill</span></div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-content">
+          <div class="summary">
+            Это и есть <strong>DevSecOps в чистом виде</strong>. На выходе у тебя — pet-проект
+            с полноценным security-pipeline из 6+ инструментов. Главное достижение фазы.
+          </div>
+
+          <div class="module-grid">
+            <div class="module">
+              <div class="module-num">01</div>
+              <div class="module-title">SAST: Semgrep + SonarQube</div>
+              <div class="module-desc">
+                Semgrep как основной (де-факто стандарт). SonarQube CE — для понимания
+                enterprise-подхода (популярен в РФ). Цель: <strong>5–10 собственных Semgrep-правил</strong>
+                в публичном репозитории.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">portfolio</span>
+                <span class="tag">semgrep</span>
+                <span class="tag">sonar</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">02</div>
+              <div class="module-title">SCA + SBOM</div>
+              <div class="module-desc">
+                Trivy (универсал), Grype + Syft (SBOM), Dependency-Check. Snyk free как референс.
+                Сгенерировать CycloneDX/SPDX SBOM для своего проекта.
+              </div>
+              <div class="module-tags">
+                <span class="tag">trivy</span>
+                <span class="tag">sbom</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">03</div>
+              <div class="module-title">Secrets scanning</div>
+              <div class="module-desc">
+                Gitleaks + TruffleHog. Pre-commit hook на pet-репу так, чтобы секреты физически
+                не могли попасть в commit.
+              </div>
+              <div class="module-tags">
+                <span class="tag">gitleaks</span>
+                <span class="tag">precommit</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">04</div>
+              <div class="module-title">DAST в CI</div>
+              <div class="module-desc">
+                ZAP baseline + full scan, интеграция в CI. Понимать ограничения DAST —
+                почему он находит не всё.
+              </div>
+              <div class="module-tags">
+                <span class="tag">zap</span>
+                <span class="tag">dast</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">05</div>
+              <div class="module-title">IaC security</div>
+              <div class="module-desc">
+                Checkov (универсал), tfsec/Trivy для Terraform, Kube-bench + Kubescape для K8s.
+                Запустить на своих манифестах, починить.
+              </div>
+              <div class="module-tags">
+                <span class="tag">checkov</span>
+                <span class="tag">iac</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">06</div>
+              <div class="module-title">Container security</div>
+              <div class="module-desc">
+                Trivy image-scan, Docker Bench, distroless-образы, multi-stage для уменьшения
+                attack surface, non-root users.
+              </div>
+              <div class="module-tags">
+                <span class="tag">trivy</span>
+                <span class="tag">distroless</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">07</div>
+              <div class="module-title">Secrets management: Vault</div>
+              <div class="module-desc">
+                HashiCorp Vault локально: KV, dynamic secrets, CI integration. Концептуально:
+                AWS Secrets Manager, Yandex Lockbox.
+              </div>
+              <div class="module-tags">
+                <span class="tag">vault</span>
+                <span class="tag">secrets</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">08</div>
+              <div class="module-title">FINAL: full DevSecOps pipeline</div>
+              <div class="module-desc">
+                pre-commit (gitleaks) → SAST (Semgrep) → SCA (Trivy) → build → image-scan
+                → IaC-scan (Checkov) → deploy → DAST (ZAP). Quality gate: падение на High/Critical.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">flagship</span>
+                <span class="tag">e2e</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exit">
+            <ul class="exit-list">
+              <li class="crit">Pet-проект имеет полный DevSecOps-пайплайн с 6+ инструментами</li>
+              <li>5+ собственных Semgrep-правил опубликованы в отдельном репозитории</li>
+              <li>SBOM проекта сгенерирован, опубликован, отслеживается</li>
+              <li>Vault интегрирован для управления секретами</li>
+              <li>Опубликован подробный write-up «как я построил DevSecOps-пайплайн с нуля»</li>
+            </ul>
+          </div>
+
+          <div class="deliverables">
+            <div class="deliverables-label">// deliverables</div>
+            <div class="deliverables-text">
+              <strong>Pet-проект v1.0</strong> с полным security-pipeline. Это твой главный аргумент на собеседовании.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ PHASE 4 ============ -->
+    <article class="phase" data-phase="4" id="phase-4">
+      <div class="phase-header" onclick="togglePhase(4)">
+        <div class="phase-id">P4</div>
+        <div class="phase-info">
+          <h2>Cloud · K8s Security · Supply Chain</h2>
+          <div class="phase-meta">~ 10–12 недель // <span>specialization</span></div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-content">
+          <div class="summary">
+            Здесь ты становишься <strong>реально востребованным</strong>, а не просто «знаком с
+            инструментами». Главные темы: K8s security всерьёз, cloud security и
+            <strong>supply chain</strong> — самая горячая тема 2024–2026.
+          </div>
+
+          <div class="module-grid">
+            <div class="module">
+              <div class="module-num">01</div>
+              <div class="module-title">Kubernetes Security всерьёз</div>
+              <div class="module-desc">
+                Pod Security Admission (PSA — учи именно её, PSP удалены в 1.25). NetworkPolicy,
+                RBAC уверенно, Admission Controllers (OPA Gatekeeper + Kyverno), Falco runtime.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">market-hot</span>
+                <span class="tag">k8s</span>
+                <span class="tag">psa</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">02</div>
+              <div class="module-title">CKS certification</div>
+              <div class="module-desc">
+                Certified Kubernetes Security Specialist. Топ-1 по соотношению полезность/узнаваемость
+                для DevSecOps. Подготовка: KodeKloud / Killer.sh.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">cert</span>
+                <span class="tag">cks</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">03</div>
+              <div class="module-title">AWS Security deep</div>
+              <div class="module-desc">
+                IAM (роли, policies, assume-role, condition keys), KMS, GuardDuty, Security Hub,
+                CloudTrail. Аудит своего аккаунта через Prowler / ScoutSuite.
+              </div>
+              <div class="module-tags">
+                <span class="tag">aws</span>
+                <span class="tag">iam</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">04</div>
+              <div class="module-title">Yandex Cloud (RU)</div>
+              <div class="module-desc">
+                IAM, Lockbox, Audit Trails. Концептуально — для интервью в РФ-компаниях,
+                которые мигрируют с AWS.
+              </div>
+              <div class="module-tags">
+                <span class="tag">ycloud</span>
+                <span class="tag">ru</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">05</div>
+              <div class="module-title">SLSA framework</div>
+              <div class="module-desc">
+                Supply-chain Levels for Software Artifacts: уровни 1–4, что значат, как достичь.
+                Pet-проект → SLSA L2 минимум.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">trend-2026</span>
+                <span class="tag">slsa</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">06</div>
+              <div class="module-title">Sigstore + cosign</div>
+              <div class="module-desc">
+                Подписать свой образ через cosign, опубликовать в Rekor (transparency log).
+                Verify-policy в admission controller.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">trend-2026</span>
+                <span class="tag">sigstore</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">07</div>
+              <div class="module-title">Supply chain attacks: case study</div>
+              <div class="module-desc">
+                Разобрать и описать в блоге: SolarWinds, Codecov, event-stream, ua-parser-js,
+                xz-utils backdoor (2024). Корень проблемы и как защититься.
+              </div>
+              <div class="module-tags">
+                <span class="tag">cases</span>
+                <span class="tag">history</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">08</div>
+              <div class="module-title">GitHub Actions security</div>
+              <div class="module-desc">
+                Pinning to SHA, OIDC вместо long-lived secrets, harden-runner, минимальные
+                permissions для workflows.
+              </div>
+              <div class="module-tags">
+                <span class="tag">actions</span>
+                <span class="tag">oidc</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">09</div>
+              <div class="module-title">Compliance overview</div>
+              <div class="module-desc">
+                ISO 27001, SOC 2, PCI DSS, NIST SSDF — на уровне «знаю, что и зачем».
+                Для РФ: ФСТЭК, ГОСТ Р 56939.
+              </div>
+              <div class="module-tags">
+                <span class="tag">compliance</span>
+                <span class="tag">ru</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exit">
+            <ul class="exit-list">
+              <li>Pet-проект развёрнут в production-like K8s с PSA, NetworkPolicy, RBAC, Falco</li>
+              <li class="crit">Образы pet-проекта подписаны через cosign, SBOM публикуется в Rekor</li>
+              <li>Аудит AWS-аккаунта через Prowler пройден, проблемы исправлены</li>
+              <li>В блоге — 2–3 разбора реальных supply-chain атак</li>
+              <li>(опционально, но сильно усиливает) сдан CKS</li>
+            </ul>
+          </div>
+
+          <div class="deliverables">
+            <div class="deliverables-label">// deliverables</div>
+            <div class="deliverables-text">
+              <strong>Pet-проект v2.0</strong>: K8s production-grade + supply chain security.
+              Сертификация CKS (если идёшь на неё) — серьёзный буст резюме.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ PHASE 5 ============ -->
+    <article class="phase" data-phase="5" id="phase-5">
+      <div class="phase-header" onclick="togglePhase(5)">
+        <div class="phase-id">P5</div>
+        <div class="phase-info">
+          <h2>AppSec deep · RU specifics · CTF</h2>
+          <div class="phase-meta">~ 6–8 недель // <span>differentiation</span></div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-content">
+          <div class="summary">
+            Здесь ты получаешь то, что отличает middle-кандидата от джуна: <strong>навык
+            ручного code review</strong>, понимание реальных CVE и знание <strong>специфики РФ-рынка</strong>.
+          </div>
+
+          <div class="module-grid">
+            <div class="module">
+              <div class="module-num">01</div>
+              <div class="module-title">Manual code review</div>
+              <div class="module-desc">
+                Уязвимые проекты с GitHub ("intentionally vulnerable"). Найти руками →
+                сравнить с Semgrep. Это то, что middle делает на интервью.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">interview</span>
+                <span class="tag">review</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">02</div>
+              <div class="module-title">Real CVE deep-dive</div>
+              <div class="module-desc">
+                Выбрать 3–5 свежих CVE по своему стеку. Прочитать advisory + патч на GitHub,
+                понять корень. Опционально: PoC по описанию.
+              </div>
+              <div class="module-tags">
+                <span class="tag">cve</span>
+                <span class="tag">patches</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">03</div>
+              <div class="module-title">RU-инструменты обзорно</div>
+              <div class="module-desc">
+                PT Application Inspector, Solar appScreener, CodeScoring, MaxPatrol, R-Vision.
+                Не глубоко — на уровне «знаю, чем отличаются», для интервью в крупный РФ-бизнес.
+              </div>
+              <div class="module-tags">
+                <span class="tag">ru</span>
+                <span class="tag">market</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">04</div>
+              <div class="module-title">Bug Bounty (опц., но buster резюме)</div>
+              <div class="module-desc">
+                HackerOne, Bugcrowd, Standoff Bug Bounty (RU), BI.ZONE Bug Bounty.
+                Один реальный найденный bug = огромный плюс на интервью.
+              </div>
+              <div class="module-tags">
+                <span class="tag">bb</span>
+                <span class="tag">portfolio</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">05</div>
+              <div class="module-title">CTF / hands-on</div>
+              <div class="module-desc">
+                HackTheBox (Web), TryHackMe (AppSec paths). RU: Standoff CTF, RuCTF, школа SPbCTF.
+                Развивает offensive mindset, который сильно помогает в AppSec.
+              </div>
+              <div class="module-tags">
+                <span class="tag">htb</span>
+                <span class="tag">ctf</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">06</div>
+              <div class="module-title">Сообщества и митапы</div>
+              <div class="module-desc">
+                DevSecOps Talks (TG), AppSec Village, OWASP Russia chapter, OFFZONE, ZeroNights,
+                PHDays. Networking — недооценённый источник офферов.
+              </div>
+              <div class="module-tags">
+                <span class="tag">network</span>
+                <span class="tag">community</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exit">
+            <ul class="exit-list">
+              <li>Сделан manual code review минимум 3 уязвимых проектов с отчётом</li>
+              <li>В блоге — разбор 3–5 реальных CVE по своему стеку</li>
+              <li>Знаешь различия PT AI / Solar appScreener / CodeScoring</li>
+              <li>Прошёл хотя бы 10 web-машин на HackTheBox/THM</li>
+              <li>(опц.) Подал хотя бы 1 отчёт в bug bounty программу</li>
+            </ul>
+          </div>
+
+          <div class="deliverables">
+            <div class="deliverables-label">// deliverables</div>
+            <div class="deliverables-text">
+              <strong>Code-review портфолио</strong>: репозиторий с ручными аудитами 3+ проектов,
+              CVE-разборы в блоге.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============ PHASE 6 ============ -->
+    <article class="phase" data-phase="6" id="phase-6">
+      <div class="phase-header" onclick="togglePhase(6)">
+        <div class="phase-id">P6</div>
+        <div class="phase-info">
+          <h2>Job hunt / выход на рынок</h2>
+          <div class="phase-meta">~ 4–6 недель // <span>execution</span></div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-content">
+          <div class="summary">
+            Цель — конвертировать накопленное в оффер. Можно вести параллельно с поздними фазами,
+            не ждать «полной готовности».
+          </div>
+
+          <div class="module-grid">
+            <div class="module">
+              <div class="module-num">01</div>
+              <div class="module-title">CV: RU + EN</div>
+              <div class="module-desc">
+                Два резюме. Структура: summary, key skills (с уровнями), проекты (pet-проект — №1),
+                сертификации, soft, языки. Не «знаком с» — а «использовал в проекте Х для Y».
+              </div>
+              <div class="module-tags">
+                <span class="tag">cv</span>
+                <span class="tag">bilingual</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">02</div>
+              <div class="module-title">GitHub polish</div>
+              <div class="module-desc">
+                README ко всему, описания, скриншоты, ссылки на CI-runs. Закрепить 4–6 топовых
+                репозиториев на профиле.
+              </div>
+              <div class="module-tags">
+                <span class="tag">github</span>
+                <span class="tag">portfolio</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">03</div>
+              <div class="module-title">STAR-истории</div>
+              <div class="module-desc">
+                5–7 готовых историй из своих проектов: Situation–Task–Action–Result.
+                Проговорить вслух до естественности.
+              </div>
+              <div class="module-tags">
+                <span class="tag">interview</span>
+                <span class="tag">soft</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">04</div>
+              <div class="module-title">Mock interviews</div>
+              <div class="module-desc">
+                3–5 пробных: pramp.com, interviewing.io, знакомые из IT. Найти и пофиксить
+                свои слабые места до настоящих собеседований.
+              </div>
+              <div class="module-tags">
+                <span class="tag">mock</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">05</div>
+              <div class="module-title">RU target list</div>
+              <div class="module-desc">
+                Positive Technologies, BI.ZONE, Kaspersky, Solar JSOC, Сбер (СберТех), Яндекс,
+                VK, Авито, Тинькофф, Альфа, Ozon, Wildberries, X5, МТС, Ростелеком,
+                Awillix, Cyberus, Bastion. Многие имеют стажировки.
+              </div>
+              <div class="module-tags">
+                <span class="tag">ru</span>
+                <span class="tag">applications</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">06</div>
+              <div class="module-title">INTL: remote-friendly</div>
+              <div class="module-desc">
+                weworkremotely.com, remoteok.com, LinkedIn (DevSecOps + remote).
+                Требует EN ≥ B2 и сильное портфолио.
+              </div>
+              <div class="module-tags">
+                <span class="tag">remote</span>
+                <span class="tag">intl</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exit">
+            <ul class="exit-list">
+              <li>Резюме на двух языках готово</li>
+              <li>GitHub-профиль причёсан, 4–6 топ-репо закреплены</li>
+              <li>5–7 STAR-историй проговорены</li>
+              <li>3–5 mock interviews пройдены</li>
+              <li class="crit">Подано минимум 30 откликов, есть приглашения на интервью</li>
+            </ul>
+          </div>
+
+          <div class="deliverables">
+            <div class="deliverables-label">// deliverables</div>
+            <div class="deliverables-text">
+              <strong>Оффер.</strong> Если нет — итерация: какой пробел вылезает на интервью →
+              в блог + закрыть.
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ LEGEND ============ -->
+<section class="legend">
+  <div class="legend-title">// phase color legend</div>
+  <div class="legend-grid">
+    <div class="legend-item"><span class="legend-dot" style="background:var(--text-dim)"></span>P0 Foundation</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--info)"></span>P1 DevOps base</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span>P2 AppSec foundation</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span>P3 DevSecOps tooling</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span>P4 Cloud / K8s / SC</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>P5 AppSec deep</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--warn)"></span>P6 Job hunt</div>
+  </div>
+</section>
+
+<div class="foot">
+  // <strong>принципы:</strong> один сквозной pet-проект · публичный блог-журнал · английский с первого дня · качество над скоростью<br>
+  // built for trainee_001 // school_21 // 2026
+</div>
+
+</div>
+
+<script>
+function togglePhase(n) {
+  const el = document.getElementById('phase-' + n);
+  el.classList.toggle('open');
+}
+function openPhase(n) {
+  const el = document.getElementById('phase-' + n);
+  el.classList.add('open');
+  el.scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+function openAll() {
+  document.querySelectorAll('.phase').forEach(p => p.classList.add('open'));
+}
+function closeAll() {
+  document.querySelectorAll('.phase').forEach(p => p.classList.remove('open'));
+}
+</script>
+
+</body>
+</html>
