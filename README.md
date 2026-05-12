@@ -1,1 +1,1 @@
-[DevSecOps-roadmap](https://abdeygodin.github.io/)
+[DevSecOps-roadmap](https://abdeygodin.github.io/devsecops-roadmap/)
