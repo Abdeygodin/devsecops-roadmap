@@ -83,7 +83,6 @@ body::after {
   padding: 40px 24px;
 }
 
-/* === HEADER === */
 .header {
   border: 1px solid var(--line);
   background: var(--bg-elev);
@@ -112,17 +111,8 @@ body::after {
   gap: 12px;
 }
 
-.header-meta .blink {
-  color: var(--accent);
-  animation: blink 1.4s infinite;
-}
-
-.version-tag {
-  color: var(--warn);
-  border: 1px solid var(--warn);
-  padding: 2px 8px;
-  font-size: 10px;
-}
+.header-meta .blink { color: var(--accent); animation: blink 1.4s infinite; }
+.version-tag { color: var(--warn); border: 1px solid var(--warn); padding: 2px 8px; font-size: 10px; }
 
 @keyframes blink {
   0%, 50% { opacity: 1; }
@@ -141,11 +131,7 @@ body::after {
 .title .accent { color: var(--accent); }
 .title .info { color: var(--info); }
 
-.typing {
-  display: inline-block;
-  color: var(--accent);
-  animation: blink 1.1s infinite;
-}
+.typing { display: inline-block; color: var(--accent); animation: blink 1.1s infinite; }
 
 .subtitle {
   font-size: 14px;
@@ -165,31 +151,14 @@ body::after {
   border: 1px solid var(--line);
 }
 
-.briefing-item {
-  background: var(--bg-elev);
-  padding: 16px 20px;
-}
-
-.briefing-item .label {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--text-dim);
-  margin-bottom: 6px;
-}
-
-.briefing-item .value {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--text-bright);
-}
-
+.briefing-item { background: var(--bg-elev); padding: 16px 20px; }
+.briefing-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 6px; }
+.briefing-item .value { font-size: 16px; font-weight: 500; color: var(--text-bright); }
 .briefing-item .value.accent { color: var(--accent); }
 .briefing-item .value.info { color: var(--info); }
 .briefing-item .value.warn { color: var(--warn); }
 .briefing-item .value.purple { color: var(--purple); }
 
-/* === AUTHOR / PORTFOLIO BLOCK === */
 .author-block {
   border: 1px solid var(--line);
   background: var(--bg-card);
@@ -222,28 +191,15 @@ body::after {
 
 .author-links { display: flex; gap: 8px; flex-wrap: wrap; }
 .author-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px solid var(--line-bright);
-  background: var(--bg-elev);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 11px;
-  font-family: inherit;
-  letter-spacing: 0.05em;
-  transition: all 0.15s;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border: 1px solid var(--line-bright); background: var(--bg-elev);
+  color: var(--text); text-decoration: none; font-size: 11px; font-family: inherit;
+  letter-spacing: 0.05em; transition: all 0.15s;
 }
-.author-link:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translateY(-1px);
-}
+.author-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 .author-link::before { content: '> '; color: var(--accent); }
 
-/* === HOW TO USE BANNER === */
-.how-to-use {
+.how-to-use, .strategy {
   border: 1px solid var(--line);
   background: var(--bg-card);
   padding: 24px 32px;
@@ -253,104 +209,42 @@ body::after {
 
 .how-to-use::before {
   content: '// how_to_use.md';
-  position: absolute;
-  top: -1px;
-  left: 16px;
-  background: var(--bg);
-  padding: 0 10px;
-  font-size: 10px;
-  color: var(--accent);
-  letter-spacing: 0.15em;
-  transform: translateY(-50%);
-}
-
-.how-to-use-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-}
-
-.how-to-use-block h3 {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-
-.how-to-use-block p {
-  font-size: 12px;
-  color: var(--text);
-  line-height: 1.7;
-}
-
-.how-to-use-block strong { color: var(--text-bright); font-weight: 500; }
-
-/* === STRATEGY BANNER === */
-.strategy {
-  border: 1px solid var(--line);
-  background: var(--bg-card);
-  padding: 24px 32px;
-  margin-bottom: 32px;
-  position: relative;
+  position: absolute; top: -1px; left: 16px; background: var(--bg); padding: 0 10px;
+  font-size: 10px; color: var(--accent); letter-spacing: 0.15em; transform: translateY(-50%);
 }
 
 .strategy::before {
   content: '// principles.md';
-  position: absolute;
-  top: -1px;
-  left: 16px;
-  background: var(--bg);
-  padding: 0 10px;
-  font-size: 10px;
-  color: var(--accent);
-  letter-spacing: 0.15em;
-  transform: translateY(-50%);
+  position: absolute; top: -1px; left: 16px; background: var(--bg); padding: 0 10px;
+  font-size: 10px; color: var(--accent); letter-spacing: 0.15em; transform: translateY(-50%);
 }
 
-.strategy-grid {
+.how-to-use-grid, .strategy-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
 }
 
-.strategy-block h3 {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  margin-bottom: 10px;
+.how-to-use-block h3, .strategy-block h3 {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--accent); margin-bottom: 10px;
 }
 
-.strategy-block p {
-  font-size: 12px;
-  color: var(--text);
-  line-height: 1.7;
+.how-to-use-block p, .strategy-block p {
+  font-size: 12px; color: var(--text); line-height: 1.7;
 }
 
-.strategy-block strong { color: var(--text-bright); font-weight: 500; }
+.how-to-use-block strong, .strategy-block strong { color: var(--text-bright); font-weight: 500; }
 
-/* === TRACK SECTION === */
-.track-section {
-  margin-bottom: 48px;
-}
+.track-section { margin-bottom: 48px; }
 
 .section-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  color: var(--text-dim);
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--line);
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.25em;
+  color: var(--text-dim); margin-bottom: 16px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--line);
 }
 
-/* === TIMELINE BAR === */
-.timeline-bar {
-  border: 1px solid var(--line);
-  background: var(--bg-elev);
-  padding: 24px;
-}
+.timeline-bar { border: 1px solid var(--line); background: var(--bg-elev); padding: 24px; }
 
 .timeline-track {
   display: grid;
@@ -360,24 +254,13 @@ body::after {
 }
 
 .timeline-segment {
-  height: 40px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--bg);
-  letter-spacing: 0.05em;
-  transition: all 0.2s;
+  height: 40px; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-family: inherit; font-size: 11px; font-weight: 700;
+  color: var(--bg); letter-spacing: 0.05em; transition: all 0.2s;
 }
 
-.timeline-segment:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
+.timeline-segment:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
 
 .timeline-segment.p0 { background: var(--text-dim); }
 .timeline-segment.p1 { background: var(--info); }
@@ -391,46 +274,22 @@ body::after {
   display: grid;
   grid-template-columns: 1.4fr 1.6fr 1.2fr 1.2fr 1.6fr 1.0fr 1.0fr;
   gap: 4px;
-  font-size: 10px;
-  color: var(--text-dim);
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-size: 10px; color: var(--text-dim); text-align: center;
+  text-transform: uppercase; letter-spacing: 0.1em;
 }
 
-/* === CONTROLS === */
-.controls {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
+.controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
 
 .btn {
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--text);
-  padding: 8px 16px;
-  font-family: inherit;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
+  background: transparent; border: 1px solid var(--line); color: var(--text);
+  padding: 8px 16px; font-family: inherit; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
   transition: all 0.15s;
 }
 
-.btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
 
-/* === PHASES === */
-.phase {
-  border: 1px solid var(--line);
-  background: var(--bg-card);
-  margin-bottom: 16px;
-  --phase-color: var(--accent);
-}
+.phase { border: 1px solid var(--line); background: var(--bg-card); margin-bottom: 16px; --phase-color: var(--accent); }
 
 .phase[data-phase="0"] { --phase-color: var(--text-dim); }
 .phase[data-phase="1"] { --phase-color: var(--info); }
@@ -460,46 +319,26 @@ body::after {
 
 .phase-id {
   font-family: 'Major Mono Display', monospace;
-  font-size: 32px;
-  color: var(--phase-color);
-  text-align: center;
-  line-height: 1;
+  font-size: 32px; color: var(--phase-color);
+  text-align: center; line-height: 1;
 }
 
 .phase-info h2 {
-  font-size: 18px;
-  color: var(--text-bright);
-  font-weight: 500;
-  margin-bottom: 4px;
-  letter-spacing: 0;
+  font-size: 18px; color: var(--text-bright); font-weight: 500;
+  margin-bottom: 4px; letter-spacing: 0;
 }
 
-.phase-meta {
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 0.05em;
-}
-
+.phase-meta { font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; }
 .phase-meta span { color: var(--phase-color); }
 
 .phase-toggle {
-  font-size: 24px;
-  color: var(--text-dim);
-  text-align: center;
+  font-size: 24px; color: var(--text-dim); text-align: center;
   transition: transform 0.2s;
 }
 
-.phase.open .phase-toggle {
-  transform: rotate(45deg);
-  color: var(--phase-color);
-}
+.phase.open .phase-toggle { transform: rotate(45deg); color: var(--phase-color); }
 
-.phase-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-}
-
+.phase-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
 .phase.open .phase-body { max-height: 20000px; }
 
 .phase-content {
@@ -511,118 +350,21 @@ body::after {
   gap: 24px;
 }
 
-/* === SUMMARY === */
 .summary {
-  font-size: 13px;
-  color: var(--text);
-  line-height: 1.7;
-  padding: 16px 20px;
-  border-left: 2px solid var(--phase-color);
+  font-size: 13px; color: var(--text); line-height: 1.7;
+  padding: 16px 20px; border-left: 2px solid var(--phase-color);
   background: rgba(0,0,0,0.2);
 }
 
 .summary strong { color: var(--text-bright); }
 
-/* === WEEKS BLOCK === */
 .weeks-block-title {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em;
   color: var(--phase-color);
-  padding-bottom: 8px;
-  border-bottom: 1px dashed var(--line);
+  padding-bottom: 8px; border-bottom: 1px dashed var(--line);
   margin-bottom: 4px;
 }
 
-.weeks {
-  display: grid;
-  gap: 8px;
-}
-
-.week {
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 16px;
-  border: 1px solid var(--line);
-  background: var(--bg-elev);
-  padding: 16px 20px;
-}
-
-.week-num {
-  font-family: 'Major Mono Display', monospace;
-  font-size: 18px;
-  color: var(--phase-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 2px;
-}
-
-.week-num small {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  color: var(--text-dim);
-  letter-spacing: 0.1em;
-  margin-top: 4px;
-  text-align: center;
-}
-
-.week-body h4 {
-  font-size: 13px;
-  color: var(--text-bright);
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.week-body ul {
-  list-style: none;
-  display: grid;
-  gap: 6px;
-}
-
-.week-body ul li {
-  font-size: 12px;
-  color: var(--text);
-  padding-left: 16px;
-  position: relative;
-  line-height: 1.6;
-}
-
-.week-body ul li::before {
-  content: '▸';
-  color: var(--phase-color);
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.week-body strong { color: var(--text-bright); font-weight: 500; }
-.week-body code {
-  background: var(--bg);
-  color: var(--accent);
-  padding: 1px 6px;
-  font-size: 11px;
-  border: 1px solid var(--line);
-}
-
-.metric {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: rgba(74, 222, 128, 0.06);
-  border-left: 2px solid var(--accent);
-  font-size: 11px;
-  color: var(--text);
-}
-
-.metric::before {
-  content: '◈ output // ';
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-/* === MODULES === */
 .module-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -630,59 +372,36 @@ body::after {
 }
 
 .module {
-  border: 1px solid var(--line);
-  background: var(--bg-elev);
-  padding: 16px 18px;
-  border-top: 3px solid var(--phase-color);
+  border: 1px solid var(--line); background: var(--bg-elev);
+  padding: 16px 18px; border-top: 3px solid var(--phase-color);
 }
 
 .module-num {
-  font-family: 'Major Mono Display', monospace;
-  font-size: 11px;
-  color: var(--phase-color);
-  letter-spacing: 0.1em;
-  margin-bottom: 6px;
+  font-family: 'Major Mono Display', monospace; font-size: 11px;
+  color: var(--phase-color); letter-spacing: 0.1em; margin-bottom: 6px;
 }
 
 .module-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text-bright);
-  margin-bottom: 8px;
-  line-height: 1.4;
+  font-size: 13px; font-weight: 700; color: var(--text-bright);
+  margin-bottom: 8px; line-height: 1.4;
 }
 
 .module-desc {
-  font-size: 12px;
-  color: var(--text);
-  line-height: 1.6;
-  margin-bottom: 10px;
+  font-size: 12px; color: var(--text); line-height: 1.6; margin-bottom: 10px;
 }
 
 .module-desc strong { color: var(--text-bright); font-weight: 500; }
 .module-desc code {
-  background: var(--bg);
-  color: var(--accent);
-  padding: 1px 5px;
-  font-size: 11px;
-  border: 1px solid var(--line);
+  background: var(--bg); color: var(--accent);
+  padding: 1px 5px; font-size: 11px; border: 1px solid var(--line);
 }
 
-.module-tags {
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
+.module-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
 
 .tag {
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 2px 8px;
-  border: 1px solid var(--line-bright);
-  background: var(--bg-card);
-  color: var(--text-dim);
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 8px; border: 1px solid var(--line-bright);
+  background: var(--bg-card); color: var(--text-dim);
 }
 
 .tag.hot { color: var(--warn); border-color: var(--warn); }
@@ -690,76 +409,40 @@ body::after {
 .tag.ru-must, .tag.ru { color: var(--pink); border-color: var(--pink); }
 .tag.intl { color: var(--info); border-color: var(--info); }
 
-/* === EXIT CRITERIA === */
 .exit {
   border: 1px solid var(--phase-color);
   background: rgba(0,0,0,0.3);
-  padding: 20px 24px;
-  position: relative;
+  padding: 20px 24px; position: relative;
 }
 
 .exit::before {
   content: '// EXIT_CRITERIA';
-  position: absolute;
-  top: -1px;
-  left: 16px;
-  background: var(--bg-card);
-  padding: 0 10px;
-  font-size: 10px;
-  color: var(--phase-color);
-  letter-spacing: 0.15em;
-  transform: translateY(-50%);
+  position: absolute; top: -1px; left: 16px;
+  background: var(--bg-card); padding: 0 10px;
+  font-size: 10px; color: var(--phase-color);
+  letter-spacing: 0.15em; transform: translateY(-50%);
 }
 
-.exit-list {
-  list-style: none;
-  display: grid;
-  gap: 8px;
-  margin-top: 6px;
-}
+.exit-list { list-style: none; display: grid; gap: 8px; margin-top: 6px; }
 
 .exit-list li {
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--text);
-  align-items: start;
+  display: grid; grid-template-columns: 24px 1fr; gap: 8px;
+  font-size: 12px; color: var(--text); align-items: start;
 }
 
-.exit-list li::before {
-  content: '[ ]';
-  color: var(--phase-color);
-  font-weight: 700;
-}
+.exit-list li::before { content: '[ ]'; color: var(--phase-color); font-weight: 700; }
+.exit-list li.crit::before { content: '[!]'; color: var(--danger); }
 
-.exit-list li.crit::before {
-  content: '[!]';
-  color: var(--danger);
-}
-
-/* === DELIVERABLES === */
 .deliverables {
   background: rgba(74, 222, 128, 0.04);
   border: 1px dashed var(--accent-dim);
   padding: 16px 20px;
 }
 
-.deliverables-label {
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-
-.deliverables-text {
-  font-size: 12px;
-  color: var(--text);
-}
-
+.deliverables-label { font-size: 10px; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; }
+.deliverables-text { font-size: 12px; color: var(--text); }
 .deliverables-text strong { color: var(--text-bright); }
 
-/* === TOOLS GRID === */
 .tools-section {
   border: 1px solid var(--line);
   background: var(--bg-card);
@@ -770,30 +453,18 @@ body::after {
 
 .tools-section::before {
   content: '// tooling.matrix';
-  position: absolute;
-  top: -1px;
-  left: 24px;
-  background: var(--bg);
-  padding: 0 12px;
-  font-size: 11px;
-  color: var(--purple);
-  letter-spacing: 0.2em;
+  position: absolute; top: -1px; left: 24px;
+  background: var(--bg); padding: 0 12px;
+  font-size: 11px; color: var(--purple); letter-spacing: 0.2em;
   transform: translateY(-50%);
 }
 
 .tools-section h3 {
   font-family: 'Major Mono Display', monospace;
-  font-size: 22px;
-  color: var(--text-bright);
-  margin-bottom: 8px;
+  font-size: 22px; color: var(--text-bright); margin-bottom: 8px;
 }
 
-.tools-intro {
-  font-size: 12px;
-  color: var(--text-dim);
-  margin-bottom: 24px;
-  line-height: 1.7;
-}
+.tools-intro { font-size: 12px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.7; }
 
 .tools-grid {
   display: grid;
@@ -802,10 +473,8 @@ body::after {
 }
 
 .tool-cat {
-  border: 1px solid var(--line);
-  background: var(--bg-elev);
-  padding: 16px 20px;
-  border-top: 3px solid var(--tool-color);
+  border: 1px solid var(--line); background: var(--bg-elev);
+  padding: 16px 20px; border-top: 3px solid var(--tool-color);
 }
 
 .tool-cat[data-cat="sast"]     { --tool-color: var(--accent); }
@@ -818,167 +487,101 @@ body::after {
 .tool-cat[data-cat="k8s"]      { --tool-color: var(--accent); }
 .tool-cat[data-cat="siem"]     { --tool-color: var(--danger); }
 .tool-cat[data-cat="supply"]   { --tool-color: var(--warn); }
+.tool-cat[data-cat="vm"]       { --tool-color: var(--purple); }
+.tool-cat[data-cat="edr"]      { --tool-color: var(--orange); }
+.tool-cat[data-cat="ids"]      { --tool-color: var(--info); }
+.tool-cat[data-cat="api"]      { --tool-color: var(--pink); }
 
 .tool-cat h4 {
-  font-size: 12px;
-  color: var(--tool-color);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 12px;
-  font-weight: 700;
+  font-size: 12px; color: var(--tool-color);
+  text-transform: uppercase; letter-spacing: 0.15em;
+  margin-bottom: 12px; font-weight: 700;
 }
 
-.tool-cat-desc {
-  font-size: 11px;
-  color: var(--text-dim);
-  margin-bottom: 12px;
-  line-height: 1.6;
-}
+.tool-cat-desc { font-size: 11px; color: var(--text-dim); margin-bottom: 12px; line-height: 1.6; }
 
-.tool-list {
-  list-style: none;
-  display: grid;
-  gap: 6px;
-}
+.tool-list { list-style: none; display: grid; gap: 6px; }
 
 .tool-list li {
-  font-size: 11px;
-  color: var(--text);
-  line-height: 1.6;
-  padding-left: 18px;
-  position: relative;
+  font-size: 11px; color: var(--text); line-height: 1.6;
+  padding-left: 18px; position: relative;
 }
 
 .tool-list li::before {
-  content: '▸';
-  color: var(--tool-color);
-  position: absolute;
-  left: 0;
-  top: 0;
+  content: '▸'; color: var(--tool-color);
+  position: absolute; left: 0; top: 0;
 }
 
 .tool-list li strong { color: var(--text-bright); font-weight: 500; }
 .tool-list li .ru-mark {
-  display: inline-block;
-  background: var(--pink);
-  color: var(--bg);
-  font-size: 8px;
-  font-weight: 700;
-  padding: 1px 4px;
-  letter-spacing: 0.05em;
-  margin-left: 4px;
-  vertical-align: middle;
+  display: inline-block; background: var(--pink); color: var(--bg);
+  font-size: 8px; font-weight: 700; padding: 1px 4px;
+  letter-spacing: 0.05em; margin-left: 4px; vertical-align: middle;
 }
 
-/* === ASCEND === */
-.ascend-divider {
-  margin: 64px 0 40px;
-  position: relative;
-  text-align: center;
-}
+.ascend-divider { margin: 64px 0 40px; position: relative; text-align: center; }
 
 .ascend-divider::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 0; right: 0;
-  height: 1px;
+  content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px;
   background: linear-gradient(90deg, transparent 0%, var(--warn) 30%, var(--danger) 50%, var(--warn) 70%, transparent 100%);
 }
 
 .ascend-divider span {
-  position: relative;
-  background: var(--bg);
-  padding: 0 24px;
-  font-family: 'Major Mono Display', monospace;
-  font-size: 14px;
-  color: var(--warn);
-  letter-spacing: 0.3em;
+  position: relative; background: var(--bg); padding: 0 24px;
+  font-family: 'Major Mono Display', monospace; font-size: 14px;
+  color: var(--warn); letter-spacing: 0.3em;
 }
 
 .ascend-intro {
   border: 1px solid var(--warn);
   background: rgba(245, 158, 11, 0.04);
-  padding: 24px 32px;
-  margin-bottom: 32px;
+  padding: 24px 32px; margin-bottom: 32px;
   position: relative;
 }
 
 .ascend-intro::before {
   content: '// elevation_track.md';
-  position: absolute;
-  top: -1px;
-  left: 16px;
-  background: var(--bg);
-  padding: 0 10px;
-  font-size: 10px;
-  color: var(--warn);
-  letter-spacing: 0.15em;
-  transform: translateY(-50%);
+  position: absolute; top: -1px; left: 16px;
+  background: var(--bg); padding: 0 10px;
+  font-size: 10px; color: var(--warn);
+  letter-spacing: 0.15em; transform: translateY(-50%);
 }
 
 .ascend-intro h2 {
   font-family: 'Major Mono Display', monospace;
-  font-size: 24px;
-  color: var(--text-bright);
-  margin-bottom: 12px;
+  font-size: 24px; color: var(--text-bright); margin-bottom: 12px;
 }
 
-.ascend-intro p {
-  font-size: 13px;
-  color: var(--text);
-  line-height: 1.7;
-  margin-bottom: 8px;
-}
-
+.ascend-intro p { font-size: 13px; color: var(--text); line-height: 1.7; margin-bottom: 8px; }
 .ascend-intro strong { color: var(--warn); }
 
 .tier-badge {
-  display: inline-block;
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  padding: 2px 8px;
-  border: 1px solid currentColor;
-  margin-left: 8px;
-  text-transform: uppercase;
-  vertical-align: middle;
+  display: inline-block; font-size: 9px; letter-spacing: 0.2em;
+  padding: 2px 8px; border: 1px solid currentColor;
+  margin-left: 8px; text-transform: uppercase; vertical-align: middle;
 }
 
 .tier-badge.middle { color: #fb923c; }
 .tier-badge.senior { color: #ef4444; }
 
 .ascend-timeline {
-  border: 1px solid var(--line);
-  background: var(--bg-elev);
-  padding: 24px;
-  margin-bottom: 32px;
+  border: 1px solid var(--line); background: var(--bg-elev);
+  padding: 24px; margin-bottom: 32px;
 }
 
 .ascend-timeline-track {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
-  margin-bottom: 12px;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 4px; margin-bottom: 12px;
 }
 
 .ascend-timeline-track button {
-  height: 36px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--bg);
-  border: none;
-  font-family: inherit;
-  transition: all 0.2s;
+  height: 36px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--bg);
+  border: none; font-family: inherit; transition: all 0.2s;
 }
 
-.ascend-timeline-track button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
-
+.ascend-timeline-track button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
 .ascend-timeline-track .m1 { background: #fbbf24; }
 .ascend-timeline-track .m2 { background: #fb923c; }
 .ascend-timeline-track .m3 { background: #f87171; }
@@ -986,61 +589,38 @@ body::after {
 .ascend-timeline-track .s2 { background: #dc2626; }
 
 .ascend-timeline-labels {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
-  font-size: 10px;
-  color: var(--text-dim);
-  text-align: center;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+  font-size: 10px; color: var(--text-dim); text-align: center;
 }
 
-/* === SPECIALIZATION MATRIX === */
 .spec-matrix {
-  margin-top: 48px;
-  border: 1px solid var(--line);
-  background: var(--bg-card);
-  padding: 32px;
-  position: relative;
+  margin-top: 48px; border: 1px solid var(--line);
+  background: var(--bg-card); padding: 32px; position: relative;
 }
 
 .spec-matrix::before {
   content: '// specialization_matrix';
-  position: absolute;
-  top: -1px;
-  left: 24px;
-  background: var(--bg);
-  padding: 0 12px;
-  font-size: 11px;
-  color: var(--info);
-  letter-spacing: 0.2em;
+  position: absolute; top: -1px; left: 24px;
+  background: var(--bg); padding: 0 12px;
+  font-size: 11px; color: var(--info); letter-spacing: 0.2em;
   transform: translateY(-50%);
 }
 
 .spec-matrix h3 {
   font-family: 'Major Mono Display', monospace;
-  font-size: 22px;
-  color: var(--text-bright);
-  margin-bottom: 8px;
+  font-size: 22px; color: var(--text-bright); margin-bottom: 8px;
 }
 
-.spec-matrix .matrix-intro {
-  font-size: 12px;
-  color: var(--text-dim);
-  margin-bottom: 24px;
-  line-height: 1.7;
-}
+.spec-matrix .matrix-intro { font-size: 12px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.7; }
 
 .spec-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 16px;
 }
 
 .spec-card {
-  border: 1px solid var(--line);
-  background: var(--bg-elev);
-  padding: 20px;
-  border-top: 3px solid var(--spec-color);
+  border: 1px solid var(--line); background: var(--bg-elev);
+  padding: 20px; border-top: 3px solid var(--spec-color);
 }
 
 .spec-card[data-spec="appsec"]   { --spec-color: var(--accent); }
@@ -1050,92 +630,54 @@ body::after {
 .spec-card[data-spec="detect"]   { --spec-color: var(--pink); }
 .spec-card[data-spec="research"] { --spec-color: var(--danger); }
 
-.spec-card h4 {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-bright);
-  margin-bottom: 6px;
-}
-
+.spec-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 6px; }
 .spec-card .spec-label {
-  font-size: 10px;
-  color: var(--spec-color);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+  font-size: 10px; color: var(--spec-color);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;
 }
 
-.spec-card p {
-  font-size: 12px;
-  color: var(--text);
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
+.spec-card p { font-size: 12px; color: var(--text); line-height: 1.6; margin-bottom: 12px; }
 
 .spec-card .spec-roles {
-  font-size: 11px;
-  color: var(--text-dim);
-  border-top: 1px dashed var(--line);
-  padding-top: 10px;
+  font-size: 11px; color: var(--text-dim);
+  border-top: 1px dashed var(--line); padding-top: 10px;
 }
 
 .spec-card .spec-roles strong {
-  color: var(--text-bright);
-  display: block;
-  margin-bottom: 4px;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  color: var(--text-bright); display: block; margin-bottom: 4px;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
 }
 
-/* === REALITY TABLE === */
 .reality-block {
-  margin-bottom: 32px;
-  border: 1px solid var(--line);
-  background: var(--bg-elev);
-  padding: 24px 28px;
+  margin-bottom: 32px; border: 1px solid var(--line);
+  background: var(--bg-elev); padding: 24px 28px;
 }
 
 .reality-block h3 {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-  margin-bottom: 16px;
+  font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.2em; color: var(--accent); margin-bottom: 16px;
 }
 
-.reality-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
+.reality-table { width: 100%; border-collapse: collapse; font-size: 12px; }
 
 .reality-table th {
-  text-align: left;
-  padding: 10px 12px;
-  background: var(--bg);
-  color: var(--text-dim);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-size: 10px;
+  text-align: left; padding: 10px 12px;
+  background: var(--bg); color: var(--text-dim);
+  font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; font-size: 10px;
   border-bottom: 1px solid var(--line-bright);
 }
 
 .reality-table td {
-  padding: 12px;
-  border-bottom: 1px solid var(--line);
-  color: var(--text);
-  vertical-align: top;
-  line-height: 1.6;
+  padding: 12px; border-bottom: 1px solid var(--line);
+  color: var(--text); vertical-align: top; line-height: 1.6;
 }
 
 .reality-table tr:last-child td { border-bottom: none; }
 
 .reality-table .lvl {
   font-family: 'Major Mono Display', monospace;
-  color: var(--text-bright);
-  white-space: nowrap;
+  color: var(--text-bright); white-space: nowrap;
 }
 
 .reality-table .lvl.junior { color: var(--info); }
@@ -1143,266 +685,147 @@ body::after {
 .reality-table .lvl.middle { color: #fb923c; }
 .reality-table .lvl.senior { color: #ef4444; }
 
-.reality-table .salary {
-  color: var(--purple);
-  font-weight: 500;
-  white-space: nowrap;
-}
+.reality-table .salary { color: var(--purple); font-weight: 500; white-space: nowrap; }
 
-/* === FAQ === */
 .faq-section {
-  margin-bottom: 48px;
-  border: 1px solid var(--line);
-  background: var(--bg-card);
-  padding: 32px;
-  position: relative;
+  margin-bottom: 48px; border: 1px solid var(--line);
+  background: var(--bg-card); padding: 32px; position: relative;
 }
 
 .faq-section::before {
   content: '// faq.md';
-  position: absolute;
-  top: -1px;
-  left: 24px;
-  background: var(--bg);
-  padding: 0 12px;
-  font-size: 11px;
-  color: var(--purple);
-  letter-spacing: 0.2em;
+  position: absolute; top: -1px; left: 24px;
+  background: var(--bg); padding: 0 12px;
+  font-size: 11px; color: var(--purple); letter-spacing: 0.2em;
   transform: translateY(-50%);
 }
 
 .faq-section h3 {
   font-family: 'Major Mono Display', monospace;
-  font-size: 22px;
-  color: var(--text-bright);
-  margin-bottom: 24px;
+  font-size: 22px; color: var(--text-bright); margin-bottom: 24px;
 }
 
-.faq-item {
-  border: 1px solid var(--line);
-  background: var(--bg-elev);
-  margin-bottom: 10px;
-}
+.faq-item { border: 1px solid var(--line); background: var(--bg-elev); margin-bottom: 10px; }
 
 .faq-q {
-  padding: 14px 20px;
-  font-size: 13px;
-  color: var(--text-bright);
-  cursor: pointer;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  user-select: none;
-  font-weight: 500;
+  padding: 14px 20px; font-size: 13px; color: var(--text-bright);
+  cursor: pointer; display: flex; gap: 12px; align-items: center;
+  user-select: none; font-weight: 500;
 }
 
-.faq-q .q-mark {
-  color: var(--accent);
-  flex-shrink: 0;
-  font-weight: 700;
-}
+.faq-q .q-mark { color: var(--accent); flex-shrink: 0; font-weight: 700; }
+.faq-q .q-text { flex: 1; }
+.faq-q .arrow { color: var(--text-dim); transition: transform 0.2s; flex-shrink: 0; }
 
-.faq-q .q-text {
-  flex: 1;
-}
-
-.faq-q .arrow {
-  color: var(--text-dim);
-  transition: transform 0.2s;
-  flex-shrink: 0;
-}
-
-.faq-item.open .faq-q .arrow {
-  transform: rotate(180deg);
-  color: var(--accent);
-}
+.faq-item.open .faq-q .arrow { transform: rotate(180deg); color: var(--accent); }
 
 .faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  font-size: 12px;
-  color: var(--text);
-  line-height: 1.7;
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+  font-size: 12px; color: var(--text); line-height: 1.7;
 }
 
 .faq-item.open .faq-a { max-height: 600px; }
 
 .faq-a-inner {
-  padding: 0 20px 16px 20px;
-  border-top: 1px dashed var(--line);
-  padding-top: 14px;
+  padding: 0 20px 16px 20px; border-top: 1px dashed var(--line); padding-top: 14px;
 }
 
 .faq-a strong { color: var(--text-bright); }
 
-/* === FINAL CHECKLIST === */
 .final-checklist {
-  margin-top: 48px;
-  border: 2px solid var(--accent);
-  background: var(--bg-elev);
-  padding: 32px 36px;
-  position: relative;
+  margin-top: 48px; border: 2px solid var(--accent);
+  background: var(--bg-elev); padding: 32px 36px; position: relative;
 }
 
 .final-checklist::before {
   content: '// junior_gate.checklist';
-  position: absolute;
-  top: -1px;
-  left: 24px;
-  background: var(--bg);
-  padding: 0 12px;
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.2em;
-  transform: translateY(-50%);
+  position: absolute; top: -1px; left: 24px;
+  background: var(--bg); padding: 0 12px;
+  font-size: 11px; color: var(--accent);
+  letter-spacing: 0.2em; transform: translateY(-50%);
   font-weight: 700;
 }
 
 .final-checklist h2 {
   font-family: 'Major Mono Display', monospace;
-  font-size: 28px;
-  color: var(--text-bright);
-  margin-bottom: 8px;
+  font-size: 28px; color: var(--text-bright); margin-bottom: 8px;
 }
 
 .final-checklist .gate-info {
-  font-size: 12px;
-  color: var(--text-dim);
-  margin-bottom: 24px;
-  letter-spacing: 0.05em;
-  line-height: 1.7;
+  font-size: 12px; color: var(--text-dim);
+  margin-bottom: 24px; letter-spacing: 0.05em; line-height: 1.7;
 }
 
 .final-checklist .gate-info strong { color: var(--accent); }
 
 .checklist-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 8px;
 }
 
 .check-item {
-  display: grid;
-  grid-template-columns: 32px 24px 1fr;
-  gap: 8px;
-  align-items: start;
-  padding: 10px 12px;
-  background: var(--bg-card);
+  display: grid; grid-template-columns: 32px 24px 1fr;
+  gap: 8px; align-items: start;
+  padding: 10px 12px; background: var(--bg-card);
   border-left: 2px solid var(--line);
-  font-size: 12px;
-  cursor: pointer;
-  user-select: none;
+  font-size: 12px; cursor: pointer; user-select: none;
   transition: all 0.15s;
 }
 
-.check-item:hover {
-  border-left-color: var(--accent);
-  background: var(--bg);
-}
-
-.check-item.checked {
-  border-left-color: var(--accent);
-  background: rgba(74, 222, 128, 0.08);
-}
-
-.check-item.checked .check-text {
-  color: var(--text-dim);
-  text-decoration: line-through;
-}
+.check-item:hover { border-left-color: var(--accent); background: var(--bg); }
+.check-item.checked { border-left-color: var(--accent); background: rgba(74, 222, 128, 0.08); }
+.check-item.checked .check-text { color: var(--text-dim); text-decoration: line-through; }
 
 .check-num { color: var(--text-dim); font-size: 11px; }
 .check-box { color: var(--accent); font-weight: 700; }
 .check-text { color: var(--text); line-height: 1.5; }
 
 .progress-display {
-  margin-top: 20px;
-  padding: 12px 16px;
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 12px;
+  margin-top: 20px; padding: 12px 16px;
+  background: var(--bg-card); border: 1px solid var(--line);
+  display: flex; align-items: center; gap: 16px; font-size: 12px;
 }
 
 .progress-bar {
-  flex: 1;
-  height: 8px;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  position: relative;
-  overflow: hidden;
+  flex: 1; height: 8px; background: var(--bg);
+  border: 1px solid var(--line); position: relative; overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--info), var(--accent));
-  width: 0%;
-  transition: width 0.4s;
+  width: 0%; transition: width 0.4s;
 }
 
 .progress-text {
   font-family: 'Major Mono Display', monospace;
-  color: var(--accent);
-  font-size: 14px;
-  white-space: nowrap;
+  color: var(--accent); font-size: 14px; white-space: nowrap;
 }
 
-/* === LEGEND / FOOTER === */
-.legend {
-  margin-top: 48px;
-  border-top: 1px solid var(--line);
-  padding-top: 32px;
-}
-
+.legend { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 32px; }
 .legend-title {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 16px;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 16px;
 }
 
 .legend-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
 }
 
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-}
-
-.legend-dot {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-}
+.legend-item { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+.legend-dot { width: 12px; height: 12px; flex-shrink: 0; }
 
 .foot {
-  text-align: center;
-  padding: 48px 0 24px;
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 0.1em;
-  line-height: 1.8;
+  text-align: center; padding: 48px 0 24px;
+  font-size: 11px; color: var(--text-dim);
+  letter-spacing: 0.1em; line-height: 1.8;
 }
 
 .foot strong { color: var(--accent); }
-
-.foot a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dashed var(--accent-dim);
-}
-
+.foot a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent-dim); }
 .foot a:hover { color: var(--info); border-color: var(--info); }
 
-/* === RESPONSIVE === */
 @media (max-width: 720px) {
   .container { padding: 24px 12px; }
   .header { padding: 24px 20px; }
@@ -1410,13 +833,9 @@ body::after {
   .phase-id { font-size: 24px; }
   .phase-info h2 { font-size: 15px; }
   .phase-content { padding: 16px; }
-  .week { grid-template-columns: 1fr; gap: 8px; padding: 14px; }
-  .week-num { flex-direction: row; align-items: center; gap: 8px; justify-content: flex-start; }
   .reality-table { font-size: 11px; }
   .reality-table th, .reality-table td { padding: 8px 6px; }
-  .timeline-track, .timeline-labels {
-    grid-template-columns: repeat(7, 1fr);
-  }
+  .timeline-track, .timeline-labels { grid-template-columns: repeat(7, 1fr); }
   .timeline-segment { font-size: 9px; height: 32px; }
   .author-block { flex-direction: column; align-items: flex-start; }
   .tools-grid { grid-template-columns: 1fr; }
@@ -1438,7 +857,7 @@ body::after {
 <header class="header">
   <div class="header-meta">
     <span><span class="blink">●</span> status: open_source · public_edition</span>
-    <span>v1.0 · maintained</span>
+    <span>v1.1 · maintained</span>
     <span class="version-tag">RU-focus + INTL-perspective</span>
   </div>
 
@@ -1481,7 +900,6 @@ body::after {
   </div>
 </header>
 
-<!-- ============ AUTHOR / PORTFOLIO ============ -->
 <section class="author-block">
   <div class="author-info">
     <div class="name">// maintained by Andrey_Gorin</div>
@@ -1493,7 +911,6 @@ body::after {
   </div>
 </section>
 
-<!-- ============ HOW TO USE ============ -->
 <section class="how-to-use">
   <div class="how-to-use-grid">
     <div class="how-to-use-block">
@@ -1535,7 +952,6 @@ body::after {
   </div>
 </section>
 
-<!-- ============ STRATEGY / PRINCIPLES ============ -->
 <section class="strategy">
   <div class="strategy-grid">
     <div class="strategy-block">
@@ -1574,7 +990,6 @@ body::after {
   </div>
 </section>
 
-<!-- ============ TIMELINE ============ -->
 <section class="track-section">
   <div class="section-label">timeline / overview</div>
   <div class="timeline-bar">
@@ -1584,7 +999,7 @@ body::after {
       <button class="timeline-segment p2" onclick="openPhase(2)" title="P2: AppSec foundation">P2</button>
       <button class="timeline-segment p3" onclick="openPhase(3)" title="P3: DevSecOps tooling">P3</button>
       <button class="timeline-segment p4" onclick="openPhase(4)" title="P4: K8s sec, Cloud, Supply Chain">P4</button>
-      <button class="timeline-segment p5" onclick="openPhase(5)" title="P5: RU specifics, code review, bug bounty">P5</button>
+      <button class="timeline-segment p5" onclick="openPhase(5)" title="P5: RU specifics, code review, bug bounty, IR">P5</button>
       <button class="timeline-segment p6" onclick="openPhase(6)" title="P6: Soft skills, job hunt">P6</button>
     </div>
     <div class="timeline-labels">
@@ -1599,7 +1014,6 @@ body::after {
   </div>
 </section>
 
-<!-- ============ CONTROLS ============ -->
 <section class="track-section">
   <div class="section-label">phases / detail view</div>
   <div class="controls">
@@ -1637,7 +1051,10 @@ body::after {
               <div class="module-num">P0.1</div>
               <div class="module-title">Python до уровня automation</div>
               <div class="module-desc">
-                CS50P (Harvard, бесплатно) до сертификата + «Automate the Boring Stuff». Цель:
+                <strong>«Поколение Python: курс для начинающих»</strong> (Stepik, бесплатно, RU) — 500+ задач,
+                основной курс для русскоязычных. Или <strong>CS50P</strong> (Harvard, бесплатно, EN) — если
+                нужна англоязычная практика с первого дня. Добей <strong>«Поколение Python:
+                курс для продвинутых»</strong> для ООП, файлов, исключений, regex. Цель:
                 написать скрипт 100+ строк без AI — парсинг файлов, regex, работа с API,
                 unit-тесты. Это база для всех security-инструментов.
               </div>
@@ -1735,7 +1152,7 @@ body::after {
 
           <div class="exit">
             <ul class="exit-list">
-              <li class="crit">CS50P или эквивалент пройден до сертификата</li>
+              <li class="crit">«Поколение Python» (или CS50P) пройден до сертификата</li>
               <li class="crit">Без AI пишешь Python-скрипт 100+ строк (API/файлы/regex)</li>
               <li>Читаешь чужой Python и базовый JS, объясняешь логику</li>
               <li>Объясняешь словами весь путь HTTP-запроса от клика до отрисовки</li>
@@ -1748,8 +1165,8 @@ body::after {
           <div class="deliverables">
             <div class="deliverables-label">// deliverables</div>
             <div class="deliverables-text">
-              <strong>4 публичных репо</strong> на GitHub, <strong>CS50P сертификат</strong>,
-              <strong>3–5 write-up-ов</strong> в блоге, <strong>pet-проект v0</strong> работает
+              <strong>4 публичных репо</strong> на GitHub, <strong>сертификат Stepik «Поколение Python»</strong>
+              (или CS50P), <strong>3–5 write-up-ов</strong> в блоге, <strong>pet-проект v0</strong> работает
               в Docker.
             </div>
           </div>
@@ -1942,7 +1359,7 @@ body::after {
       <div class="phase-header" onclick="togglePhase(2)">
         <div class="phase-id">P2</div>
         <div class="phase-info">
-          <h2>AppSec Foundation · OWASP, threat modeling, secure coding</h2>
+          <h2>AppSec Foundation · mental models, OWASP, threat modeling, secure coding</h2>
           <div class="phase-meta">~ 8 недель // <span>сердце DevSecOps</span></div>
         </div>
         <div class="phase-toggle">+</div>
@@ -1956,6 +1373,24 @@ body::after {
           </div>
 
           <div class="module-grid">
+            <div class="module">
+              <div class="module-num">P2.0</div>
+              <div class="module-title">Security mental models</div>
+              <div class="module-desc">
+                Фундаментальные модели, через которые читаются ВСЕ security-задачи.
+                <strong>CIA Triad</strong> (Confidentiality / Integrity / Availability) —
+                любая угроза попадает в одну из трёх категорий. <strong>Defense in Depth</strong> —
+                много слоёв вместо одного «волшебного» сканера. <strong>Least Privilege</strong> —
+                минимально необходимые права по умолчанию. <strong>Zero Trust</strong> —
+                «never trust, always verify», нет внутренней доверенной зоны.
+                <strong>Spрашивают на каждом интервью.</strong>
+              </div>
+              <div class="module-tags">
+                <span class="tag crit">prerequisite</span>
+                <span class="tag">mental-models</span>
+              </div>
+            </div>
+
             <div class="module">
               <div class="module-num">P2.1</div>
               <div class="module-title">OWASP Top 10 — глубоко</div>
@@ -2014,14 +1449,16 @@ body::after {
 
             <div class="module">
               <div class="module-num">P2.5</div>
-              <div class="module-title">Cryptography для инженеров</div>
+              <div class="module-title">Cryptography для инженеров + PKI basics</div>
               <div class="module-desc">
                 Symmetric vs asymmetric, hashing (bcrypt/argon2 для паролей, SHA для integrity),
-                TLS handshake, JWT (и его проблемы), key management basics. «Serious Cryptography»
-                Aumasson — необязательно целиком, но как референс.
+                TLS handshake, JWT (и его проблемы), key management basics.
+                <strong>PKI основы:</strong> CA hierarchy, certificate lifecycle (issue / renew / revoke),
+                CRL vs OCSP, cert rotation. «Serious Cryptography» Aumasson — как референс.
               </div>
               <div class="module-tags">
                 <span class="tag">crypto</span>
+                <span class="tag">pki</span>
               </div>
             </div>
 
@@ -2054,12 +1491,14 @@ body::after {
 
           <div class="exit">
             <ul class="exit-list">
+              <li class="crit">CIA Triad, Defense in Depth, Least Privilege, Zero Trust — объясняешь без подсказок</li>
               <li class="crit">Объясняешь и демонстрируешь top-15 уязвимостей OWASP без подсказок</li>
               <li class="crit">Threat model (STRIDE + DFD) для pet-проекта опубликован</li>
               <li>Все Apprentice-лабы PortSwigger закрыты + Practitioner начат</li>
               <li>Pet-проект v0 уязвимости устранены, есть write-up по каждой</li>
               <li>Понимаешь OAuth/OIDC на уровне «могу нарисовать flow на доске»</li>
               <li>Знаешь, когда использовать bcrypt/argon2 vs SHA, и почему</li>
+              <li>Понимаешь PKI на уровне CA → cert → revocation</li>
             </ul>
           </div>
 
@@ -2079,7 +1518,7 @@ body::after {
       <div class="phase-header" onclick="togglePhase(3)">
         <div class="phase-id">P3</div>
         <div class="phase-info">
-          <h2>DevSecOps Tooling · SAST, SCA, DAST, secrets, IaC scanning</h2>
+          <h2>DevSecOps Tooling · SAST, SCA, DAST, secrets, IaC, API security</h2>
           <div class="phase-meta">~ 8 недель // <span>build the pipeline</span></div>
         </div>
         <div class="phase-toggle">+</div>
@@ -2125,15 +1564,18 @@ body::after {
 
             <div class="module">
               <div class="module-num">P3.3</div>
-              <div class="module-title">DAST: ZAP + nuclei</div>
+              <div class="module-title">DAST + Vulnerability Scanning</div>
               <div class="module-desc">
-                OWASP ZAP в baseline-режиме в CI (без false-positive paralysis). Nuclei для
-                templating-based проверок. Концептуально: что DAST ловит, а SAST — нет, и наоборот.
+                <strong>OWASP ZAP</strong> в baseline-режиме в CI. <strong>Nuclei</strong> для
+                template-based проверок. <strong>Nessus / OpenVAS</strong> — классические
+                vulnerability scanners для инфры (отдельная категория от DAST, ловят CVE на
+                сетевых сервисах). Концептуально: что DAST ловит, а SAST — нет, и наоборот.
               </div>
               <div class="module-tags">
                 <span class="tag">zap</span>
                 <span class="tag">nuclei</span>
-                <span class="tag">dast</span>
+                <span class="tag">nessus</span>
+                <span class="tag">openvas</span>
               </div>
             </div>
 
@@ -2198,10 +1640,28 @@ body::after {
               <div class="module-desc">
                 Куда складывать findings, как дедуплицировать, как приоритезировать (CVSS — это
                 не приоритет, это severity). DefectDojo как open source стандарт vulnerability
-                management.
+                management. EPSS и SSVC как дополнения к CVSS.
               </div>
               <div class="module-tags">
                 <span class="tag">defectdojo</span>
+                <span class="tag">vm</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">P3.9</div>
+              <div class="module-title">API Security</div>
+              <div class="module-desc">
+                <strong>OWASP API Security Top 10</strong> — отдельный домен, не сводится к OWASP
+                Top 10. <strong>BOLA / BFLA / IDOR</strong>, mass assignment, excessive data
+                exposure, rate limiting, schema validation. REST / GraphQL / gRPC — разные attack
+                surfaces. API gateway (Kong, Tyk) как security boundary. Это <strong>обязательная
+                тема на интервью</strong> в любой компании с микросервисами.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">interview</span>
+                <span class="tag">api</span>
+                <span class="tag">owasp-api</span>
               </div>
             </div>
           </div>
@@ -2214,6 +1674,7 @@ body::after {
               <li>CI блокирует merge при HIGH/CRITICAL findings (с осознанными исключениями)</li>
               <li>DefectDojo поднят, findings из всех сканеров стекаются</li>
               <li>Объясняешь разницу между SAST/SCA/DAST/IAST на доске</li>
+              <li>Знаешь OWASP API Security Top 10, объясняешь BOLA/BFLA/IDOR с примерами</li>
             </ul>
           </div>
 
@@ -2417,20 +1878,22 @@ body::after {
 
             <div class="module">
               <div class="module-num">P4.12</div>
-              <div class="module-title">CSPM concept</div>
+              <div class="module-title">CSPM concept + DDoS protection</div>
               <div class="module-desc">
                 Cloud Security Posture Management: что это, какие проблемы решает. Open source
-                инструменты (Prowler, ScoutSuite) vs коммерческие (Wiz, Orca) — концептуально,
-                для словаря.
+                инструменты (Prowler, ScoutSuite) vs коммерческие (Wiz, Orca) — концептуально.
+                <strong>DDoS mitigation:</strong> Cloudflare, Yandex DDoS Protection, Servicepipe,
+                Qrator (РФ) — анти-DDoS как часть perimeter security.
               </div>
               <div class="module-tags">
                 <span class="tag">cspm</span>
+                <span class="tag">ddos</span>
               </div>
             </div>
 
             <div class="module">
               <div class="module-num">P4.13</div>
-              <div class="module-title">Compliance overview (high-level)</div>
+              <div class="module-title">Compliance overview (intl high-level)</div>
               <div class="module-desc">
                 ISO 27001, SOC 2, PCI DSS, NIST SSDF — что и зачем, ключевые отличия. Знать
                 словарь, не быть аудитором. Для глубокого РФ-комплаенса (152-ФЗ, ФСТЭК, ГОСТ) — фаза 5.
@@ -2449,6 +1912,7 @@ body::after {
               <li>5+ Kyverno/OPA политик в репо</li>
               <li>Аудит AWS или Yandex Cloud через Prowler/ScoutSuite пройден, findings исправлены</li>
               <li>3+ supply chain кейса разобраны в блоге</li>
+              <li>Знаешь концептуально, как работает анти-DDoS у Cloudflare/Qrator</li>
               <li>(опц., но мощно) CKA + CKS сданы</li>
             </ul>
           </div>
@@ -2470,7 +1934,7 @@ body::after {
       <div class="phase-header" onclick="togglePhase(5)">
         <div class="phase-id">P5</div>
         <div class="phase-info">
-          <h2>RU specifics · Code review · Bug Bounty</h2>
+          <h2>RU specifics · Code review · Bug Bounty · Incident Response</h2>
           <div class="phase-meta">~ 8 недель // <span>differentiation на российском рынке</span></div>
         </div>
         <div class="phase-toggle">+</div>
@@ -2481,7 +1945,8 @@ body::after {
             Здесь ты получаешь то, что отличает middle-кандидата от джуна на РФ-рынке:
             <strong>навык ручного code review</strong>, понимание реальных CVE,
             <strong>знание РФ-комплаенса и РФ-инструментов</strong>, подтверждённые bug bounty
-            репорты. Без этого в банки, госы и ИБ-вендоры не возьмут.
+            репорты, <strong>понимание Incident Response</strong>. Без этого в банки, госы и
+            ИБ-вендоры не возьмут.
           </div>
 
           <div class="weeks-block-title">// russian compliance — критично для РФ</div>
@@ -2537,12 +2002,62 @@ body::after {
                 <strong>PT Application Inspector</strong> (SAST/DAST/IAST),
                 <strong>Solar appScreener</strong> (мультиязычный SAST),
                 <strong>CodeScoring</strong> (SCA), <strong>MaxPatrol VM/SIEM</strong>,
-                <strong>R-Vision SOAR</strong>. Знай отличия от западных аналогов — спрашивают
-                в банках и у ИБ-вендоров.
+                <strong>R-Vision SOAR</strong>, <strong>Kaspersky EDR</strong>. Знай отличия от
+                западных аналогов — спрашивают в банках и у ИБ-вендоров.
               </div>
               <div class="module-tags">
                 <span class="tag ru-must">ru</span>
                 <span class="tag">interview</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="weeks-block-title" style="margin-top:24px">// incident response basics</div>
+
+          <div class="module-grid">
+            <div class="module">
+              <div class="module-num">IR.1</div>
+              <div class="module-title">IR Lifecycle (NIST SP 800-61)</div>
+              <div class="module-desc">
+                6 фаз: <strong>Preparation → Identification → Containment → Eradication →
+                Recovery → Lessons Learned</strong>. На каждом интервью спрашивают «что делать,
+                когда нашли активный инцидент». Знай шаги и порядок. Различай <strong>IOC</strong>
+                (indicators of compromise) и <strong>TTPs</strong> (MITRE ATT&amp;CK).
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">interview</span>
+                <span class="tag">nist</span>
+                <span class="tag">ir</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">IR.2</div>
+              <div class="module-title">Forensics basics + postmortem</div>
+              <div class="module-desc">
+                Chain of custody (что это, зачем), volatile vs non-volatile data, memory dump
+                инструменты (Volatility концептуально). <strong>Как писать postmortem:</strong>
+                blameless culture, timeline of events, root cause, action items. Прочти 2-3
+                публичных postmortem (Cloudflare, GitLab, AWS).
+              </div>
+              <div class="module-tags">
+                <span class="tag">forensics</span>
+                <span class="tag">postmortem</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">IR.3</div>
+              <div class="module-title">EDR / Endpoint Detection словарь</div>
+              <div class="module-desc">
+                <strong>CrowdStrike, SentinelOne, MS Defender for Endpoint</strong> (intl).
+                <strong>Kaspersky EDR, PT XDR</strong> (РФ). Что такое EDR vs antivirus,
+                что такое <strong>SOAR</strong> (Security Orchestration, Automation, Response).
+                Знать словарь, не глубоко.
+              </div>
+              <div class="module-tags">
+                <span class="tag">edr</span>
+                <span class="tag">soar</span>
               </div>
             </div>
           </div>
@@ -2612,9 +2127,11 @@ body::after {
             <ul class="exit-list">
               <li class="crit">Знаешь словарь РФ-комплаенса: ФСТЭК, ГОСТ Р 56939, 152-ФЗ, КИИ, БДУ</li>
               <li class="crit">Manual code review: находишь уязвимости в уязвимых проектах быстрее сканера</li>
+              <li class="crit">Знаешь IR Lifecycle (NIST 800-61), можешь рассказать что делать при инциденте</li>
               <li>1+ принятый bug bounty report (Standoff/BI.ZONE/H1)</li>
               <li>10+ разборов CVE в блоге</li>
-              <li>Знаешь, что такое PT AI, Solar appScreener, MaxPatrol — на уровне разговора</li>
+              <li>Знаешь, что такое PT AI, Solar appScreener, MaxPatrol, Kaspersky EDR — на уровне разговора</li>
+              <li>Можешь объяснить разницу между EDR / SIEM / SOAR</li>
               <li>(опц.) Профиль на standoff365.com активен</li>
             </ul>
           </div>
@@ -2623,7 +2140,7 @@ body::after {
             <div class="deliverables-label">// deliverables</div>
             <div class="deliverables-text">
               <strong>Накопленное портфолио CVE-разборов</strong>, минимум один принятый
-              BB-report. Знание РФ-комплаенса на уровне junior+.
+              BB-report. Знание РФ-комплаенса и IR на уровне junior+.
             </div>
           </div>
         </div>
@@ -2740,7 +2257,8 @@ body::after {
               <div class="module-desc">
                 Конференции: <strong>PHDays, OFFZONE, ZeroNights, RuCTF Finals</strong> — в РФ.
                 Митапы в твоём городе. Telegram-каналы: профильные DevSecOps/AppSec чаты.
-                LinkedIn — для intl. <strong>Не «использовать людей»</strong>, а быть в контексте.
+                LinkedIn — для intl. Соцсеть <strong>«Сетка»</strong> от hh.ru — для пассивных
+                офферов от РФ-рекрутёров. <strong>Не «использовать людей»</strong>, а быть в контексте.
               </div>
               <div class="module-tags">
                 <span class="tag">network</span>
@@ -2841,6 +2359,21 @@ body::after {
       </ul>
     </div>
 
+    <div class="tool-cat" data-cat="vm">
+      <h4>vulnerability management &amp; scanning</h4>
+      <div class="tool-cat-desc">Инфраструктурное сканирование + управление findings.</div>
+      <ul class="tool-list">
+        <li><strong>Nessus</strong> — Tenable, классика network/host scan</li>
+        <li><strong>OpenVAS / Greenbone</strong> — open source альтернатива Nessus</li>
+        <li><strong>Qualys VMDR</strong> — коммерческий enterprise</li>
+        <li><strong>Rapid7 InsightVM</strong> — Nexpose evolution</li>
+        <li><strong>DefectDojo</strong> — open source vulnerability management</li>
+        <li><strong>MaxPatrol VM</strong><span class="ru-mark">RU</span> — Positive Technologies</li>
+        <li><strong>RedCheck</strong><span class="ru-mark">RU</span> — АЛТЭКС-СОФТ</li>
+        <li><strong>XSpider / MaxPatrol 8</strong><span class="ru-mark">RU</span> — РФ legacy</li>
+      </ul>
+    </div>
+
     <div class="tool-cat" data-cat="secrets">
       <h4>secrets scanning</h4>
       <div class="tool-cat-desc">Ловят токены, ключи, пароли в коде и истории.</div>
@@ -2900,7 +2433,7 @@ body::after {
       <ul class="tool-list">
         <li><strong>Prowler</strong> — AWS/Azure/GCP audit</li>
         <li><strong>ScoutSuite</strong> — мульти-cloud</li>
-        <li><strong>CloudSploit / Cloudquery</strong> — асset inventory</li>
+        <li><strong>CloudSploit / Cloudquery</strong> — asset inventory</li>
         <li><strong>Steampipe</strong> — SQL для cloud</li>
         <li><strong>Wiz / Orca / Lacework</strong> — коммерческие CSPM</li>
         <li><strong>YC Security Center</strong><span class="ru-mark">RU</span></li>
@@ -2921,6 +2454,34 @@ body::after {
       </ul>
     </div>
 
+    <div class="tool-cat" data-cat="ids">
+      <h4>network detection · IDS/IPS</h4>
+      <div class="tool-cat-desc">Сетевая защита периметра, анализ трафика.</div>
+      <ul class="tool-list">
+        <li><strong>Snort</strong> — классический open source IDS/IPS</li>
+        <li><strong>Suricata</strong> — multi-threaded, современный</li>
+        <li><strong>Zeek</strong> (бывший Bro) — network analysis framework</li>
+        <li><strong>OSSEC / Wazuh</strong> — HIDS (host-based)</li>
+        <li><strong>Palo Alto / Fortinet</strong> — коммерческие NGFW intl</li>
+        <li><strong>UserGate, Континент</strong><span class="ru-mark">RU</span> — РФ NGFW</li>
+        <li><strong>PT NAD</strong><span class="ru-mark">RU</span> — Network Attack Discovery</li>
+      </ul>
+    </div>
+
+    <div class="tool-cat" data-cat="edr">
+      <h4>EDR / endpoint detection</h4>
+      <div class="tool-cat-desc">Защита и детект на конечных точках (рабочие станции, серверы).</div>
+      <ul class="tool-list">
+        <li><strong>CrowdStrike Falcon</strong> — intl лидер</li>
+        <li><strong>SentinelOne</strong> — AI-driven EDR</li>
+        <li><strong>Microsoft Defender for Endpoint</strong> — Microsoft</li>
+        <li><strong>Elastic Defend</strong> — на ELK</li>
+        <li><strong>Kaspersky EDR</strong><span class="ru-mark">RU</span> — лидер РФ</li>
+        <li><strong>PT XDR</strong><span class="ru-mark">RU</span> — Positive Technologies</li>
+        <li><strong>Dr.Web Enterprise</strong><span class="ru-mark">RU</span></li>
+      </ul>
+    </div>
+
     <div class="tool-cat" data-cat="siem">
       <h4>SIEM · detection · SOC</h4>
       <div class="tool-cat-desc">Сбор событий, корреляция, alerting.</div>
@@ -2935,17 +2496,26 @@ body::after {
       </ul>
     </div>
 
+    <div class="tool-cat" data-cat="api">
+      <h4>API security</h4>
+      <div class="tool-cat-desc">Защита REST / GraphQL / gRPC, gateway, schema validation.</div>
+      <ul class="tool-list">
+        <li><strong>OWASP API Security Top 10</strong> — методология</li>
+        <li><strong>Kong / Tyk / KrakenD</strong> — API Gateway open source</li>
+        <li><strong>42Crunch</strong> — API security platform</li>
+        <li><strong>Salt Security / Noname</strong> — enterprise API security</li>
+        <li><strong>Schemathesis</strong> — property-based testing для OpenAPI</li>
+        <li><strong>StackHawk</strong> — DAST для API в CI</li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
-
-
-<!-- ============ ASCEND DIVIDER ============ -->
 <div class="ascend-divider">
   <span>↓ beyond junior ↓</span>
 </div>
 
-<!-- ============ ASCEND INTRO ============ -->
 <section class="ascend-intro">
   <h2>elevation track // junior → middle → senior</h2>
   <p>
@@ -2962,7 +2532,6 @@ body::after {
   </p>
 </section>
 
-<!-- ============ REALITY TABLE ============ -->
 <section class="reality-block">
   <h3>// reality_check · РФ-рынок · Москва/удалёнка</h3>
   <table class="reality-table">
@@ -3009,7 +2578,6 @@ body::after {
   </table>
 </section>
 
-<!-- ============ ASCEND TIMELINE ============ -->
 <section class="track-section">
   <div class="section-label">elevation timeline</div>
   <div class="ascend-timeline">
@@ -3030,13 +2598,10 @@ body::after {
   </div>
 </section>
 
-<!-- ============ MIDDLE PATH ============ -->
 <section class="track-section">
   <div class="section-label">middle path / m1–m3</div>
-
   <div class="phases">
 
-    <!-- M1 -->
     <article class="phase" data-phase="M1" id="phase-M1">
       <div class="phase-header" onclick="togglePhase('M1')">
         <div class="phase-id">M1</div>
@@ -3057,107 +2622,14 @@ body::after {
           </div>
 
           <div class="module-grid">
-            <div class="module">
-              <div class="module-num">M1.1</div>
-              <div class="module-title">Урок из каждого тикета</div>
-              <div class="module-desc">
-                Не «закрыл и забыл», а <strong>почему</strong> это произошло, как предотвратить
-                класс таких проблем. После каждого нетривиального тикета — заметка в личной wiki:
-                контекст, решение, что узнал.
-              </div>
-              <div class="module-tags">
-                <span class="tag crit">discipline</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M1.2</div>
-              <div class="module-title">Incident response shadow</div>
-              <div class="module-desc">
-                Каждый incident — золото. Проситься в shadowing к senior-ам, потом ведущим
-                координатором мелких инцидентов. Постмортемы — писать самому.
-              </div>
-              <div class="module-tags">
-                <span class="tag hot">priority</span>
-                <span class="tag">ir</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M1.3</div>
-              <div class="module-title">Внутренний ментор</div>
-              <div class="module-desc">
-                Один senior, у которого можно регулярно консультироваться. Без формальной
-                программы — еженедельные 30-минутные созвоны, разбор твоих задач.
-              </div>
-              <div class="module-tags">
-                <span class="tag">mentor</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M1.4</div>
-              <div class="module-title">Сертификации (если оплачивают)</div>
-              <div class="module-desc">
-                Компании часто оплачивают сертификации. <strong>CKS, AWS Security Specialty,
-                OSCP, CISSP</strong> — выбирай по направлению. Не для бейджа, а для
-                структурированной проработки темы.
-              </div>
-              <div class="module-tags">
-                <span class="tag">cert</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M1.5</div>
-              <div class="module-title">Один язык до уровня инструмент-писательства</div>
-              <div class="module-desc">
-                Junior пишет скрипты. Middle пишет инструменты. Выбери один из <strong>Go или
-                Python</strong> и доведи до уровня «могу написать CLI-инструмент с тестами,
-                которым пользуется команда».
-              </div>
-              <div class="module-tags">
-                <span class="tag">go</span>
-                <span class="tag">python</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M1.6</div>
-              <div class="module-title">Первый OSS-вклад</div>
-              <div class="module-desc">
-                PR в Trivy, Falco, Semgrep, Checkov, Kyverno или подобное. Даже мелкий
-                фикс / документация. Это сильный сигнал на собеседовании в middle.
-              </div>
-              <div class="module-tags">
-                <span class="tag hot">portfolio</span>
-                <span class="tag">oss</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M1.7</div>
-              <div class="module-title">Security champion program</div>
-              <div class="module-desc">
-                Если в компании этого нет — предложи организовать. Если есть — войди как лидер.
-                Развитие soft skills через формализованную структуру.
-              </div>
-              <div class="module-tags">
-                <span class="tag">leadership</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M1.8</div>
-              <div class="module-title">Первый внутренний доклад</div>
-              <div class="module-desc">
-                Tech talk внутри компании на 30 минут. Тема — что освоил за квартал.
-                Тренировка публичных выступлений в безопасной среде.
-              </div>
-              <div class="module-tags">
-                <span class="tag">speaking</span>
-              </div>
-            </div>
+            <div class="module"><div class="module-num">M1.1</div><div class="module-title">Урок из каждого тикета</div><div class="module-desc">Не «закрыл и забыл», а <strong>почему</strong> это произошло, как предотвратить класс таких проблем. После каждого нетривиального тикета — заметка в личной wiki.</div><div class="module-tags"><span class="tag crit">discipline</span></div></div>
+            <div class="module"><div class="module-num">M1.2</div><div class="module-title">Incident response shadow</div><div class="module-desc">Каждый incident — золото. Проситься в shadowing к senior-ам, потом ведущим координатором мелких инцидентов. Постмортемы — писать самому.</div><div class="module-tags"><span class="tag hot">priority</span><span class="tag">ir</span></div></div>
+            <div class="module"><div class="module-num">M1.3</div><div class="module-title">Внутренний ментор</div><div class="module-desc">Один senior, у которого можно регулярно консультироваться. Еженедельные 30-минутные созвоны.</div><div class="module-tags"><span class="tag">mentor</span></div></div>
+            <div class="module"><div class="module-num">M1.4</div><div class="module-title">Сертификации (если оплачивают)</div><div class="module-desc">Компании часто оплачивают сертификации. <strong>CKS, AWS Security Specialty, OSCP, CISSP</strong>. Не для бейджа, а для структурированной проработки темы.</div><div class="module-tags"><span class="tag">cert</span></div></div>
+            <div class="module"><div class="module-num">M1.5</div><div class="module-title">Один язык до уровня инструмент-писательства</div><div class="module-desc">Junior пишет скрипты. Middle пишет инструменты. Выбери один из <strong>Go или Python</strong> и доведи до «могу написать CLI-инструмент с тестами».</div><div class="module-tags"><span class="tag">go</span><span class="tag">python</span></div></div>
+            <div class="module"><div class="module-num">M1.6</div><div class="module-title">Первый OSS-вклад</div><div class="module-desc">PR в Trivy, Falco, Semgrep, Checkov, Kyverno или подобное. Даже мелкий фикс / документация. Сильный сигнал на middle-собеседовании.</div><div class="module-tags"><span class="tag hot">portfolio</span><span class="tag">oss</span></div></div>
+            <div class="module"><div class="module-num">M1.7</div><div class="module-title">Security champion program</div><div class="module-desc">Если в компании этого нет — предложи организовать. Если есть — войди как лидер.</div><div class="module-tags"><span class="tag">leadership</span></div></div>
+            <div class="module"><div class="module-num">M1.8</div><div class="module-title">Первый внутренний доклад</div><div class="module-desc">Tech talk внутри компании на 30 минут. Тема — что освоил за квартал.</div><div class="module-tags"><span class="tag">speaking</span></div></div>
           </div>
 
           <div class="exit">
@@ -3170,19 +2642,11 @@ body::after {
               <li class="crit">Понимаешь, ЧЕМ занимается security в компании на уровне процессов</li>
             </ul>
           </div>
-
-          <div class="deliverables">
-            <div class="deliverables-label">// deliverables</div>
-            <div class="deliverables-text">
-              Промоушн до Junior+ или переход в более серьёзную компанию с повышением вилки.
-              Личная wiki с 50+ заметками. Один OSS-проект в активе.
-            </div>
-          </div>
+          <div class="deliverables"><div class="deliverables-label">// deliverables</div><div class="deliverables-text">Промоушн до Junior+ или переход в более серьёзную компанию с повышением вилки. Личная wiki с 50+ заметками.</div></div>
         </div>
       </div>
     </article>
 
-    <!-- M2 -->
     <article class="phase" data-phase="M2" id="phase-M2">
       <div class="phase-header" onclick="togglePhase('M2')">
         <div class="phase-id">M2</div>
@@ -3194,116 +2658,17 @@ body::after {
       </div>
       <div class="phase-body">
         <div class="phase-content">
-          <div class="summary">
-            Тут ты <strong>выбираешь специализацию</strong> (см. матрицу ниже) и углубляешься.
-            Junior — широкий, но поверхностный. Middle — широкий + глубокий в чём-то одном.
-            Параллельно — наращиваешь архитектурное мышление.
-          </div>
-
+          <div class="summary">Тут ты <strong>выбираешь специализацию</strong> (см. матрицу ниже) и углубляешься. Junior — широкий, но поверхностный. Middle — широкий + глубокий в чём-то одном.</div>
           <div class="module-grid">
-            <div class="module">
-              <div class="module-num">M2.1</div>
-              <div class="module-title">Выбор специализации</div>
-              <div class="module-desc">
-                AppSec deep / Cloud Security / K8s Security / Supply Chain / Detection
-                Engineering / Security Research. Матрица — ниже на странице.
-              </div>
-              <div class="module-tags">
-                <span class="tag crit">decision</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M2.2</div>
-              <div class="module-title">Threat Modeling сложных систем</div>
-              <div class="module-desc">
-                Не одиночное приложение, а 10+ микросервисов с межсервисным взаимодействием,
-                разными trust zones, асинхронными очередями. Шостак <strong>целиком</strong>,
-                «Threats» Brook Schoenfield.
-              </div>
-              <div class="module-tags">
-                <span class="tag">tm-deep</span>
-                <span class="tag">arch</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M2.3</div>
-              <div class="module-title">Architecture Decision Records</div>
-              <div class="module-desc">
-                Читать ADR разработческих команд и писать security-feedback. Самому писать ADR
-                для security-решений: что выбрали, какие альтернативы рассматривали, какие
-                trade-offs.
-              </div>
-              <div class="module-tags">
-                <span class="tag">adr</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M2.4</div>
-              <div class="module-title">Distributed systems basics</div>
-              <div class="module-desc">
-                CAP, consistency models, distributed tracing, очереди как security boundary,
-                event-driven architectures. Книга <strong>«Designing Data-Intensive Applications»</strong>
-                Kleppmann — выборочно.
-              </div>
-              <div class="module-tags">
-                <span class="tag">distributed</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M2.5</div>
-              <div class="module-title">SDLC integration сильнее</div>
-              <div class="module-desc">
-                Security в backlog grooming, в дизайн-ревью, в pre-prod-чек-листы. Меньше
-                tool-blocking, больше cultural integration.
-              </div>
-              <div class="module-tags">
-                <span class="tag">sdlc</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M2.6</div>
-              <div class="module-title">Metric ownership</div>
-              <div class="module-desc">
-                Берёшь во владение метрику: время time-to-remediate, % critical уязвимостей в
-                prod, MTTD/MTTR. Защищаешь её на встречах. Цель — не «зелёная цифра», а реальное
-                улучшение.
-              </div>
-              <div class="module-tags">
-                <span class="tag">metrics</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M2.7</div>
-              <div class="module-title">Внешний доклад</div>
-              <div class="module-desc">
-                Первый доклад вне компании. Локальный митап → региональная конференция →
-                <strong>PHDays / OFFZONE / ZeroNights</strong>. Уровень роста.
-              </div>
-              <div class="module-tags">
-                <span class="tag">speaking</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M2.8</div>
-              <div class="module-title">Глубокий dive по специализации</div>
-              <div class="module-desc">
-                Зависит от выбора. Каждое направление имеет свой sub-стек: AppSec → fuzzing
-                + taint analysis; Cloud → multi-cloud arch; K8s → eBPF + service mesh;
-                Detection → SIEM-rules в масштабе; Research → reverse + exploit dev.
-              </div>
-              <div class="module-tags">
-                <span class="tag hot">depth</span>
-              </div>
-            </div>
+            <div class="module"><div class="module-num">M2.1</div><div class="module-title">Выбор специализации</div><div class="module-desc">AppSec deep / Cloud Security / K8s Security / Supply Chain / Detection Engineering / Security Research.</div><div class="module-tags"><span class="tag crit">decision</span></div></div>
+            <div class="module"><div class="module-num">M2.2</div><div class="module-title">Threat Modeling сложных систем</div><div class="module-desc">10+ микросервисов с разными trust zones, асинхронными очередями. Шостак <strong>целиком</strong>, «Threats» Brook Schoenfield.</div><div class="module-tags"><span class="tag">tm-deep</span></div></div>
+            <div class="module"><div class="module-num">M2.3</div><div class="module-title">Architecture Decision Records</div><div class="module-desc">Самому писать ADR для security-решений: что выбрали, какие альтернативы, какие trade-offs.</div><div class="module-tags"><span class="tag">adr</span></div></div>
+            <div class="module"><div class="module-num">M2.4</div><div class="module-title">Distributed systems basics</div><div class="module-desc">CAP, consistency models, очереди как security boundary. <strong>«Designing Data-Intensive Applications»</strong> Kleppmann — выборочно.</div><div class="module-tags"><span class="tag">distributed</span></div></div>
+            <div class="module"><div class="module-num">M2.5</div><div class="module-title">SDLC integration сильнее</div><div class="module-desc">Security в backlog grooming, в дизайн-ревью, в pre-prod-чек-листы. Меньше tool-blocking, больше cultural integration.</div><div class="module-tags"><span class="tag">sdlc</span></div></div>
+            <div class="module"><div class="module-num">M2.6</div><div class="module-title">Metric ownership</div><div class="module-desc">Берёшь во владение метрику: time-to-remediate, % critical уязвимостей в prod, MTTD/MTTR. Цель — реальное улучшение.</div><div class="module-tags"><span class="tag">metrics</span></div></div>
+            <div class="module"><div class="module-num">M2.7</div><div class="module-title">Внешний доклад</div><div class="module-desc">Локальный митап → региональная конференция → <strong>PHDays / OFFZONE / ZeroNights</strong>.</div><div class="module-tags"><span class="tag">speaking</span></div></div>
+            <div class="module"><div class="module-num">M2.8</div><div class="module-title">Глубокий dive по специализации</div><div class="module-desc">AppSec → fuzzing + taint analysis; Cloud → multi-cloud arch; K8s → eBPF + service mesh; Detection → SIEM-rules в масштабе.</div><div class="module-tags"><span class="tag hot">depth</span></div></div>
           </div>
-
           <div class="exit">
             <ul class="exit-list">
               <li>Специализация выбрана и видна по проектам/публикациям</li>
@@ -3314,19 +2679,11 @@ body::after {
               <li class="crit">Можешь нарисовать архитектуру security-функции на доске и защитить</li>
             </ul>
           </div>
-
-          <div class="deliverables">
-            <div class="deliverables-label">// deliverables</div>
-            <div class="deliverables-text">
-              <strong>Middle уровень.</strong> Признан в команде как expert-in-the-room
-              по своей специализации. Перешёл от tickets-doer к initiative-driver.
-            </div>
-          </div>
+          <div class="deliverables"><div class="deliverables-label">// deliverables</div><div class="deliverables-text"><strong>Middle уровень.</strong> Признан в команде как expert-in-the-room по своей специализации.</div></div>
         </div>
       </div>
     </article>
 
-    <!-- M3 -->
     <article class="phase" data-phase="M3" id="phase-M3">
       <div class="phase-header" onclick="togglePhase('M3')">
         <div class="phase-id">M3</div>
@@ -3338,113 +2695,17 @@ body::after {
       </div>
       <div class="phase-body">
         <div class="phase-content">
-          <div class="summary">
-            Здесь ты <strong>выходишь за пределы своей команды</strong>. Cross-team влияние,
-            менторство, hiring, публичная репутация, бизнес-язык. Это переход от «техника»
-            к «инженеру-лидеру».
-          </div>
-
+          <div class="summary">Здесь ты <strong>выходишь за пределы своей команды</strong>. Cross-team влияние, менторство, hiring, публичная репутация, бизнес-язык.</div>
           <div class="module-grid">
-            <div class="module">
-              <div class="module-num">M3.1</div>
-              <div class="module-title">Cross-team инициативы</div>
-              <div class="module-desc">
-                Проекты, затрагивающие 3+ команды: миграция на новую секрет-менеджмент систему,
-                внедрение SBOM-процесса по всей компании. Без формальной власти — через убеждение
-                и архитектурные предложения.
-              </div>
-              <div class="module-tags">
-                <span class="tag crit">influence</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M3.2</div>
-              <div class="module-title">Менторство middle/junior</div>
-              <div class="module-desc">
-                Не один junior на shadowing, а 2–3 человека под твоим руководством. Code review
-                их security-кода. Регулярные 1:1.
-              </div>
-              <div class="module-tags">
-                <span class="tag">mentor</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M3.3</div>
-              <div class="module-title">Hiring loop участник</div>
-              <div class="module-desc">
-                Включаешься в найм: пишешь технические интервью, проводишь их, обсуждаешь
-                кандидатов. Даёт сильную optic'у на рынок.
-              </div>
-              <div class="module-tags">
-                <span class="tag">hiring</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M3.4</div>
-              <div class="module-title">Серьёзное публичное присутствие</div>
-              <div class="module-desc">
-                Регулярный технический блог (раз в 2 недели). Доклады на крупных конференциях
-                (PHDays, OFFZONE main, ZeroNights). 1000+ подписчиков/читателей. Это не «hustle» —
-                это репутация, которая открывает двери.
-              </div>
-              <div class="module-tags">
-                <span class="tag hot">brand</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M3.5</div>
-              <div class="module-title">Первый CVE / research</div>
-              <div class="module-desc">
-                Не bug bounty, а полноценный research: нашёл уязвимость в open source проекте
-                или коммерческом продукте, оформил advisory, получил CVE на свою фамилию.
-              </div>
-              <div class="module-tags">
-                <span class="tag hot">research</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M3.6</div>
-              <div class="module-title">Bug Bounty всерьёз (опц.)</div>
-              <div class="module-desc">
-                Если есть склонность к offensive — bug bounty как side income. Top-100 на
-                Standoff / HackerOne — серьёзный сигнал.
-              </div>
-              <div class="module-tags">
-                <span class="tag">bb</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M3.7</div>
-              <div class="module-title">Бизнес-язык</div>
-              <div class="module-desc">
-                Учись говорить с менеджментом. ROI security-инвестиций. Risk quantification
-                (FAIR framework). Как защитить бюджет на security-инициативу. <strong>«How to
-                Measure Anything in Cybersecurity Risk»</strong> Hubbard, Seiersen.
-              </div>
-              <div class="module-tags">
-                <span class="tag">business</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">M3.8</div>
-              <div class="module-title">Vendor management</div>
-              <div class="module-desc">
-                Пилоты enterprise-инструментов (Wiz, Snyk, PT AI), переговоры с vendor-ами,
-                сравнение коммерческих предложений. На senior это часть работы.
-              </div>
-              <div class="module-tags">
-                <span class="tag">vendor</span>
-              </div>
-            </div>
+            <div class="module"><div class="module-num">M3.1</div><div class="module-title">Cross-team инициативы</div><div class="module-desc">Проекты, затрагивающие 3+ команды: миграция на новую секрет-менеджмент систему, внедрение SBOM-процесса.</div><div class="module-tags"><span class="tag crit">influence</span></div></div>
+            <div class="module"><div class="module-num">M3.2</div><div class="module-title">Менторство middle/junior</div><div class="module-desc">2–3 человека под твоим руководством. Code review их security-кода. Регулярные 1:1.</div><div class="module-tags"><span class="tag">mentor</span></div></div>
+            <div class="module"><div class="module-num">M3.3</div><div class="module-title">Hiring loop участник</div><div class="module-desc">Пишешь технические интервью, проводишь их, обсуждаешь кандидатов. Сильная optic'а на рынок.</div><div class="module-tags"><span class="tag">hiring</span></div></div>
+            <div class="module"><div class="module-num">M3.4</div><div class="module-title">Серьёзное публичное присутствие</div><div class="module-desc">Регулярный технический блог (раз в 2 недели). Доклады на крупных конференциях. 1000+ подписчиков/читателей.</div><div class="module-tags"><span class="tag hot">brand</span></div></div>
+            <div class="module"><div class="module-num">M3.5</div><div class="module-title">Первый CVE / research</div><div class="module-desc">Не bug bounty, а полноценный research: нашёл уязвимость в open source / коммерческом продукте, оформил advisory, получил CVE.</div><div class="module-tags"><span class="tag hot">research</span></div></div>
+            <div class="module"><div class="module-num">M3.6</div><div class="module-title">Bug Bounty всерьёз (опц.)</div><div class="module-desc">Top-100 на Standoff / HackerOne — серьёзный сигнал.</div><div class="module-tags"><span class="tag">bb</span></div></div>
+            <div class="module"><div class="module-num">M3.7</div><div class="module-title">Бизнес-язык</div><div class="module-desc">ROI security-инвестиций. Risk quantification (FAIR framework). <strong>«How to Measure Anything in Cybersecurity Risk»</strong> Hubbard.</div><div class="module-tags"><span class="tag">business</span></div></div>
+            <div class="module"><div class="module-num">M3.8</div><div class="module-title">Vendor management</div><div class="module-desc">Пилоты enterprise-инструментов (Wiz, Snyk, PT AI), переговоры с vendor-ами, сравнение коммерческих предложений.</div><div class="module-tags"><span class="tag">vendor</span></div></div>
           </div>
-
           <div class="exit">
             <ul class="exit-list">
               <li>Провёл cross-team инициативу, затронувшую 3+ команды</li>
@@ -3456,14 +2717,7 @@ body::after {
               <li class="crit">Можешь обосновать security-решение перед CTO/CFO в их терминах</li>
             </ul>
           </div>
-
-          <div class="deliverables">
-            <div class="deliverables-label">// deliverables</div>
-            <div class="deliverables-text">
-              <strong>Senior-готовность.</strong> Промоушн внутри или сильное предложение от
-              другой компании. Публичная репутация в нише.
-            </div>
-          </div>
+          <div class="deliverables"><div class="deliverables-label">// deliverables</div><div class="deliverables-text"><strong>Senior-готовность.</strong> Промоушн или сильное предложение от другой компании.</div></div>
         </div>
       </div>
     </article>
@@ -3471,13 +2725,10 @@ body::after {
   </div>
 </section>
 
-<!-- ============ SENIOR PATH ============ -->
 <section class="track-section">
   <div class="section-label">senior path / s1–s2</div>
-
   <div class="phases">
 
-    <!-- S1 -->
     <article class="phase" data-phase="S1" id="phase-S1">
       <div class="phase-header" onclick="togglePhase('S1')">
         <div class="phase-id">S1</div>
@@ -3489,122 +2740,30 @@ body::after {
       </div>
       <div class="phase-body">
         <div class="phase-content">
-          <div class="summary">
-            Senior — это <strong>другая профессия</strong>, не «middle с большим стажем».
-            Меняется главное: ты больше не делаешь — ты определяешь, что и как будет сделано.
-            Принимаешь риски за компанию.
-          </div>
-
+          <div class="summary">Senior — это <strong>другая профессия</strong>, не «middle с большим стажем». Ты больше не делаешь — ты определяешь, что и как будет сделано.</div>
           <div class="module-grid">
-            <div class="module">
-              <div class="module-num">S1.1</div>
-              <div class="module-title">Strategic thinking</div>
-              <div class="module-desc">
-                Security-стратегия на 1–3 года для компании или направления. Не «закрыть тикеты»,
-                а «как должна выглядеть security-функция через 2 года, чтобы поддерживать рост
-                бизнеса».
-              </div>
-              <div class="module-tags">
-                <span class="tag crit">strategy</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">S1.2</div>
-              <div class="module-title">Risk acceptance authority</div>
-              <div class="module-desc">
-                Принимаешь решения «этот риск компания принимает, этот закрываем». Подписываешься
-                под этими решениями. Понимаешь legal implications своих подписей.
-              </div>
-              <div class="module-tags">
-                <span class="tag">authority</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">S1.3</div>
-              <div class="module-title">Build vs Buy decisions</div>
-              <div class="module-desc">
-                Стоит ли пилить in-house инструмент или купить enterprise. Оценка TCO. Понимание
-                build-up debt от in-house решений на 3-5 лет вперёд.
-              </div>
-              <div class="module-tags">
-                <span class="tag">decision</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">S1.4</div>
-              <div class="module-title">Управление командой (если выбран people path)</div>
-              <div class="module-desc">
-                Если выбрал managerial track: формальное управление 5–10 людьми, 1:1, performance
-                reviews, hiring decisions, увольнения. Если technical track — пропускаем, идём в S1.5.
-              </div>
-              <div class="module-tags">
-                <span class="tag">mgmt</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">S1.5</div>
-              <div class="module-title">Уникальная экспертиза в специализации</div>
-              <div class="module-desc">
-                Если technical track (Staff/Principal): ты — top-N в стране в своей специализации.
-                Тебя знают по имени в нише. Тебя зовут консультировать другие компании.
-              </div>
-              <div class="module-tags">
-                <span class="tag hot">expertise</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">S1.6</div>
-              <div class="module-title">Программа изменений</div>
-              <div class="module-desc">
-                Запускаешь и доводишь до конца программу масштаба компании: secure-by-design
-                culture, zero trust architecture, supply chain hardening. С метриками и
-                business case.
-              </div>
-              <div class="module-tags">
-                <span class="tag">program</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">S1.7</div>
-              <div class="module-title">Внешняя экспертная роль</div>
-              <div class="module-desc">
-                Член технического комитета (OWASP chapter, рабочая группа OpenSSF). Регулярные
-                keynote-доклады. Возможно — автор книги или серии материалов.
-              </div>
-              <div class="module-tags">
-                <span class="tag">community</span>
-              </div>
-            </div>
+            <div class="module"><div class="module-num">S1.1</div><div class="module-title">Strategic thinking</div><div class="module-desc">Security-стратегия на 1–3 года. Не «закрыть тикеты», а «как должна выглядеть security-функция через 2 года».</div><div class="module-tags"><span class="tag crit">strategy</span></div></div>
+            <div class="module"><div class="module-num">S1.2</div><div class="module-title">Risk acceptance authority</div><div class="module-desc">Принимаешь решения «этот риск принимаем, этот закрываем». Подписываешься под этими решениями.</div><div class="module-tags"><span class="tag">authority</span></div></div>
+            <div class="module"><div class="module-num">S1.3</div><div class="module-title">Build vs Buy decisions</div><div class="module-desc">Оценка TCO. Понимание build-up debt от in-house решений на 3-5 лет вперёд.</div><div class="module-tags"><span class="tag">decision</span></div></div>
+            <div class="module"><div class="module-num">S1.4</div><div class="module-title">Управление командой (people path)</div><div class="module-desc">Формальное управление 5–10 людьми, 1:1, performance reviews, hiring decisions.</div><div class="module-tags"><span class="tag">mgmt</span></div></div>
+            <div class="module"><div class="module-num">S1.5</div><div class="module-title">Уникальная экспертиза (technical path)</div><div class="module-desc">Если technical track (Staff/Principal): ты — top-N в стране в своей специализации.</div><div class="module-tags"><span class="tag hot">expertise</span></div></div>
+            <div class="module"><div class="module-num">S1.6</div><div class="module-title">Программа изменений</div><div class="module-desc">Программу масштаба компании: secure-by-design culture, zero trust architecture, supply chain hardening.</div><div class="module-tags"><span class="tag">program</span></div></div>
+            <div class="module"><div class="module-num">S1.7</div><div class="module-title">Внешняя экспертная роль</div><div class="module-desc">Член технического комитета (OWASP chapter, OpenSSF). Регулярные keynote-доклады.</div><div class="module-tags"><span class="tag">community</span></div></div>
           </div>
-
           <div class="exit">
             <ul class="exit-list">
               <li>Запустил программу изменений на уровне компании</li>
               <li>Признан в индустрии как expert в своей нише</li>
-              <li>Если people track — управляешь командой 5+, есть истории роста</li>
+              <li>Если people track — управляешь командой 5+</li>
               <li>Если technical track — публичная глубокая экспертиза</li>
               <li class="crit">Совет директоров / CTO готов слушать твои стратегические рекомендации</li>
             </ul>
           </div>
-
-          <div class="deliverables">
-            <div class="deliverables-label">// deliverables</div>
-            <div class="deliverables-text">
-              <strong>Senior / Staff уровень.</strong> Опции для CISO-трека (если хочешь) или
-              Principal Engineer (если technical).
-            </div>
-          </div>
+          <div class="deliverables"><div class="deliverables-label">// deliverables</div><div class="deliverables-text"><strong>Senior / Staff уровень.</strong> Опции для CISO-трека или Principal Engineer.</div></div>
         </div>
       </div>
     </article>
 
-    <!-- S2 -->
     <article class="phase" data-phase="S2" id="phase-S2">
       <div class="phase-header" onclick="togglePhase('S2')">
         <div class="phase-id">S2</div>
@@ -3616,70 +2775,14 @@ body::after {
       </div>
       <div class="phase-body">
         <div class="phase-content">
-          <div class="summary">
-            <strong>Здесь чёткой роадмапы уже нет</strong> — пути расходятся. Staff/Principal — глубокая
-            техническая экспертиза, влияющая на индустрию. CISO — топ-менеджмент с security-mandate.
-            Founding engineer или фаундер security-стартапа — отдельная игра.
-          </div>
-
+          <div class="summary"><strong>Здесь чёткой роадмапы уже нет</strong> — пути расходятся. Staff/Principal — глубокая техническая экспертиза. CISO — топ-менеджмент. Founder — отдельная игра.</div>
           <div class="module-grid">
-            <div class="module">
-              <div class="module-num">S2.1</div>
-              <div class="module-title">Industry shaping</div>
-              <div class="module-desc">
-                Влияние на индустриальные стандарты: участие в OWASP standards, contributions
-                в NIST drafts, RFCs. Несколько твоих идей применены в чужих компаниях.
-              </div>
-              <div class="module-tags">
-                <span class="tag">industry</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">S2.2</div>
-              <div class="module-title">CISO trajectory</div>
-              <div class="module-desc">
-                Если выбрана: бюджеты, board reporting, ответственность перед регулятором,
-                M&A security due diligence, kontroversy management в случае инцидентов с
-                публичным резонансом.
-              </div>
-              <div class="module-tags">
-                <span class="tag">ciso</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">S2.3</div>
-              <div class="module-title">Principal engineer trajectory</div>
-              <div class="module-desc">
-                Архитектурные решения на уровне всей платформы. Mentor mentor-ов. Часто —
-                автор внутренних или публичных фреймворков, которые становятся стандартом.
-              </div>
-              <div class="module-tags">
-                <span class="tag">principal</span>
-              </div>
-            </div>
-
-            <div class="module">
-              <div class="module-num">S2.4</div>
-              <div class="module-title">Founder / advisory</div>
-              <div class="module-desc">
-                Founding engineer в security-стартапе или собственный стартап. Advisory роли
-                у других компаний. Инвестиции/менторинг security-стартапов.
-              </div>
-              <div class="module-tags">
-                <span class="tag">founder</span>
-              </div>
-            </div>
+            <div class="module"><div class="module-num">S2.1</div><div class="module-title">Industry shaping</div><div class="module-desc">Влияние на индустриальные стандарты: участие в OWASP standards, contributions в NIST drafts, RFCs.</div><div class="module-tags"><span class="tag">industry</span></div></div>
+            <div class="module"><div class="module-num">S2.2</div><div class="module-title">CISO trajectory</div><div class="module-desc">Бюджеты, board reporting, ответственность перед регулятором, M&A security due diligence.</div><div class="module-tags"><span class="tag">ciso</span></div></div>
+            <div class="module"><div class="module-num">S2.3</div><div class="module-title">Principal engineer trajectory</div><div class="module-desc">Архитектурные решения на уровне всей платформы. Mentor mentor-ов. Автор внутренних или публичных фреймворков.</div><div class="module-tags"><span class="tag">principal</span></div></div>
+            <div class="module"><div class="module-num">S2.4</div><div class="module-title">Founder / advisory</div><div class="module-desc">Founding engineer в security-стартапе или собственный стартап. Advisory роли у других компаний.</div><div class="module-tags"><span class="tag">founder</span></div></div>
           </div>
-
-          <div class="deliverables">
-            <div class="deliverables-label">// deliverables</div>
-            <div class="deliverables-text">
-              <strong>Tier выбран и закреплён</strong>. Дальше — личные цели, не индустриальный
-              шаблон.
-            </div>
-          </div>
+          <div class="deliverables"><div class="deliverables-label">// deliverables</div><div class="deliverables-text"><strong>Tier выбран и закреплён</strong>. Дальше — личные цели.</div></div>
         </div>
       </div>
     </article>
@@ -3687,311 +2790,169 @@ body::after {
   </div>
 </section>
 
-<!-- ============ SPECIALIZATION MATRIX ============ -->
 <section class="spec-matrix">
   <h3>specialization matrix // выбор пути на middle+</h3>
   <p class="matrix-intro">
     На middle (фаза M2) ты выбираешь специализацию. Junior — широкий и поверхностный;
-    middle — широкий + глубокий в одной области. Шесть основных путей. Каждый — это
-    своя книжная полка, свой словарь и свой пул компаний.
+    middle — широкий + глубокий в одной области. Шесть основных путей.
   </p>
 
   <div class="spec-grid">
-
     <div class="spec-card" data-spec="appsec">
       <div class="spec-label">// path 01</div>
       <h4>Application Security deep</h4>
-      <p>
-        Источник-сток анализ, taint analysis, написание собственных SAST-движков, fuzzing,
-        secure SDLC architecture. Глубокая работа с кодом и его уязвимостями.
-      </p>
-      <div class="spec-roles">
-        <strong>roles</strong>
-        AppSec Engineer → AppSec Architect → Principal AppSec
-      </div>
+      <p>Источник-сток анализ, taint analysis, написание собственных SAST-движков, fuzzing, secure SDLC architecture.</p>
+      <div class="spec-roles"><strong>roles</strong>AppSec Engineer → AppSec Architect → Principal AppSec</div>
     </div>
-
     <div class="spec-card" data-spec="cloud">
       <div class="spec-label">// path 02</div>
       <h4>Cloud Security Architect</h4>
-      <p>
-        Multi-cloud архитектуры (Yandex + AWS + GCP), zero trust networks, identity perimeter,
-        CSPM/CIEM глубоко, cloud-native security patterns.
-      </p>
-      <div class="spec-roles">
-        <strong>roles</strong>
-        Cloud Sec Engineer → Cloud Sec Architect → Principal
-      </div>
+      <p>Multi-cloud архитектуры (Yandex + AWS + GCP), zero trust networks, identity perimeter, CSPM/CIEM глубоко.</p>
+      <div class="spec-roles"><strong>roles</strong>Cloud Sec Engineer → Cloud Sec Architect → Principal</div>
     </div>
-
     <div class="spec-card" data-spec="k8s">
       <div class="spec-label">// path 03</div>
       <h4>Kubernetes / Platform Security</h4>
-      <p>
-        CKS + service mesh (Istio/Linkerd) production-grade, admission controllers собственной
-        разработки, eBPF-based security, K8s operators.
-      </p>
-      <div class="spec-roles">
-        <strong>roles</strong>
-        Platform Sec Engineer → Platform Architect
-      </div>
+      <p>CKS + service mesh (Istio/Linkerd) production-grade, admission controllers собственной разработки, eBPF-based security, K8s operators.</p>
+      <div class="spec-roles"><strong>roles</strong>Platform Sec Engineer → Platform Architect</div>
     </div>
-
     <div class="spec-card" data-spec="supply">
       <div class="spec-label">// path 04</div>
       <h4>Supply Chain Security</h4>
-      <p>
-        Полная архитектура SLSA L3/L4 в компании, integrity всей build chain, software bill of
-        materials в масштабе, dependency governance. Самое горячее направление 2024–2027.
-      </p>
-      <div class="spec-roles">
-        <strong>roles</strong>
-        Supply Chain Sec → SC Architect
-      </div>
+      <p>Полная архитектура SLSA L3/L4, integrity всей build chain, SBOM в масштабе, dependency governance. Самое горячее направление 2024–2027.</p>
+      <div class="spec-roles"><strong>roles</strong>Supply Chain Sec → SC Architect</div>
     </div>
-
     <div class="spec-card" data-spec="detect">
       <div class="spec-label">// path 05</div>
       <h4>Detection Engineering / Threat Hunting</h4>
-      <p>
-        SIEM с нуля, написание detection rules в масштабе, threat hunting, purple teaming,
-        SOC capabilities. Объединение DevSecOps и SOC. <strong>Самый низкий порог входа</strong>
-        для людей с blue team бэкграундом.
-      </p>
-      <div class="spec-roles">
-        <strong>roles</strong>
-        Detection Engineer → DE Lead → Head of SOC
-      </div>
+      <p>SIEM с нуля, detection rules в масштабе, threat hunting, purple teaming. <strong>Самый низкий порог входа</strong> для людей с blue team бэкграундом.</p>
+      <div class="spec-roles"><strong>roles</strong>Detection Engineer → DE Lead → Head of SOC</div>
     </div>
-
     <div class="spec-card" data-spec="research">
       <div class="spec-label">// path 06</div>
       <h4>Security Research / Offensive</h4>
-      <p>
-        Vulnerability research, exploit development, red teaming, reverse engineering. Самый
-        технически сложный путь. Часто пересечение с bug bounty top-100.
-      </p>
-      <div class="spec-roles">
-        <strong>roles</strong>
-        Security Researcher → Principal Researcher
-      </div>
+      <p>Vulnerability research, exploit development, red teaming, reverse engineering. Самый технически сложный путь.</p>
+      <div class="spec-roles"><strong>roles</strong>Security Researcher → Principal Researcher</div>
     </div>
-
   </div>
 </section>
 
-
-
-<!-- ============ FAQ ============ -->
 <section class="faq-section">
   <h3>frequently asked questions</h3>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Можно ли войти в DevSecOps без опыта в разработке или DevOps?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Технически да, но это будет дольше.</strong> DevSecOps — это пересечение трёх
-        миров: Development, Operations, Security. Если ты пришёл из одного — два других нужно
-        добрать. Самый быстрый путь — войти джуниором в DevOps или Backend, поработать год,
-        потом перейти в DevSecOps. Это <em>не обязательно</em>, но реалистично. Прямо «с улицы» в
-        DevSecOps берут редко, и в основном — на DevSecOps стажировки в крупных компаниях.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Технически да, но это будет дольше.</strong> DevSecOps — это пересечение трёх миров: Development, Operations, Security. Если ты пришёл из одного — два других нужно добрать. Самый быстрый путь — войти джуниором в DevOps или Backend, поработать год, потом перейти в DevSecOps. Прямо «с улицы» в DevSecOps берут редко, в основном — на DevSecOps стажировки в крупных компаниях.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Сколько часов в неделю реально нужно тратить?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        Полная программа до Junior — это <strong>20–30 часов в неделю в течение 8–14 месяцев</strong>.
-        Это два с половиной часа в день в среднем. Меньше — растягивается до 18–24 месяцев и
-        начинается потеря фокуса. Больше — выгорание. Лучше 25 часов стабильно, чем 50 часов
-        пиками с просадками.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner">Полная программа до Junior — это <strong>20–30 часов в неделю в течение 8–14 месяцев</strong>. Два с половиной часа в день в среднем. Меньше — растягивается до 18–24 месяцев. Больше — выгорание. Лучше 25 часов стабильно, чем 50 часов пиками с просадками.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Нужны ли сертификаты (CKS, OSCP, CISSP)?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Для junior — нет.</strong> Сертификаты ценятся сильнее в РФ-госах, банках,
-        больших корпорациях. Но без портфолио сертификат — пустая бумага. Сначала собирай
-        проекты и блог, потом — сертификаты, если работа их требует или оплачивает.
-        Исключение: <strong>CKS</strong> — реально полезен, потому что его подготовка =
-        глубокое изучение K8s security.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Для junior — нет.</strong> Сертификаты ценятся сильнее в РФ-госах, банках, больших корпорациях. Но без портфолио сертификат — пустая бумага. Сначала собирай проекты и блог, потом — сертификаты. Исключение: <strong>CKS</strong> — реально полезен, потому что его подготовка = глубокое изучение K8s security.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Какой язык программирования учить?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Python — must-have, обязательно.</strong> На нём пишутся почти все security-инструменты,
-        автоматизация, скрипты, custom правила для Semgrep, интеграции. <strong>Go — сильный
-        второй язык</strong> на middle, потому что большая часть DevSecOps-инструментов
-        (Trivy, Falco, Cosign, Kubernetes) написана на Go. Bash — без него никак, но как
-        отдельная цель не учится — встраивается в практику. JavaScript понимать на уровне
-        чтения и базовых уязвимостей.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Python — must-have, обязательно.</strong> На нём пишутся security-инструменты, автоматизация, custom правила для Semgrep. <strong>Go — сильный второй язык</strong> на middle, потому что большая часть DevSecOps-инструментов (Trivy, Falco, Cosign, Kubernetes) написана на Go. Bash — без него никак. JavaScript понимать на уровне чтения и базовых уязвимостей.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Нужны ли мне знания PowerShell и Windows-инфраструктуры?</span><span class="arrow">▾</span></div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Для РФ-банков и крупных корпораций — да, минимум на уровне словаря.</strong> Active Directory, Group Policy, PowerShell для автоматизации, Windows event logs — это реальная среда у Сбера, ВТБ, Альфы, любого энтерпрайза. Не нужно становиться Windows-админом, но <strong>знать, как пишется PowerShell-скрипт, как читается AD-структура, что такое Kerberoasting/AS-REP roasting</strong> — обязательно для middle. Для tech-компаний (Яндекс, Авито, Ozon) — Linux достаточно.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Стоит ли в 2026 году учить AWS, или сразу Yandex Cloud?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Оба, но с акцентами.</strong> Yandex Cloud — где будут реальные проекты на
-        российской работе. AWS — стандарт мира, понятийный аппарат построен на нём, доки,
-        курсы, статьи в большинстве на AWS. Учи концепции на AWS (free tier бесплатен), пиши
-        Terraform для Yandex Cloud. <strong>Selectel, MTS Cloud, VK Cloud, Cloud.ru</strong> —
-        близки по моделям, легко переключишься.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Оба, но с акцентами.</strong> Yandex Cloud — где будут реальные проекты на российской работе. AWS — стандарт мира, понятийный аппарат построен на нём, доки и курсы в большинстве на AWS. Учи концепции на AWS (free tier бесплатен), пиши Terraform для Yandex Cloud. <strong>Selectel, MTS Cloud, VK Cloud, Cloud.ru</strong> близки по моделям.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Можно ли использовать AI (ChatGPT, Claude, Copilot) при обучении?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Да, но осторожно.</strong> Полезные применения: объяснение незнакомого кода,
-        ревью своего кода, поиск ошибок, генерация unit-тестов, объяснение CVE. Опасные: писать
-        за тебя pet-проект, отвечать на вопросы интервью без понимания. <strong>Правило:
-        70%+ кода ты пишешь сам</strong>, каждую сгенерированную AI строку — должен уметь
-        объяснить и обосновать. На собеседованиях AI не помогает — там придётся думать самому.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Да, но осторожно.</strong> Полезные применения: объяснение незнакомого кода, ревью своего кода, поиск ошибок, генерация unit-тестов, объяснение CVE. Опасные: писать за тебя pet-проект, отвечать на вопросы интервью без понимания. <strong>Правило: 70%+ кода ты пишешь сам</strong>, каждую AI-строку должен уметь обосновать. На собеседованиях AI не помогает.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Можно ли перейти в DevSecOps из SOC / blue team?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Да, и это сильная позиция.</strong> У тебя уже есть half-stack — security mindset,
-        понимание атак, опыт с SIEM, IDS, vulnerability scanning. Нужно добрать DevOps-составляющую
-        (P1 фаза) и AppSec (P2). Специализация <strong>Detection Engineering</strong> для тебя
-        — самый низкий порог входа. Wazuh/MaxPatrol-опыт интегрируется в pet-проект как SIEM —
-        это уникальное портфолио-преимущество.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Да, и это сильная позиция.</strong> У тебя уже есть half-stack — security mindset, понимание атак, опыт с SIEM, IDS, vulnerability scanning. Нужно добрать DevOps-составляющую (P1) и AppSec (P2). Специализация <strong>Detection Engineering</strong> — самый низкий порог входа. Wazuh/MaxPatrol-опыт интегрируется в pet-проект как SIEM — уникальное портфолио-преимущество.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Можно ли перейти из разработки в DevSecOps?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Да, и это очень сильная позиция.</strong> У тебя уже есть язык, понимание SDLC,
-        опыт с CI/CD. Нужно добрать infrastructure (P1) и security (P2-P5). Специализации
-        <strong>Application Security</strong> или <strong>Supply Chain</strong> — для тебя
-        естественны. Многие DevSecOps инженеры сейчас — это бывшие разработчики, поэтому твой
-        опыт чтения чужого кода = огромный плюс для code review.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Да, и это очень сильная позиция.</strong> У тебя уже есть язык, понимание SDLC, опыт с CI/CD. Нужно добрать infrastructure (P1) и security (P2-P5). Специализации <strong>Application Security</strong> или <strong>Supply Chain</strong> для тебя естественны. Многие DevSecOps инженеры — бывшие разработчики, поэтому твой опыт чтения чужого кода = огромный плюс для code review.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Стоит ли идти на стажировки?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Если возможно — да, это самый быстрый путь в индустрию.</strong> Стажировки
-        в РФ есть у Positive Technologies, Сбера, Тинькофф (T-Bank), Яндекса, Касперского,
-        BI.ZONE. Часто платные, часто конвертируются в оффер. Конкуренция высокая, но если
-        у тебя есть собранный pet-проект и блог — пройдёшь скрининг легче, чем 90% других.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Если возможно — да, это самый быстрый путь в индустрию.</strong> Стажировки в РФ есть у Positive Technologies, Сбера, Тинькофф (T-Bank), Яндекса, Касперского, BI.ZONE. Часто платные, часто конвертируются в оффер. Конкуренция высокая, но если у тебя есть собранный pet-проект и блог — пройдёшь скрининг легче, чем 90% других.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Что делать, если уже работаю DevOps, а хочу в DevSecOps?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Лучший сценарий.</strong> P0–P1 — это твоя текущая рабочая компетенция; пройди
-        их как чек-лист, найди пробелы (вероятно, observability и Vault). Основной фокус —
-        P2 (AppSec), P3 (security tooling), P4 (K8s security + supply chain), P5 (РФ-специфика).
-        Параллельно — внутри своей текущей компании предложи внедрить SAST/SCA/secrets
-        scanning в CI: это и портфолио-проект, и шаг к роли DevSecOps внутри.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Лучший сценарий.</strong> P0–P1 — это твоя текущая рабочая компетенция. Основной фокус — P2 (AppSec), P3 (security tooling), P4 (K8s security + supply chain), P5 (РФ-специфика + IR). Параллельно — внутри своей текущей компании предложи внедрить SAST/SCA/secrets scanning в CI: это и портфолио-проект, и шаг к роли DevSecOps внутри.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Какие книги читать обязательно?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Минимум:</strong> «Agile Application Security» (Bell et al.), «Alice and Bob
-        Learn Application Security» (Janca), «Threat Modeling: Designing for Security»
-        (Shostack), «The Tangled Web» (Zalewski) для веба. <strong>На middle:</strong>
-        «Designing Data-Intensive Applications» (Kleppmann) — выборочно, «How to Measure
-        Anything in Cybersecurity Risk» (Hubbard) для бизнес-языка. <strong>Без перевода —
-        чтение на английском обязательно</strong>.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Минимум:</strong> «Agile Application Security» (Bell et al.), «Alice and Bob Learn Application Security» (Janca), «Threat Modeling: Designing for Security» (Shostack), «The Tangled Web» (Zalewski) для веба. <strong>На middle:</strong> «Designing Data-Intensive Applications» (Kleppmann), «How to Measure Anything in Cybersecurity Risk» (Hubbard). <strong>Чтение на английском обязательно</strong>.</div></div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Можно ли работать удалённо с самого начала?</span><span class="arrow">▾</span></div>
-    <div class="faq-a">
-      <div class="faq-a-inner">
-        <strong>Junior удалёнка — редкость.</strong> Большинство РФ-компаний хотят джуна в офис
-        или гибрид, потому что нужен ментор рядом, нужны live-инциденты. <strong>С Middle</strong> —
-        удалёнка реалистична. <strong>Intl remote</strong> для DevSecOps реален через 1–2 года
-        опыта + B2 английский + сильное портфолио. До этого — фокус на РФ-рынок.
-      </div>
-    </div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Junior удалёнка — редкость.</strong> Большинство РФ-компаний хотят джуна в офис или гибрид, потому что нужен ментор рядом. <strong>С Middle</strong> — удалёнка реалистична. <strong>Intl remote</strong> для DevSecOps реален через 1–2 года опыта + B2 английский + сильное портфолио. До этого — фокус на РФ-рынок.</div></div>
   </div>
 
 </section>
 
-
-
-<!-- ============ FINAL CHECKLIST ============ -->
 <section class="final-checklist" id="final-gate">
-  <h2>junior gate · 25 / 25</h2>
+  <h2>junior gate · 28 / 28</h2>
   <p class="gate-info">
     Финальная проверка перед собеседованием на <strong>Junior DevSecOps</strong>.
-    Если можешь поставить галочку напротив <strong>21 из 25</strong> пунктов — ты готов.
+    Если можешь поставить галочку напротив <strong>24 из 28</strong> пунктов — ты готов.
     Кликни по пункту, чтобы отметить. Прогресс сохраняется в браузере (localStorage).
   </p>
 
   <div class="checklist-grid" id="checklist">
     <div class="check-item" data-checkid="1" onclick="toggleCheck(this, 1)"><span class="check-num">01</span><span class="check-box">[ ]</span><span class="check-text">Pet-проект на GitHub с полным DevSecOps-пайплайном (SAST + SCA + DAST + IaC + secrets + container scan)</span></div>
     <div class="check-item" data-checkid="2" onclick="toggleCheck(this, 2)"><span class="check-num">02</span><span class="check-box">[ ]</span><span class="check-text">15+ write-up-ов в публичном блоге, демонстрирующих понимание тем</span></div>
-    <div class="check-item" data-checkid="3" onclick="toggleCheck(this, 3)"><span class="check-num">03</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь и демонстрируешь top-15 уязвимостей OWASP без подсказок</span></div>
-    <div class="check-item" data-checkid="4" onclick="toggleCheck(this, 4)"><span class="check-num">04</span><span class="check-box">[ ]</span><span class="check-text">Threat model для своего проекта (STRIDE + DFD) опубликован</span></div>
-    <div class="check-item" data-checkid="5" onclick="toggleCheck(this, 5)"><span class="check-num">05</span><span class="check-box">[ ]</span><span class="check-text">5+ собственных Semgrep-правил опубликовано в репо</span></div>
-    <div class="check-item" data-checkid="6" onclick="toggleCheck(this, 6)"><span class="check-num">06</span><span class="check-box">[ ]</span><span class="check-text">Pet-проект работает в Kubernetes с PSA, NetworkPolicy, RBAC</span></div>
-    <div class="check-item" data-checkid="7" onclick="toggleCheck(this, 7)"><span class="check-num">07</span><span class="check-box">[ ]</span><span class="check-text">Образы подписаны cosign, SBOM публикуется, SLSA Build L2+</span></div>
-    <div class="check-item" data-checkid="8" onclick="toggleCheck(this, 8)"><span class="check-num">08</span><span class="check-box">[ ]</span><span class="check-text">Pre-commit hooks с gitleaks/trufflehog работают</span></div>
-    <div class="check-item" data-checkid="9" onclick="toggleCheck(this, 9)"><span class="check-num">09</span><span class="check-box">[ ]</span><span class="check-text">CI/CD на GitHub Actions И GitLab CI (хотя бы один — production-grade)</span></div>
-    <div class="check-item" data-checkid="10" onclick="toggleCheck(this, 10)"><span class="check-num">10</span><span class="check-box">[ ]</span><span class="check-text">Terraform + Ansible — есть рабочие конфиги в репо</span></div>
-    <div class="check-item" data-checkid="11" onclick="toggleCheck(this, 11)"><span class="check-num">11</span><span class="check-box">[ ]</span><span class="check-text">HashiCorp Vault интегрирован, секреты не хардкодятся</span></div>
-    <div class="check-item" data-checkid="12" onclick="toggleCheck(this, 12)"><span class="check-num">12</span><span class="check-box">[ ]</span><span class="check-text">Observability stack (Prometheus + Grafana + логи) работает</span></div>
-    <div class="check-item" data-checkid="13" onclick="toggleCheck(this, 13)"><span class="check-num">13</span><span class="check-box">[ ]</span><span class="check-text">Аудит AWS или Yandex Cloud через Prowler/ScoutSuite пройден</span></div>
-    <div class="check-item" data-checkid="14" onclick="toggleCheck(this, 14)"><span class="check-num">14</span><span class="check-box">[ ]</span><span class="check-text">Разбор 3+ supply chain атак (SolarWinds, log4j, xz) в блоге</span></div>
-    <div class="check-item" data-checkid="15" onclick="toggleCheck(this, 15)"><span class="check-num">15</span><span class="check-box">[ ]</span><span class="check-text">Закрыты все Apprentice + большая часть Practitioner на PortSwigger</span></div>
-    <div class="check-item" data-checkid="16" onclick="toggleCheck(this, 16)"><span class="check-num">16</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-комплаенса (ФСТЭК, ГОСТ Р 56939, КИИ, БДУ, 152-ФЗ)</span></div>
-    <div class="check-item" data-checkid="17" onclick="toggleCheck(this, 17)"><span class="check-num">17</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-инструментов (PT AI, Solar appScreener, CodeScoring, MaxPatrol)</span></div>
-    <div class="check-item" data-checkid="18" onclick="toggleCheck(this, 18)"><span class="check-num">18</span><span class="check-box">[ ]</span><span class="check-text">Английский B2+ (для intl) или B1+ (для РФ + чтение доков)</span></div>
-    <div class="check-item" data-checkid="19" onclick="toggleCheck(this, 19)"><span class="check-num">19</span><span class="check-box">[ ]</span><span class="check-text">1+ принятый репорт на Standoff / BI.ZONE / HackerOne</span></div>
-    <div class="check-item" data-checkid="20" onclick="toggleCheck(this, 20)"><span class="check-num">20</span><span class="check-box">[ ]</span><span class="check-text">10+ разборов реальных CVE по своему стеку в блоге</span></div>
-    <div class="check-item" data-checkid="21" onclick="toggleCheck(this, 21)"><span class="check-num">21</span><span class="check-box">[ ]</span><span class="check-text">Manual code review: находишь уязвимости в DVNA/NodeGoat быстрее сканера</span></div>
-    <div class="check-item" data-checkid="22" onclick="toggleCheck(this, 22)"><span class="check-num">22</span><span class="check-box">[ ]</span><span class="check-text">Книги Agile Application Security + Alice and Bob прочитаны</span></div>
-    <div class="check-item" data-checkid="23" onclick="toggleCheck(this, 23)"><span class="check-num">23</span><span class="check-box">[ ]</span><span class="check-text">Резюме на двух языках готово (RU hh.ru + EN LinkedIn)</span></div>
-    <div class="check-item" data-checkid="24" onclick="toggleCheck(this, 24)"><span class="check-num">24</span><span class="check-box">[ ]</span><span class="check-text">5–7 STAR-историй проговорены и 5+ mock interviews пройдено</span></div>
-    <div class="check-item" data-checkid="25" onclick="toggleCheck(this, 25)"><span class="check-num">25</span><span class="check-box">[ ]</span><span class="check-text">GitHub причёсан: 4–6 закреплённых репо с README, скриншотами CI runs</span></div>
+    <div class="check-item" data-checkid="3" onclick="toggleCheck(this, 3)"><span class="check-num">03</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь CIA Triad, Defense in Depth, Least Privilege, Zero Trust без подсказок</span></div>
+    <div class="check-item" data-checkid="4" onclick="toggleCheck(this, 4)"><span class="check-num">04</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь и демонстрируешь top-15 уязвимостей OWASP без подсказок</span></div>
+    <div class="check-item" data-checkid="5" onclick="toggleCheck(this, 5)"><span class="check-num">05</span><span class="check-box">[ ]</span><span class="check-text">Знаешь OWASP API Security Top 10, объясняешь BOLA/BFLA/IDOR с примерами</span></div>
+    <div class="check-item" data-checkid="6" onclick="toggleCheck(this, 6)"><span class="check-num">06</span><span class="check-box">[ ]</span><span class="check-text">Threat model для своего проекта (STRIDE + DFD) опубликован</span></div>
+    <div class="check-item" data-checkid="7" onclick="toggleCheck(this, 7)"><span class="check-num">07</span><span class="check-box">[ ]</span><span class="check-text">5+ собственных Semgrep-правил опубликовано в репо</span></div>
+    <div class="check-item" data-checkid="8" onclick="toggleCheck(this, 8)"><span class="check-num">08</span><span class="check-box">[ ]</span><span class="check-text">Pet-проект работает в Kubernetes с PSA, NetworkPolicy, RBAC</span></div>
+    <div class="check-item" data-checkid="9" onclick="toggleCheck(this, 9)"><span class="check-num">09</span><span class="check-box">[ ]</span><span class="check-text">Образы подписаны cosign, SBOM публикуется, SLSA Build L2+</span></div>
+    <div class="check-item" data-checkid="10" onclick="toggleCheck(this, 10)"><span class="check-num">10</span><span class="check-box">[ ]</span><span class="check-text">Pre-commit hooks с gitleaks/trufflehog работают</span></div>
+    <div class="check-item" data-checkid="11" onclick="toggleCheck(this, 11)"><span class="check-num">11</span><span class="check-box">[ ]</span><span class="check-text">CI/CD на GitHub Actions И GitLab CI (хотя бы один — production-grade)</span></div>
+    <div class="check-item" data-checkid="12" onclick="toggleCheck(this, 12)"><span class="check-num">12</span><span class="check-box">[ ]</span><span class="check-text">Terraform + Ansible — есть рабочие конфиги в репо</span></div>
+    <div class="check-item" data-checkid="13" onclick="toggleCheck(this, 13)"><span class="check-num">13</span><span class="check-box">[ ]</span><span class="check-text">HashiCorp Vault интегрирован, секреты не хардкодятся</span></div>
+    <div class="check-item" data-checkid="14" onclick="toggleCheck(this, 14)"><span class="check-num">14</span><span class="check-box">[ ]</span><span class="check-text">Observability stack (Prometheus + Grafana + логи) работает</span></div>
+    <div class="check-item" data-checkid="15" onclick="toggleCheck(this, 15)"><span class="check-num">15</span><span class="check-box">[ ]</span><span class="check-text">Аудит AWS или Yandex Cloud через Prowler/ScoutSuite пройден</span></div>
+    <div class="check-item" data-checkid="16" onclick="toggleCheck(this, 16)"><span class="check-num">16</span><span class="check-box">[ ]</span><span class="check-text">Разбор 3+ supply chain атак (SolarWinds, log4j, xz) в блоге</span></div>
+    <div class="check-item" data-checkid="17" onclick="toggleCheck(this, 17)"><span class="check-num">17</span><span class="check-box">[ ]</span><span class="check-text">Закрыты все Apprentice + большая часть Practitioner на PortSwigger</span></div>
+    <div class="check-item" data-checkid="18" onclick="toggleCheck(this, 18)"><span class="check-num">18</span><span class="check-box">[ ]</span><span class="check-text">Знаешь IR Lifecycle (NIST 800-61), можешь рассказать что делать при инциденте</span></div>
+    <div class="check-item" data-checkid="19" onclick="toggleCheck(this, 19)"><span class="check-num">19</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь разницу EDR / SIEM / SOAR / IDS / IPS</span></div>
+    <div class="check-item" data-checkid="20" onclick="toggleCheck(this, 20)"><span class="check-num">20</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-комплаенса (ФСТЭК, ГОСТ Р 56939, КИИ, БДУ, 152-ФЗ)</span></div>
+    <div class="check-item" data-checkid="21" onclick="toggleCheck(this, 21)"><span class="check-num">21</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-инструментов (PT AI, Solar appScreener, CodeScoring, MaxPatrol, Kaspersky EDR)</span></div>
+    <div class="check-item" data-checkid="22" onclick="toggleCheck(this, 22)"><span class="check-num">22</span><span class="check-box">[ ]</span><span class="check-text">Английский B2+ (для intl) или B1+ (для РФ + чтение доков)</span></div>
+    <div class="check-item" data-checkid="23" onclick="toggleCheck(this, 23)"><span class="check-num">23</span><span class="check-box">[ ]</span><span class="check-text">1+ принятый репорт на Standoff / BI.ZONE / HackerOne</span></div>
+    <div class="check-item" data-checkid="24" onclick="toggleCheck(this, 24)"><span class="check-num">24</span><span class="check-box">[ ]</span><span class="check-text">10+ разборов реальных CVE по своему стеку в блоге</span></div>
+    <div class="check-item" data-checkid="25" onclick="toggleCheck(this, 25)"><span class="check-num">25</span><span class="check-box">[ ]</span><span class="check-text">Manual code review: находишь уязвимости в DVNA/NodeGoat быстрее сканера</span></div>
+    <div class="check-item" data-checkid="26" onclick="toggleCheck(this, 26)"><span class="check-num">26</span><span class="check-box">[ ]</span><span class="check-text">Книги Agile Application Security + Alice and Bob прочитаны</span></div>
+    <div class="check-item" data-checkid="27" onclick="toggleCheck(this, 27)"><span class="check-num">27</span><span class="check-box">[ ]</span><span class="check-text">Резюме на двух языках готово, 5–7 STAR-историй проговорены, 5+ mock interviews</span></div>
+    <div class="check-item" data-checkid="28" onclick="toggleCheck(this, 28)"><span class="check-num">28</span><span class="check-box">[ ]</span><span class="check-text">GitHub причёсан: 4–6 закреплённых репо с README, скриншотами CI runs</span></div>
   </div>
 
   <div class="progress-display">
     <span style="color:var(--text-dim);text-transform:uppercase;letter-spacing:0.15em">progress:</span>
     <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-    <span class="progress-text" id="progress-text">0 / 25</span>
+    <span class="progress-text" id="progress-text">0 / 28</span>
   </div>
 </section>
 
-
-
-<!-- ============ LEGEND ============ -->
 <section class="legend">
   <div class="legend-title">// phase color legend</div>
   <div class="legend-grid">
@@ -4000,7 +2961,7 @@ body::after {
     <div class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span>P2 AppSec foundation</div>
     <div class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span>P3 DevSecOps tooling</div>
     <div class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span>P4 K8s · Cloud · Supply Chain</div>
-    <div class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>P5 RU specifics + Bug Bounty</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>P5 RU + Code review + BB + IR</div>
     <div class="legend-item"><span class="legend-dot" style="background:var(--warn)"></span>P6 Soft skills + Job hunt</div>
   </div>
 </section>
@@ -4008,7 +2969,7 @@ body::after {
 <div class="foot">
   // <strong>core principles:</strong> один сквозной pet-проект · публичный блог-журнал · английский с первого дня · глубина &gt; скорость<br>
   // открытый знаниевый ресурс · свободно используй, форкай, улучшай · issues и PR welcome<br>
-  // <a href="https://github.com/Abdeygodin/devsecops-roadmap" target="_blank">github.com/Abdeygodin/devsecops-roadmap</a> // v1.0 · public edition
+  // <a href="https://github.com/Abdeygodin/devsecops-roadmap" target="_blank">github.com/Abdeygodin/devsecops-roadmap</a> // v1.1 · public edition
 </div>
 
 </div>
@@ -4025,18 +2986,10 @@ function openPhase(n) {
     el.scrollIntoView({behavior: 'smooth', block: 'start'});
   }
 }
-function openAll() {
-  document.querySelectorAll('.phase').forEach(p => p.classList.add('open'));
-}
-function closeAll() {
-  document.querySelectorAll('.phase').forEach(p => p.classList.remove('open'));
-}
+function openAll() { document.querySelectorAll('.phase').forEach(p => p.classList.add('open')); }
+function closeAll() { document.querySelectorAll('.phase').forEach(p => p.classList.remove('open')); }
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 
-function toggleFaq(el) {
-  el.parentElement.classList.toggle('open');
-}
-
-// Final checklist
 function toggleCheck(el, n) {
   el.classList.toggle('checked');
   const box = el.querySelector('.check-box');
@@ -4058,11 +3011,9 @@ function updateProgress() {
   else txt.style.color = 'var(--warn)';
 }
 
-// Optional: simple localStorage persistence
 function saveProgress() {
   try {
-    const checked = Array.from(document.querySelectorAll('.check-item.checked'))
-      .map(el => el.dataset.checkid);
+    const checked = Array.from(document.querySelectorAll('.check-item.checked')).map(el => el.dataset.checkid);
     localStorage.setItem('dso_checklist', JSON.stringify(checked));
   } catch(e) {}
 }
