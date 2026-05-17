@@ -857,7 +857,7 @@ body::after {
 <header class="header">
   <div class="header-meta">
     <span><span class="blink">●</span> status: open_source · public_edition</span>
-    <span>v1.1 · maintained</span>
+    <span>v1.2 · maintained</span>
     <span class="version-tag">RU-focus + INTL-perspective</span>
   </div>
 
@@ -1487,6 +1487,26 @@ body::after {
                 <span class="tag hot">portfolio</span>
               </div>
             </div>
+
+            <div class="module">
+              <div class="module-num">P2.8</div>
+              <div class="module-title">Security testing methodologies</div>
+              <div class="module-desc">
+                Классификация подходов: <strong>Black box</strong> (тестер ничего не знает о
+                внутренностях — реалистично, но медленно), <strong>Grey box</strong>
+                (частичный доступ к коду/архитектуре — баланс), <strong>White box</strong>
+                (полный доступ к исходникам — глубокое покрытие). Связь с инструментами:
+                <strong>SAST = White box</strong>, <strong>DAST = Black box</strong>,
+                <strong>IAST = Grey box</strong> (агент в runtime + знание кода).
+                Когда что применять: SAST на раннем этапе (shift-left), DAST на staging
+                окружении, IAST в continuous testing. <strong>Спрашивают на интервью</strong>:
+                «в чём разница между SAST и DAST, что ловит каждый, почему нужны оба».
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">interview</span>
+                <span class="tag">methodology</span>
+              </div>
+            </div>
           </div>
 
           <div class="exit">
@@ -1499,6 +1519,7 @@ body::after {
               <li>Понимаешь OAuth/OIDC на уровне «могу нарисовать flow на доске»</li>
               <li>Знаешь, когда использовать bcrypt/argon2 vs SHA, и почему</li>
               <li>Понимаешь PKI на уровне CA → cert → revocation</li>
+              <li>Различаешь Black/Grey/White box testing, объясняешь связь с SAST/DAST/IAST</li>
             </ul>
           </div>
 
@@ -1664,6 +1685,49 @@ body::after {
                 <span class="tag">owasp-api</span>
               </div>
             </div>
+
+            <div class="module">
+              <div class="module-num">P3.10</div>
+              <div class="module-title">SSDLC Maturity Models</div>
+              <div class="module-desc">
+                Как оценить зрелость security-программы в организации и обосновать roadmap её
+                развития. <strong>OWASP SAMM</strong> (Software Assurance Maturity Model,
+                бесплатный фреймворк с self-assessment toolkit). <strong>BSIMM</strong>
+                (Building Security In Maturity Model, ежегодные открытые PDF от Synopsys —
+                benchmark реальных компаний). <strong>OWASP DSOMM</strong> (DevSecOps Maturity
+                Model, специфичен для CI/CD-практик). Цель — уметь провести аудит текущего
+                состояния и предложить план роста, опираясь на индустриальный фреймворк, а
+                не «по наитию». Спрашивают на собеседованиях middle+ для AppSec ролей.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">interview</span>
+                <span class="tag">samm</span>
+                <span class="tag">bsimm</span>
+                <span class="tag">dsomm</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">P3.11</div>
+              <div class="module-title">Jenkins-специфика (для РФ-рынка)</div>
+              <div class="module-desc">
+                В РФ Jenkins всё ещё <strong>широко используется</strong> в банках,
+                корпорациях, on-prem инсталляциях — наравне с GitLab CI.
+                <strong>Declarative vs Scripted pipelines</strong> — два синтаксиса,
+                знать оба. <strong>Jenkins Shared Libraries</strong> — централизованная
+                библиотека security-проверок, переиспользуемая всеми проектами компании.
+                <strong>Security pipeline patterns в Jenkins</strong>: внедрение SAST/SCA/DAST
+                стейджей, archiveArtifacts для findings, post-build actions, withCredentials
+                для секретов. Concept «security as code» через Jenkinsfile в репозитории
+                каждого сервиса. Знание Jenkins — серьёзный плюс на собеседованиях в
+                Сбер, ВТБ, ИБ-вендорах.
+              </div>
+              <div class="module-tags">
+                <span class="tag ru">ru</span>
+                <span class="tag">jenkins</span>
+                <span class="tag">pipeline</span>
+              </div>
+            </div>
           </div>
 
           <div class="exit">
@@ -1675,6 +1739,8 @@ body::after {
               <li>DefectDojo поднят, findings из всех сканеров стекаются</li>
               <li>Объясняешь разницу между SAST/SCA/DAST/IAST на доске</li>
               <li>Знаешь OWASP API Security Top 10, объясняешь BOLA/BFLA/IDOR с примерами</li>
+              <li>Знаешь OWASP SAMM / BSIMM / DSOMM, можешь оценить зрелость программы</li>
+              <li>Понимаешь Jenkins pipeline (Declarative и Scripted), Shared Libraries</li>
             </ul>
           </div>
 
@@ -2630,6 +2696,7 @@ body::after {
             <div class="module"><div class="module-num">M1.6</div><div class="module-title">Первый OSS-вклад</div><div class="module-desc">PR в Trivy, Falco, Semgrep, Checkov, Kyverno или подобное. Даже мелкий фикс / документация. Сильный сигнал на middle-собеседовании.</div><div class="module-tags"><span class="tag hot">portfolio</span><span class="tag">oss</span></div></div>
             <div class="module"><div class="module-num">M1.7</div><div class="module-title">Security champion program</div><div class="module-desc">Если в компании этого нет — предложи организовать. Если есть — войди как лидер.</div><div class="module-tags"><span class="tag">leadership</span></div></div>
             <div class="module"><div class="module-num">M1.8</div><div class="module-title">Первый внутренний доклад</div><div class="module-desc">Tech talk внутри компании на 30 минут. Тема — что освоил за квартал.</div><div class="module-tags"><span class="tag">speaking</span></div></div>
+            <div class="module"><div class="module-num">M1.9</div><div class="module-title">Security education в команде</div><div class="module-desc">Внедрение security awareness в команды разработки: <strong>lunch &amp; learn</strong> сессии (30-минутные обзоры тем — OWASP Top 10, threat modeling), <strong>brown bags</strong> по разбору реальных CVE, <strong>workshops</strong> по STRIDE-моделированию на их же сервисах. Создание <strong>secure coding guidelines</strong> для основных языков команды. Не «обучать ради обучения», а решать конкретные проблемы команды через образование. Связано с твоим опытом SSDLC pilot — это естественное продолжение работы.</div><div class="module-tags"><span class="tag">education</span><span class="tag">culture</span></div></div>
           </div>
 
           <div class="exit">
@@ -2639,6 +2706,7 @@ body::after {
               <li>Один OSS PR замёрджен</li>
               <li>Закрыл 1 язык до уровня инструмент-писательства</li>
               <li>Провёл минимум один внутренний tech talk</li>
+              <li>Провёл хотя бы один security-обучающий ивент для команды разработки</li>
               <li class="crit">Понимаешь, ЧЕМ занимается security в компании на уровне процессов</li>
             </ul>
           </div>
@@ -2705,6 +2773,7 @@ body::after {
             <div class="module"><div class="module-num">M3.6</div><div class="module-title">Bug Bounty всерьёз (опц.)</div><div class="module-desc">Top-100 на Standoff / HackerOne — серьёзный сигнал.</div><div class="module-tags"><span class="tag">bb</span></div></div>
             <div class="module"><div class="module-num">M3.7</div><div class="module-title">Бизнес-язык</div><div class="module-desc">ROI security-инвестиций. Risk quantification (FAIR framework). <strong>«How to Measure Anything in Cybersecurity Risk»</strong> Hubbard.</div><div class="module-tags"><span class="tag">business</span></div></div>
             <div class="module"><div class="module-num">M3.8</div><div class="module-title">Vendor management</div><div class="module-desc">Пилоты enterprise-инструментов (Wiz, Snyk, PT AI), переговоры с vendor-ами, сравнение коммерческих предложений.</div><div class="module-tags"><span class="tag">vendor</span></div></div>
+            <div class="module"><div class="module-num">M3.9</div><div class="module-title">SSDLC roadmap для организации</div><div class="module-desc">Построение программы Secure SDLC в компании с нуля или развитие существующей. <strong>Аудит текущего состояния</strong> через OWASP SAMM / BSIMM (см. P3.10). <strong>Построение roadmap</strong>: квартальные цели, метрики прогресса, паттерн «пилот → отчёт → масштабирование». <strong>Получение buy-in</strong> от менеджмента (ROI security-инвестиций, risk reduction в денежных терминах). <strong>Управление change resistance</strong> со стороны команд разработки. Это <strong>сильнейший STAR-кейс на собеседовании</strong> middle/senior — реальный опыт построения программы ценится выше любых сертификатов.</div><div class="module-tags"><span class="tag crit">portfolio</span><span class="tag">leadership</span></div></div>
           </div>
           <div class="exit">
             <ul class="exit-list">
@@ -2714,6 +2783,7 @@ body::after {
               <li>Получил CVE на свою фамилию (research, не BB)</li>
               <li>Доклад на PHDays / OFFZONE / ZeroNights main track</li>
               <li>Регулярный блог с заметным охватом</li>
+              <li>Запущен SSDLC roadmap в организации (или серьёзная программа изменений)</li>
               <li class="crit">Можешь обосновать security-решение перед CTO/CFO в их терминах</li>
             </ul>
           </div>
@@ -2969,7 +3039,7 @@ body::after {
 <div class="foot">
   // <strong>core principles:</strong> один сквозной pet-проект · публичный блог-журнал · английский с первого дня · глубина &gt; скорость<br>
   // открытый знаниевый ресурс · свободно используй, форкай, улучшай · issues и PR welcome<br>
-  // <a href="https://github.com/Abdeygodin/devsecops-roadmap" target="_blank">github.com/Abdeygodin/devsecops-roadmap</a> // v1.1 · public edition
+  // <a href="https://github.com/Abdeygodin/devsecops-roadmap" target="_blank">github.com/Abdeygodin/devsecops-roadmap</a> // v1.2 · public edition
 </div>
 
 </div>
