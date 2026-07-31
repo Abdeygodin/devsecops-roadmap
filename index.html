@@ -1978,6 +1978,29 @@ body::after {
                 <span class="tag">owasp-llm</span>
               </div>
             </div>
+
+            <div class="module">
+              <div class="module-num">P3.13</div>
+              <div class="module-title">WAF как compensating control</div>
+              <div class="module-desc">
+                <strong>«SAST vs DAST vs WAF»</strong> — стандартный вопрос на собеседовании.
+                Разница по сути: SAST и DAST ищут уязвимость <em>до</em> прода, WAF живёт
+                <em>в</em> проде и фильтрует трафик. <strong>Виртуальный патч</strong> — правило
+                WAF, закрывающее эксплуатацию, пока фикс в коде едет через релизный цикл:
+                это выигранное время, а не решение проблемы. Знать ограничения: WAF обходится
+                (обфускация, нестандартные кодировки), не спасает от логических багов
+                и от IDOR, и не отменяет исправление кода. <strong>Positive vs negative
+                security model</strong> — белые списки против сигнатур. OWASP Core Rule Set,
+                настройка порогов, борьба с ложными срабатываниями в blocking-режиме
+                (типовой путь: сначала detection-only, потом блокировка). В РФ на собеседованиях
+                всплывают PT AF и Wallarm.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">interview</span>
+                <span class="tag">waf</span>
+                <span class="tag ru">ru</span>
+              </div>
+            </div>
           </div>
 
           <div class="exit">
@@ -1990,6 +2013,7 @@ body::after {
               <li>Объясняешь разницу между SAST/SCA/DAST/IAST на доске</li>
               <li>Знаешь OWASP API Security Top 10, объясняешь BOLA/BFLA/IDOR с примерами</li>
               <li>Знаешь OWASP Top 10 for LLM, объясняешь direct vs indirect prompt injection</li>
+              <li>Объясняешь разницу SAST / DAST / WAF и что такое виртуальный патч</li>
               <li>Знаешь OWASP SAMM / BSIMM / DSOMM, можешь оценить зрелость программы</li>
               <li>Понимаешь Jenkins pipeline (Declarative и Scripted), Shared Libraries</li>
             </ul>
@@ -2832,6 +2856,20 @@ body::after {
         <li><strong>Salt Security / Noname</strong> — enterprise API security</li>
         <li><strong>Schemathesis</strong> — property-based testing для OpenAPI</li>
         <li><strong>StackHawk</strong> — DAST для API в CI</li>
+      </ul>
+    </div>
+
+    <div class="tool-cat" data-cat="waf">
+      <h4>WAF · perimeter</h4>
+      <div class="tool-cat-desc">Фильтрация трафика на периметре, виртуальный патчинг.</div>
+      <ul class="tool-list">
+        <li><strong>ModSecurity / Coraza</strong> — open source, OWASP CRS</li>
+        <li><strong>NAXSI</strong> — лёгкий модуль для nginx</li>
+        <li><strong>Cloudflare WAF / AWS WAF</strong> — облачные</li>
+        <li><strong>PT Application Firewall</strong><span class="ru-mark" style="background:var(--pink);color:var(--bg);padding:1px 5px;font-size:11px;font-weight:700">RU</span> — Positive Technologies</li>
+        <li><strong>Wallarm</strong><span class="ru-mark" style="background:var(--pink);color:var(--bg);padding:1px 5px;font-size:11px;font-weight:700">RU</span> — WAF + API security</li>
+        <li><strong>Nemesida WAF</strong><span class="ru-mark" style="background:var(--pink);color:var(--bg);padding:1px 5px;font-size:11px;font-weight:700">RU</span> — ML-детект</li>
+        <li><strong>SolidWall</strong><span class="ru-mark" style="background:var(--pink);color:var(--bg);padding:1px 5px;font-size:11px;font-weight:700">RU</span></li>
       </ul>
     </div>
 
