@@ -1012,7 +1012,41 @@ body::after {
 .snav-chip.s1:hover, .snav-chip.s1.active { color: #ef4444; border-bottom-color: #ef4444; }
 .snav-chip.s2:hover, .snav-chip.s2.active { color: #dc2626; border-bottom-color: #dc2626; }
 
-.snav-actions { display: flex; gap: 4px; flex-shrink: 0; }
+.snav-actions { display: flex; gap: 4px; flex-shrink: 0; align-items: center; }
+
+.snav-search { position: relative; display: flex; align-items: center; }
+
+.snav-search input {
+  height: 44px; width: 190px; padding: 0 58px 0 10px;
+  background: var(--bg-elev); border: 1px solid var(--line);
+  color: var(--text); font-family: inherit; font-size: 12px;
+}
+
+.snav-search input::placeholder { color: var(--text-dim); }
+.snav-search input:focus { outline: none; border-color: var(--accent); }
+.snav-search input:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.snav-search-count {
+  position: absolute; right: 8px;
+  font-size: 11px; color: var(--text-dim); pointer-events: none;
+}
+
+/* подсветка совпадений */
+.search-hit { background: rgba(74, 222, 128, 0.16); outline: 1px solid var(--accent-dim); }
+mark.search-mark { background: var(--accent); color: var(--bg); padding: 0 2px; }
+
+body.searching .phase:not(.has-hit),
+body.searching .tool-cat:not(.has-hit) { display: none; }
+
+body.searching .phase.has-hit .module:not(.search-hit),
+body.searching .tool-cat.has-hit .tool-list li:not(.search-hit) { opacity: 0.28; }
+
+.search-empty {
+  display: none; margin: 24px 0; padding: 16px 20px;
+  border: 1px dashed var(--line-bright); color: var(--text-dim);
+  font-size: 14px; max-width: 68ch;
+}
+body.searching.no-hits .search-empty { display: block; }
 
 .snav-btn {
   height: 44px; min-width: 44px; padding: 0 10px;
@@ -1052,6 +1086,10 @@ body::after {
   .snav-chip { min-width: 30px; font-size: 12px; }
   .snav-btn { padding: 0 7px; min-width: 38px; font-size: 12px; }
   .snav-actions .snav-btn:last-child { display: none; }
+  /* поле поиска не должно съедать ряд чипов — на 375px им нужно место */
+  .snav-search input { width: 104px; padding: 0 28px 0 8px; font-size: 12px; transition: width 0.15s; }
+  .snav-search input:focus { width: 172px; }
+  .snav-search-count { right: 6px; }
 }
 
 @media print {
@@ -1093,6 +1131,12 @@ body::after {
       <button class="snav-chip s2" onclick="openPhase('S2')" title="S2: staff / principal / CISO">S2</button>
     </div>
     <div class="snav-actions">
+      <div class="snav-search">
+        <input type="search" id="snavSearch" placeholder="поиск: trivy, kerberos…"
+               aria-label="Поиск по модулям и инструментам" autocomplete="off"
+               oninput="runSearch(this.value)">
+        <span class="snav-search-count" id="snavSearchCount" role="status" aria-live="polite"></span>
+      </div>
       <button class="snav-btn" onclick="openAll()" title="Развернуть все фазы">[+]</button>
       <button class="snav-btn" onclick="closeAll()" title="Свернуть все фазы">[−]</button>
       <button class="snav-btn" onclick="goGate()" title="К финальному чек-листу">gate</button>
@@ -1304,6 +1348,12 @@ body::after {
     <button class="btn" onclick="closeAll()">collapse_all</button>
     <button class="btn" onclick="window.print()">print / pdf</button>
     <button class="btn" onclick="document.getElementById('final-gate').scrollIntoView({behavior:'smooth'})">→ junior_gate</button>
+  </div>
+
+  <div class="search-empty" id="searchEmpty">
+    Ничего не нашлось. Поиск идёт по модулям фаз и по матрице инструментов —
+    попробуй короче или по-английски: <strong>trivy</strong>, <strong>kerberos</strong>,
+    <strong>sbom</strong>, <strong>ГОСТ</strong>.
   </div>
 
   <div class="phases">
@@ -3584,6 +3634,77 @@ function loadProgress() {
 }
 window.addEventListener('DOMContentLoaded', loadProgress);
 
+/* ============ ПОИСК ============ */
+let searchTimer = null;
+
+function runSearch(raw) {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => doSearch(raw), 140);
+}
+
+function clearMarks(root) {
+  root.querySelectorAll('mark.search-mark').forEach(m => {
+    const p = m.parentNode;
+    p.replaceChild(document.createTextNode(m.textContent), m);
+    p.normalize();
+  });
+}
+
+function markIn(el, needle) {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  const targets = [];
+  let n;
+  while ((n = walker.nextNode())) {
+    if (n.nodeValue.toLowerCase().includes(needle)) targets.push(n);
+  }
+  targets.forEach(node => {
+    const idx = node.nodeValue.toLowerCase().indexOf(needle);
+    if (idx < 0) return;
+    const after = node.splitText(idx);
+    after.splitText(needle.length);
+    const mark = document.createElement('mark');
+    mark.className = 'search-mark';
+    mark.textContent = after.nodeValue;
+    after.parentNode.replaceChild(mark, after);
+  });
+}
+
+function doSearch(raw) {
+  const q = (raw || '').trim().toLowerCase();
+  const body = document.body;
+  const countBox = document.getElementById('snavSearchCount');
+
+  // сброс предыдущего прогона
+  document.querySelectorAll('.search-hit').forEach(e => e.classList.remove('search-hit'));
+  document.querySelectorAll('.has-hit').forEach(e => e.classList.remove('has-hit'));
+  clearMarks(document.querySelector('.container'));
+
+  if (q.length < 2) {
+    body.classList.remove('searching', 'no-hits');
+    countBox.textContent = '';
+    return;
+  }
+
+  body.classList.add('searching');
+  let hits = 0;
+
+  // модули внутри фаз + инструменты в матрице
+  document.querySelectorAll('.module, .tool-list li').forEach(el => {
+    if (!el.textContent.toLowerCase().includes(q)) return;
+    hits++;
+    el.classList.add('search-hit');
+    markIn(el, q);
+    const box = el.closest('.phase, .tool-cat');
+    if (box) {
+      box.classList.add('has-hit');
+      box.classList.add('open');   // раскрываем фазу с совпадением
+    }
+  });
+
+  body.classList.toggle('no-hits', hits === 0);
+  countBox.textContent = hits ? hits : '0';
+}
+
 /* ============ ВХОДНЫЕ ТРЕКИ ============ */
 /* review — фазы, которые пользователь уже закрыл на работе:
    они схлопываются в чек-лист вместо полного раскрытия */
@@ -3680,6 +3801,21 @@ function goGate() {
   window.addEventListener('scroll', onScroll, {passive: true});
   onScroll();
 })();
+
+/* Esc сбрасывает поиск, «/» фокусирует его */
+document.addEventListener('keydown', e => {
+  const box = document.getElementById('snavSearch');
+  if (e.key === 'Escape' && box.value) {
+    box.value = '';
+    doSearch('');
+    box.blur();
+  } else if (e.key === '/' && document.activeElement !== box &&
+             !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) {
+    e.preventDefault();
+    document.getElementById('stickyNav').classList.add('visible');
+    box.focus();
+  }
+});
 </script>
 
 </body>
