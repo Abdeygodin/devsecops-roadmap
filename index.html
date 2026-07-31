@@ -1880,9 +1880,26 @@ body::after {
                 Стратегия: pre-commit hooks → CI scans → registry gate → admission controller.
                 Один уровень обходится — следующий ловит. <strong>Не один scanner-выключатель,
                 а каскад</strong>. Документируй процесс в репо.
+                <br><br>
+                <strong>Экономика пайплайна.</strong> Это то, что отделяет читавшего доки от
+                внедрявшего. Навешал сканеров — пайплайн вырос на 20 минут, разработчики
+                начали искать способ его обойти, и ты получил security-театр.
+                Что с этим делают:
+                <strong>diff-only сканирование</strong> — <code>semgrep --baseline-commit</code>
+                и инкрементальные режимы, проверяем изменённое, а не репозиторий целиком;
+                <strong>кеширование</strong> БД уязвимостей Trivy между запусками;
+                <strong>раскладка по триггерам</strong> — быстрые проверки (secrets, lint,
+                diff-SAST) на каждый PR, тяжёлые (полный SCA, DAST, image scan) на merge
+                в main, самые долгие ночью по расписанию;
+                <strong>SLA на remediation вместо жёсткой блокировки</strong> — critical
+                блокирует, high получает срок и тикет, остальное копится в отчёт;
+                политика исключений с датой пересмотра, иначе <code>nosec</code> расползётся
+                по коду навсегда. <strong>Время пайплайна — такая же метрика, как число
+                findings</strong>: если ты его не меряешь, ты его не контролируешь.
               </div>
               <div class="module-tags">
                 <span class="tag crit">strategy</span>
+                <span class="tag hot">interview</span>
               </div>
             </div>
 
