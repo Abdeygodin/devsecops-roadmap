@@ -658,7 +658,28 @@ body::after {
   letter-spacing: 0.2em; color: var(--accent); margin-bottom: 16px;
 }
 
-.reality-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+/* Горизонтальный скролл для таблицы: на узких экранах содержимое шире
+   контейнера, а body { overflow-x: hidden } иначе просто срезает последнюю колонку. */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-bright) transparent;
+}
+
+.table-scroll:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.table-scroll::-webkit-scrollbar { height: 6px; }
+.table-scroll::-webkit-scrollbar-track { background: var(--bg); }
+.table-scroll::-webkit-scrollbar-thumb { background: var(--line-bright); }
+
+.reality-table {
+  width: 100%; border-collapse: collapse; font-size: 12px;
+  min-width: 560px;
+}
 
 .reality-table th {
   text-align: left; padding: 10px 12px;
@@ -771,9 +792,18 @@ body::after {
   border-left: 2px solid var(--line);
   font-size: 12px; cursor: pointer; user-select: none;
   transition: all 0.15s;
+  /* элемент — <button>, поэтому сбрасываем нативные стили */
+  width: 100%; text-align: left;
+  font-family: inherit; color: inherit;
+  border-top: none; border-right: none; border-bottom: none;
+  appearance: none;
 }
 
 .check-item:hover { border-left-color: var(--accent); background: var(--bg); }
+.check-item:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+  border-left-color: var(--accent);
+}
 .check-item.checked { border-left-color: var(--accent); background: rgba(74, 222, 128, 0.08); }
 .check-item.checked .check-text { color: var(--text-dim); text-decoration: line-through; }
 
@@ -848,6 +878,15 @@ body::after {
   .phase-body { max-height: none !important; }
   .phase { break-inside: avoid; }
   .controls, .author-links { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 </style>
 </head>
@@ -2611,6 +2650,7 @@ body::after {
 
 <section class="reality-block">
   <h3>// reality_check · РФ-рынок · Москва/удалёнка</h3>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="Таблица уровней и вилок">
   <table class="reality-table">
     <thead>
       <tr>
@@ -2653,6 +2693,7 @@ body::after {
       </tr>
     </tbody>
   </table>
+  </div>
 </section>
 
 <section class="track-section">
@@ -3000,36 +3041,36 @@ body::after {
   </p>
 
   <div class="checklist-grid" id="checklist">
-    <div class="check-item" data-checkid="1" onclick="toggleCheck(this, 1)"><span class="check-num">01</span><span class="check-box">[ ]</span><span class="check-text">Pet-проект на GitHub с полным DevSecOps-пайплайном (SAST + SCA + DAST + IaC + secrets + container scan)</span></div>
-    <div class="check-item" data-checkid="2" onclick="toggleCheck(this, 2)"><span class="check-num">02</span><span class="check-box">[ ]</span><span class="check-text">15+ write-up-ов в публичном блоге, демонстрирующих понимание тем</span></div>
-    <div class="check-item" data-checkid="3" onclick="toggleCheck(this, 3)"><span class="check-num">03</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь CIA Triad, Defense in Depth, Least Privilege, Zero Trust без подсказок</span></div>
-    <div class="check-item" data-checkid="4" onclick="toggleCheck(this, 4)"><span class="check-num">04</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь и демонстрируешь top-15 уязвимостей OWASP без подсказок</span></div>
-    <div class="check-item" data-checkid="5" onclick="toggleCheck(this, 5)"><span class="check-num">05</span><span class="check-box">[ ]</span><span class="check-text">Знаешь OWASP API Security Top 10, объясняешь BOLA/BFLA/IDOR с примерами</span></div>
-    <div class="check-item" data-checkid="6" onclick="toggleCheck(this, 6)"><span class="check-num">06</span><span class="check-box">[ ]</span><span class="check-text">Threat model для своего проекта (STRIDE + DFD) опубликован</span></div>
-    <div class="check-item" data-checkid="7" onclick="toggleCheck(this, 7)"><span class="check-num">07</span><span class="check-box">[ ]</span><span class="check-text">5+ собственных Semgrep-правил опубликовано в репо</span></div>
-    <div class="check-item" data-checkid="8" onclick="toggleCheck(this, 8)"><span class="check-num">08</span><span class="check-box">[ ]</span><span class="check-text">Pet-проект работает в Kubernetes с PSA, NetworkPolicy, RBAC</span></div>
-    <div class="check-item" data-checkid="9" onclick="toggleCheck(this, 9)"><span class="check-num">09</span><span class="check-box">[ ]</span><span class="check-text">Образы подписаны cosign, SBOM публикуется, SLSA Build L2+</span></div>
-    <div class="check-item" data-checkid="10" onclick="toggleCheck(this, 10)"><span class="check-num">10</span><span class="check-box">[ ]</span><span class="check-text">Pre-commit hooks с gitleaks/trufflehog работают</span></div>
-    <div class="check-item" data-checkid="11" onclick="toggleCheck(this, 11)"><span class="check-num">11</span><span class="check-box">[ ]</span><span class="check-text">CI/CD на GitHub Actions И GitLab CI (хотя бы один — production-grade)</span></div>
-    <div class="check-item" data-checkid="12" onclick="toggleCheck(this, 12)"><span class="check-num">12</span><span class="check-box">[ ]</span><span class="check-text">Terraform + Ansible — есть рабочие конфиги в репо</span></div>
-    <div class="check-item" data-checkid="13" onclick="toggleCheck(this, 13)"><span class="check-num">13</span><span class="check-box">[ ]</span><span class="check-text">HashiCorp Vault интегрирован, секреты не хардкодятся</span></div>
-    <div class="check-item" data-checkid="14" onclick="toggleCheck(this, 14)"><span class="check-num">14</span><span class="check-box">[ ]</span><span class="check-text">Observability stack (Prometheus + Grafana + логи) работает</span></div>
-    <div class="check-item" data-checkid="15" onclick="toggleCheck(this, 15)"><span class="check-num">15</span><span class="check-box">[ ]</span><span class="check-text">Аудит AWS или Yandex Cloud через Prowler/ScoutSuite пройден</span></div>
-    <div class="check-item" data-checkid="16" onclick="toggleCheck(this, 16)"><span class="check-num">16</span><span class="check-box">[ ]</span><span class="check-text">Разбор 3+ supply chain атак (SolarWinds, log4j, xz) в блоге</span></div>
-    <div class="check-item" data-checkid="17" onclick="toggleCheck(this, 17)"><span class="check-num">17</span><span class="check-box">[ ]</span><span class="check-text">Закрыты все Apprentice + большая часть Practitioner на PortSwigger</span></div>
-    <div class="check-item" data-checkid="18" onclick="toggleCheck(this, 18)"><span class="check-num">18</span><span class="check-box">[ ]</span><span class="check-text">Знаешь IR Lifecycle (NIST 800-61), можешь рассказать что делать при инциденте</span></div>
-    <div class="check-item" data-checkid="19" onclick="toggleCheck(this, 19)"><span class="check-num">19</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь разницу EDR / SIEM / SOAR / IDS / IPS</span></div>
-    <div class="check-item" data-checkid="20" onclick="toggleCheck(this, 20)"><span class="check-num">20</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-комплаенса (ФСТЭК, ГОСТ Р 56939, КИИ, БДУ, 152-ФЗ)</span></div>
-    <div class="check-item" data-checkid="21" onclick="toggleCheck(this, 21)"><span class="check-num">21</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-инструментов (PT AI, Solar appScreener, CodeScoring, MaxPatrol, Kaspersky EDR)</span></div>
-    <div class="check-item" data-checkid="22" onclick="toggleCheck(this, 22)"><span class="check-num">22</span><span class="check-box">[ ]</span><span class="check-text">Английский B2+ (для intl) или B1+ (для РФ + чтение доков)</span></div>
-    <div class="check-item" data-checkid="23" onclick="toggleCheck(this, 23)"><span class="check-num">23</span><span class="check-box">[ ]</span><span class="check-text">1+ принятый репорт на Standoff / BI.ZONE / HackerOne</span></div>
-    <div class="check-item" data-checkid="24" onclick="toggleCheck(this, 24)"><span class="check-num">24</span><span class="check-box">[ ]</span><span class="check-text">10+ разборов реальных CVE по своему стеку в блоге</span></div>
-    <div class="check-item" data-checkid="25" onclick="toggleCheck(this, 25)"><span class="check-num">25</span><span class="check-box">[ ]</span><span class="check-text">Manual code review: находишь уязвимости в DVNA/NodeGoat быстрее сканера</span></div>
-    <div class="check-item" data-checkid="26" onclick="toggleCheck(this, 26)"><span class="check-num">26</span><span class="check-box">[ ]</span><span class="check-text">Книги Agile Application Security + Alice and Bob прочитаны</span></div>
-    <div class="check-item" data-checkid="27" onclick="toggleCheck(this, 27)"><span class="check-num">27</span><span class="check-box">[ ]</span><span class="check-text">Резюме на двух языках готово, 5–7 STAR-историй проговорены, 5+ mock interviews</span></div>
-    <div class="check-item" data-checkid="28" onclick="toggleCheck(this, 28)"><span class="check-num">28</span><span class="check-box">[ ]</span><span class="check-text">GitHub причёсан: 4–6 закреплённых репо с README, скриншотами CI runs</span></div>
-    <div class="check-item" data-checkid="29" onclick="toggleCheck(this, 29)"><span class="check-num">29</span><span class="check-box">[ ]</span><span class="check-text">Различаешь SAST/DAST/IAST и Black/Grey/White box testing, объясняешь что чем ловится</span></div>
-    <div class="check-item" data-checkid="30" onclick="toggleCheck(this, 30)"><span class="check-num">30</span><span class="check-box">[ ]</span><span class="check-text">Знаешь SSDLC maturity models (OWASP SAMM / BSIMM / DSOMM) на уровне разговора</span></div>
+    <button type="button" class="check-item" data-checkid="1" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 1)"><span class="check-num">01</span><span class="check-box">[ ]</span><span class="check-text">Pet-проект на GitHub с полным DevSecOps-пайплайном (SAST + SCA + DAST + IaC + secrets + container scan)</span></button>
+    <button type="button" class="check-item" data-checkid="2" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 2)"><span class="check-num">02</span><span class="check-box">[ ]</span><span class="check-text">15+ write-up-ов в публичном блоге, демонстрирующих понимание тем</span></button>
+    <button type="button" class="check-item" data-checkid="3" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 3)"><span class="check-num">03</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь CIA Triad, Defense in Depth, Least Privilege, Zero Trust без подсказок</span></button>
+    <button type="button" class="check-item" data-checkid="4" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 4)"><span class="check-num">04</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь и демонстрируешь top-15 уязвимостей OWASP без подсказок</span></button>
+    <button type="button" class="check-item" data-checkid="5" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 5)"><span class="check-num">05</span><span class="check-box">[ ]</span><span class="check-text">Знаешь OWASP API Security Top 10, объясняешь BOLA/BFLA/IDOR с примерами</span></button>
+    <button type="button" class="check-item" data-checkid="6" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 6)"><span class="check-num">06</span><span class="check-box">[ ]</span><span class="check-text">Threat model для своего проекта (STRIDE + DFD) опубликован</span></button>
+    <button type="button" class="check-item" data-checkid="7" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 7)"><span class="check-num">07</span><span class="check-box">[ ]</span><span class="check-text">5+ собственных Semgrep-правил опубликовано в репо</span></button>
+    <button type="button" class="check-item" data-checkid="8" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 8)"><span class="check-num">08</span><span class="check-box">[ ]</span><span class="check-text">Pet-проект работает в Kubernetes с PSA, NetworkPolicy, RBAC</span></button>
+    <button type="button" class="check-item" data-checkid="9" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 9)"><span class="check-num">09</span><span class="check-box">[ ]</span><span class="check-text">Образы подписаны cosign, SBOM публикуется, SLSA Build L2+</span></button>
+    <button type="button" class="check-item" data-checkid="10" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 10)"><span class="check-num">10</span><span class="check-box">[ ]</span><span class="check-text">Pre-commit hooks с gitleaks/trufflehog работают</span></button>
+    <button type="button" class="check-item" data-checkid="11" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 11)"><span class="check-num">11</span><span class="check-box">[ ]</span><span class="check-text">CI/CD на GitHub Actions И GitLab CI (хотя бы один — production-grade)</span></button>
+    <button type="button" class="check-item" data-checkid="12" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 12)"><span class="check-num">12</span><span class="check-box">[ ]</span><span class="check-text">Terraform + Ansible — есть рабочие конфиги в репо</span></button>
+    <button type="button" class="check-item" data-checkid="13" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 13)"><span class="check-num">13</span><span class="check-box">[ ]</span><span class="check-text">HashiCorp Vault интегрирован, секреты не хардкодятся</span></button>
+    <button type="button" class="check-item" data-checkid="14" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 14)"><span class="check-num">14</span><span class="check-box">[ ]</span><span class="check-text">Observability stack (Prometheus + Grafana + логи) работает</span></button>
+    <button type="button" class="check-item" data-checkid="15" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 15)"><span class="check-num">15</span><span class="check-box">[ ]</span><span class="check-text">Аудит AWS или Yandex Cloud через Prowler/ScoutSuite пройден</span></button>
+    <button type="button" class="check-item" data-checkid="16" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 16)"><span class="check-num">16</span><span class="check-box">[ ]</span><span class="check-text">Разбор 3+ supply chain атак (SolarWinds, log4j, xz) в блоге</span></button>
+    <button type="button" class="check-item" data-checkid="17" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 17)"><span class="check-num">17</span><span class="check-box">[ ]</span><span class="check-text">Закрыты все Apprentice + большая часть Practitioner на PortSwigger</span></button>
+    <button type="button" class="check-item" data-checkid="18" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 18)"><span class="check-num">18</span><span class="check-box">[ ]</span><span class="check-text">Знаешь IR Lifecycle (NIST 800-61), можешь рассказать что делать при инциденте</span></button>
+    <button type="button" class="check-item" data-checkid="19" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 19)"><span class="check-num">19</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь разницу EDR / SIEM / SOAR / IDS / IPS</span></button>
+    <button type="button" class="check-item" data-checkid="20" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 20)"><span class="check-num">20</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-комплаенса (ФСТЭК, ГОСТ Р 56939, КИИ, БДУ, 152-ФЗ)</span></button>
+    <button type="button" class="check-item" data-checkid="21" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 21)"><span class="check-num">21</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-инструментов (PT AI, Solar appScreener, CodeScoring, MaxPatrol, Kaspersky EDR)</span></button>
+    <button type="button" class="check-item" data-checkid="22" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 22)"><span class="check-num">22</span><span class="check-box">[ ]</span><span class="check-text">Английский B2+ (для intl) или B1+ (для РФ + чтение доков)</span></button>
+    <button type="button" class="check-item" data-checkid="23" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 23)"><span class="check-num">23</span><span class="check-box">[ ]</span><span class="check-text">1+ принятый репорт на Standoff / BI.ZONE / HackerOne</span></button>
+    <button type="button" class="check-item" data-checkid="24" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 24)"><span class="check-num">24</span><span class="check-box">[ ]</span><span class="check-text">10+ разборов реальных CVE по своему стеку в блоге</span></button>
+    <button type="button" class="check-item" data-checkid="25" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 25)"><span class="check-num">25</span><span class="check-box">[ ]</span><span class="check-text">Manual code review: находишь уязвимости в DVNA/NodeGoat быстрее сканера</span></button>
+    <button type="button" class="check-item" data-checkid="26" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 26)"><span class="check-num">26</span><span class="check-box">[ ]</span><span class="check-text">Книги Agile Application Security + Alice and Bob прочитаны</span></button>
+    <button type="button" class="check-item" data-checkid="27" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 27)"><span class="check-num">27</span><span class="check-box">[ ]</span><span class="check-text">Резюме на двух языках готово, 5–7 STAR-историй проговорены, 5+ mock interviews</span></button>
+    <button type="button" class="check-item" data-checkid="28" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 28)"><span class="check-num">28</span><span class="check-box">[ ]</span><span class="check-text">GitHub причёсан: 4–6 закреплённых репо с README, скриншотами CI runs</span></button>
+    <button type="button" class="check-item" data-checkid="29" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 29)"><span class="check-num">29</span><span class="check-box">[ ]</span><span class="check-text">Различаешь SAST/DAST/IAST и Black/Grey/White box testing, объясняешь что чем ловится</span></button>
+    <button type="button" class="check-item" data-checkid="30" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 30)"><span class="check-num">30</span><span class="check-box">[ ]</span><span class="check-text">Знаешь SSDLC maturity models (OWASP SAMM / BSIMM / DSOMM) на уровне разговора</span></button>
   </div>
 
   <div class="progress-display">
@@ -3073,11 +3114,14 @@ function togglePhase(n) {
   const el = document.getElementById('phase-' + n);
   if (el) el.classList.toggle('open');
 }
+const reduceMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function openPhase(n) {
   const el = document.getElementById('phase-' + n);
   if (el) {
     el.classList.add('open');
-    el.scrollIntoView({behavior: 'smooth', block: 'start'});
+    el.scrollIntoView({behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start'});
   }
 }
 function openAll() { document.querySelectorAll('.phase').forEach(p => p.classList.add('open')); }
@@ -3086,8 +3130,9 @@ function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 
 function toggleCheck(el, n) {
   el.classList.toggle('checked');
-  const box = el.querySelector('.check-box');
-  box.textContent = el.classList.contains('checked') ? '[x]' : '[ ]';
+  const on = el.classList.contains('checked');
+  el.querySelector('.check-box').textContent = on ? '[x]' : '[ ]';
+  el.setAttribute('aria-checked', on ? 'true' : 'false');
   updateProgress();
   saveProgress();
 }
@@ -3121,6 +3166,7 @@ function loadProgress() {
       if (el) {
         el.classList.add('checked');
         el.querySelector('.check-box').textContent = '[x]';
+        el.setAttribute('aria-checked', 'true');
       }
     });
     updateProgress();
