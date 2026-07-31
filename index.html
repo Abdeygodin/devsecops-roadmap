@@ -232,6 +232,13 @@ body::after {
   gap: 24px;
 }
 
+/* Блок «для кого» больше не абзац: кнопки треков + пять строк со сроками.
+   В одной колонке (~270px) на строку влезало 35 символов, поэтому отдаём
+   ему две колонки везде, где сетка их даёт. */
+@media (min-width: 760px) {
+  .how-to-use-block:first-child { grid-column: span 2; }
+}
+
 .how-to-use-block h3, .strategy-block h3 {
   font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em;
   color: var(--accent); margin-bottom: 10px;
@@ -967,15 +974,17 @@ body::after {
 /* список входных треков со сроками в блоке «для кого» */
 .track-list { list-style: none; margin-top: 12px; display: grid; gap: 8px; }
 
+/* Не grid: блок «для кого» — узкая ячейка (~250px), и колонка 78px + 1fr
+   оставляла тексту слишком мало. Плюс grid считал голый текстовый узел
+   отдельным элементом сетки и выкидывал описание в третью ячейку. */
 .track-list li {
-  display: grid; grid-template-columns: 78px 1fr; gap: 10px;
-  align-items: baseline; font-size: 13px; line-height: 1.6;
-  color: var(--text-dim);
+  font-size: 13px; line-height: 1.7; color: var(--text-dim);
 }
 
 .track-list strong { color: var(--text-bright); font-weight: 500; }
 
 .track-when {
+  display: inline-block; margin-right: 7px;
   color: var(--accent); font-weight: 700; font-size: 12px;
   letter-spacing: 0.03em; white-space: nowrap;
 }
@@ -1268,27 +1277,27 @@ body.searching.no-hits .search-empty { display: block; }
       <ul class="track-list">
         <li>
           <span class="track-when">15–18 мес</span>
-          <strong>С нуля</strong> — иди по фазам P0→P6 последовательно, ничего не пропуская.
+          <span class="track-what"><strong>С нуля</strong> — иди по фазам P0→P6 последовательно, ничего не пропуская.</span>
         </li>
         <li>
           <span class="track-when">11–14 мес</span>
-          <strong>Из разработки</strong> — P0 пробегаешь как чек-лист, P1 закрываешь частично
-          (Docker/CI уже знаком), основной вес на P2–P5.
+          <span class="track-what"><strong>Из разработки</strong> — P0 пробегаешь как чек-лист, P1 закрываешь частично
+          (Docker/CI уже знаком), основной вес на P2–P5.</span>
         </li>
         <li>
           <span class="track-when">10–12 мес</span>
-          <strong>Из DevOps</strong> — P0 и P1 это твоя текущая рабочая компетенция,
-          реальный старт с P2 (AppSec). Самый быстрый вход.
+          <span class="track-what"><strong>Из DevOps</strong> — P0 и P1 это твоя текущая рабочая компетенция,
+          реальный старт с P2 (AppSec). Самый быстрый вход.</span>
         </li>
         <li>
           <span class="track-when">13–16 мес</span>
-          <strong>Из SOC / blue team</strong> — security mindset уже есть, добираешь
-          P1 (DevOps) и P2 (AppSec). Специализация Detection Engineering — ближайшая к тебе.
+          <span class="track-what"><strong>Из SOC / blue team</strong> — security mindset уже есть, добираешь
+          P1 (DevOps) и P2 (AppSec). Специализация Detection Engineering — ближайшая к тебе.</span>
         </li>
         <li>
           <span class="track-when">—</span>
-          <strong>Действующие DevSecOps</strong> — это карта для middle/senior-роста,
-          смотри elevation track (M1–S2).
+          <span class="track-what"><strong>Действующие DevSecOps</strong> — это карта для middle/senior-роста,
+          смотри elevation track (M1–S2).</span>
         </li>
       </ul>
     </div>
