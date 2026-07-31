@@ -966,6 +966,32 @@ body::after {
 /* цель прокрутки не должна уезжать под закреплённую панель */
 .phase, #final-gate { scroll-margin-top: 68px; }
 
+/* ============ ПЕРЕНОСИМЫЙ ПРОГРЕСС ГЕЙТА ============ */
+.gate-actions {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  margin-top: 16px;
+}
+
+.gate-hint { font-size: 13px; color: var(--accent); }
+
+.gate-link-fallback { display: none; margin-top: 10px; }
+.gate-link-fallback.show { display: block; }
+.gate-link-fallback span {
+  display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 4px;
+}
+.gate-link-fallback input {
+  width: 100%; max-width: 68ch; height: 44px; padding: 0 10px;
+  background: var(--bg); border: 1px solid var(--line-bright);
+  color: var(--text); font-family: inherit; font-size: 12px;
+}
+
+.gate-note {
+  margin-top: 12px; font-size: 13px; line-height: 1.6;
+  color: var(--text-dim); max-width: 68ch;
+}
+
+@media print { .gate-actions, .gate-link-fallback { display: none; } }
+
 /* ============ STICKY NAV ============ */
 .sticky-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -3536,8 +3562,23 @@ body.searching.no-hits .search-empty { display: block; }
   <div class="progress-display">
     <span style="color:var(--text-dim);text-transform:uppercase;letter-spacing:0.15em">progress:</span>
     <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-    <span class="progress-text" id="progress-text">0 / 30</span>
+    <span class="progress-text" id="progress-text">0 / 33</span>
   </div>
+
+  <div class="gate-actions">
+    <button type="button" class="btn" onclick="copyGateLink()">скопировать ссылку с прогрессом</button>
+    <button type="button" class="btn" onclick="resetGate()">сбросить</button>
+    <span class="gate-hint" id="gateHint" role="status" aria-live="polite"></span>
+  </div>
+  <label class="gate-link-fallback" id="gateLinkFallback">
+    <span>Скопируй ссылку вручную:</span>
+    <input type="text" id="gateLinkInput" readonly onclick="this.select()">
+  </label>
+  <p class="gate-note">
+    Прогресс живёт в браузере. Чек-лист ведут 15–18 месяцев, а чистка кэша или
+    переход на другое устройство его обнуляют — поэтому ссылка выше кодирует все
+    отметки прямо в себе. Сохрани её в закладки, и прогресс переживёт что угодно.
+  </p>
 </section>
 
 <section class="legend">
@@ -3632,7 +3673,88 @@ function loadProgress() {
     updateProgress();
   } catch(e) {}
 }
-window.addEventListener('DOMContentLoaded', loadProgress);
+/* ---- переносимый прогресс: состояние чекбоксов кодируется в URL-хеш ---- */
+function gateItems() { return [...document.querySelectorAll('.check-item')]; }
+
+function encodeGate() {
+  let bits = gateItems().map(e => e.classList.contains('checked') ? '1' : '0').join('');
+  while (bits.length % 4) bits += '0';
+  let hex = '';
+  for (let i = 0; i < bits.length; i += 4) hex += parseInt(bits.slice(i, i + 4), 2).toString(16);
+  return hex;
+}
+
+function decodeGate(hex) {
+  let bits = '';
+  for (const c of hex) {
+    const v = parseInt(c, 16);
+    if (isNaN(v)) return null;
+    bits += v.toString(2).padStart(4, '0');
+  }
+  return bits;
+}
+
+function applyGateBits(bits) {
+  gateItems().forEach((el, i) => {
+    const on = bits[i] === '1';
+    el.classList.toggle('checked', on);
+    el.setAttribute('aria-checked', on ? 'true' : 'false');
+    el.querySelector('.check-box').textContent = on ? '[x]' : '[ ]';
+  });
+  updateProgress();
+  saveProgress();
+}
+
+function gateHint(msg) {
+  const el = document.getElementById('gateHint');
+  el.textContent = msg;
+  setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, 4000);
+}
+
+function gateLink() {
+  return location.origin + location.pathname + '#gate=' + encodeGate();
+}
+
+function copyGateLink() {
+  const url = gateLink();
+  const fallback = () => {
+    const box = document.getElementById('gateLinkFallback');
+    const input = document.getElementById('gateLinkInput');
+    input.value = url;
+    box.classList.add('show');
+    input.select();
+    gateHint('Скопируй ссылку из поля ниже');
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(url).then(
+      () => gateHint('Ссылка скопирована — сохрани её в закладки'),
+      fallback
+    );
+  } else {
+    fallback();
+  }
+}
+
+function resetGate() {
+  applyGateBits(''.padEnd(gateItems().length, '0'));
+  document.getElementById('gateLinkFallback').classList.remove('show');
+  if (location.hash.startsWith('#gate=')) {
+    history.replaceState(null, '', location.pathname);
+  }
+  gateHint('Прогресс сброшен');
+}
+
+/* ссылка имеет приоритет над localStorage: открыл на другом устройстве — увидел свой прогресс */
+function loadGateState() {
+  const m = location.hash.match(/^#gate=([0-9a-f]+)$/i);
+  if (m) {
+    const bits = decodeGate(m[1]);
+    if (bits) { applyGateBits(bits); return; }
+  }
+  loadProgress();
+}
+
+window.addEventListener('DOMContentLoaded', loadGateState);
 
 /* ============ ПОИСК ============ */
 let searchTimer = null;
