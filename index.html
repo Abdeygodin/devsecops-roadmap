@@ -888,6 +888,22 @@ body::after {
   .tools-section { padding: 24px 16px; }
 }
 
+/* список входных треков со сроками в блоке «для кого» */
+.track-list { list-style: none; margin-top: 12px; display: grid; gap: 8px; }
+
+.track-list li {
+  display: grid; grid-template-columns: 78px 1fr; gap: 10px;
+  align-items: baseline; font-size: 13px; line-height: 1.6;
+  color: var(--text-dim);
+}
+
+.track-list strong { color: var(--text-bright); font-weight: 500; }
+
+.track-when {
+  color: var(--accent); font-weight: 700; font-size: 12px;
+  letter-spacing: 0.03em; white-space: nowrap;
+}
+
 /* цель прокрутки не должна уезжать под закреплённую панель */
 .phase, #final-gate { scroll-margin-top: 68px; }
 
@@ -1050,8 +1066,8 @@ body::after {
 
   <div class="briefing">
     <div class="briefing-item">
-      <div class="label">Junior-готовность</div>
-      <div class="value accent">8–14 мес</div>
+      <div class="label">Junior с нуля</div>
+      <div class="value accent">13–16 мес</div>
     </div>
     <div class="briefing-item">
       <div class="label">Middle с опытом</div>
@@ -1090,13 +1106,37 @@ body::after {
 <section class="how-to-use">
   <div class="how-to-use-grid">
     <div class="how-to-use-block">
-      <h3>для кого</h3>
+      <h3>для кого · и сколько это займёт</h3>
       <p>
-        <strong>Новички</strong> — иди по фазам P0→P6 последовательно. <strong>Действующие
-        DevOps/разработчики</strong> — пробегись по P0 как чек-лист, остановись на P2 (AppSec).
-        <strong>SOC-аналитики / blue team</strong> — у тебя сильный задел; нужен P1 (DevOps) и P3.
-        <strong>Действующие DevSecOps</strong> — это карта для middle/senior-роста.
+        Сумма фаз P0–P5 — 58 недель, это <strong>твой срок, если стартуешь с нуля</strong>.
+        Всё, что быстрее, — за счёт фаз, которые ты уже закрыл на работе. Найди свою строку:
       </p>
+      <ul class="track-list">
+        <li>
+          <span class="track-when">13–16 мес</span>
+          <strong>С нуля</strong> — иди по фазам P0→P6 последовательно, ничего не пропуская.
+        </li>
+        <li>
+          <span class="track-when">9–11 мес</span>
+          <strong>Из разработки</strong> — P0 пробегаешь как чек-лист, P1 закрываешь частично
+          (Docker/CI уже знаком), основной вес на P2–P5.
+        </li>
+        <li>
+          <span class="track-when">7–9 мес</span>
+          <strong>Из DevOps</strong> — P0 и P1 это твоя текущая рабочая компетенция,
+          реальный старт с P2 (AppSec). Самый быстрый вход.
+        </li>
+        <li>
+          <span class="track-when">10–12 мес</span>
+          <strong>Из SOC / blue team</strong> — security mindset уже есть, добираешь
+          P1 (DevOps) и P2 (AppSec). Специализация Detection Engineering — ближайшая к тебе.
+        </li>
+        <li>
+          <span class="track-when">—</span>
+          <strong>Действующие DevSecOps</strong> — это карта для middle/senior-роста,
+          смотри elevation track (M1–S2).
+        </li>
+      </ul>
     </div>
     <div class="how-to-use-block">
       <h3>как читать</h3>
@@ -1851,7 +1891,7 @@ body::after {
             </div>
 
             <div class="module">
-              <div class="module-num">P3.10</div>
+              <div class="module-num">P3.9</div>
               <div class="module-title">SSDLC Maturity Models</div>
               <div class="module-desc">
                 Как оценить зрелость security-программы в организации и обосновать roadmap её
@@ -1877,7 +1917,7 @@ body::after {
 
           <div class="module-grid">
             <div class="module">
-              <div class="module-num">P3.9</div>
+              <div class="module-num">P3.10</div>
               <div class="module-title">API Security</div>
               <div class="module-desc">
                 <strong>OWASP API Security Top 10</strong> — отдельный домен, не сводится к OWASP
@@ -2347,12 +2387,15 @@ body::after {
 
             <div class="module">
               <div class="module-num">BB.1</div>
-              <div class="module-title">Bug Bounty (must!)</div>
+              <div class="module-title">Bug Bounty (strong differentiator)</div>
               <div class="module-desc">
                 <strong>Standoff Bug Bounty</strong>, <strong>BI.ZONE Bug Bounty</strong> (РФ).
                 HackerOne, Bugcrowd, Intigriti (intl). Стартовая стратегия: публичные VDP без
-                выплат для практики. <strong>Цель: 1+ принятый репорт за 3 месяца</strong> —
-                серьёзное преимущество над 90% других джунов.
+                выплат для практики. <strong>Контролируемая цель: 20+ часов на публичных VDP
+                и 3+ отправленных репорта</strong> — это то, что зависит от тебя. Принятый
+                репорт — сильное преимущество над 90% джунов, но он зависит и от удачи, и от
+                того, не выпасена ли программа до тебя. Поэтому меряй процесс, а не результат:
+                отправленные репорты копятся в опыт даже когда их закрывают как дубликаты.
               </div>
               <div class="module-tags">
                 <span class="tag hot">portfolio</span>
@@ -2961,7 +3004,7 @@ body::after {
             <div class="module"><div class="module-num">M3.6</div><div class="module-title">Bug Bounty всерьёз (опц.)</div><div class="module-desc">Top-100 на Standoff / HackerOne — серьёзный сигнал.</div><div class="module-tags"><span class="tag">bb</span></div></div>
             <div class="module"><div class="module-num">M3.7</div><div class="module-title">Бизнес-язык</div><div class="module-desc">ROI security-инвестиций. Risk quantification (FAIR framework). <strong>«How to Measure Anything in Cybersecurity Risk»</strong> Hubbard.</div><div class="module-tags"><span class="tag">business</span></div></div>
             <div class="module"><div class="module-num">M3.8</div><div class="module-title">Vendor management</div><div class="module-desc">Пилоты enterprise-инструментов (Wiz, Snyk, PT AI), переговоры с vendor-ами, сравнение коммерческих предложений.</div><div class="module-tags"><span class="tag">vendor</span></div></div>
-            <div class="module"><div class="module-num">M3.9</div><div class="module-title">SSDLC roadmap для организации</div><div class="module-desc">Построение программы Secure SDLC в компании с нуля или развитие существующей. <strong>Аудит текущего состояния</strong> через OWASP SAMM / BSIMM (см. P3.10). <strong>Построение roadmap</strong>: квартальные цели, метрики прогресса, паттерн «пилот → отчёт → масштабирование». <strong>Получение buy-in</strong> от менеджмента (ROI security-инвестиций, risk reduction в денежных терминах). <strong>Управление change resistance</strong> со стороны команд разработки. Это <strong>сильнейший STAR-кейс на собеседовании</strong> middle/senior — реальный опыт построения программы ценится выше любых сертификатов.</div><div class="module-tags"><span class="tag crit">portfolio</span><span class="tag">leadership</span></div></div>
+            <div class="module"><div class="module-num">M3.9</div><div class="module-title">SSDLC roadmap для организации</div><div class="module-desc">Построение программы Secure SDLC в компании с нуля или развитие существующей. <strong>Аудит текущего состояния</strong> через OWASP SAMM / BSIMM (см. P3.9). <strong>Построение roadmap</strong>: квартальные цели, метрики прогресса, паттерн «пилот → отчёт → масштабирование». <strong>Получение buy-in</strong> от менеджмента (ROI security-инвестиций, risk reduction в денежных терминах). <strong>Управление change resistance</strong> со стороны команд разработки. Это <strong>сильнейший STAR-кейс на собеседовании</strong> middle/senior — реальный опыт построения программы ценится выше любых сертификатов.</div><div class="module-tags"><span class="tag crit">portfolio</span><span class="tag">leadership</span></div></div>
           </div>
           <div class="exit">
             <ul class="exit-list">
@@ -3105,7 +3148,7 @@ body::after {
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Сколько часов в неделю реально нужно тратить?</span><span class="arrow">▾</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Полная программа до Junior — это <strong>20–30 часов в неделю в течение 8–14 месяцев</strong>. Два с половиной часа в день в среднем. Меньше — растягивается до 18–24 месяцев. Больше — выгорание. Лучше 25 часов стабильно, чем 50 часов пиками с просадками.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Полная программа до Junior с нуля — это <strong>20–30 часов в неделю в течение 13–16 месяцев</strong> (сумма фаз P0–P5 — 58 недель). Два с половиной часа в день в среднем. Меньше — растягивается до 20–26 месяцев. Больше — выгорание. Лучше 25 часов стабильно, чем 50 часов пиками с просадками. Если приходишь из разработки, DevOps или SOC — часть фаз у тебя уже закрыта, срок сокращается до 7–12 месяцев; точная цифра по твоему треку — в блоке «для кого» вверху.</div></div>
   </div>
 
   <div class="faq-item">
@@ -3193,13 +3236,13 @@ body::after {
     <button type="button" class="check-item" data-checkid="14" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 14)"><span class="check-num">14</span><span class="check-box">[ ]</span><span class="check-text">Observability stack (Prometheus + Grafana + логи) работает</span></button>
     <button type="button" class="check-item" data-checkid="15" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 15)"><span class="check-num">15</span><span class="check-box">[ ]</span><span class="check-text">Аудит AWS или Yandex Cloud через Prowler/ScoutSuite пройден</span></button>
     <button type="button" class="check-item" data-checkid="16" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 16)"><span class="check-num">16</span><span class="check-box">[ ]</span><span class="check-text">Разбор 3+ supply chain атак (SolarWinds, log4j, xz) в блоге</span></button>
-    <button type="button" class="check-item" data-checkid="17" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 17)"><span class="check-num">17</span><span class="check-box">[ ]</span><span class="check-text">Закрыты все Apprentice + большая часть Practitioner на PortSwigger</span></button>
+    <button type="button" class="check-item" data-checkid="17" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 17)"><span class="check-num">17</span><span class="check-box">[ ]</span><span class="check-text">Закрыты все Apprentice + 15–20 лаб Practitioner по ключевым темам (SQLi, XSS, SSRF, access control, deserialization)</span></button>
     <button type="button" class="check-item" data-checkid="18" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 18)"><span class="check-num">18</span><span class="check-box">[ ]</span><span class="check-text">Знаешь IR Lifecycle (NIST 800-61), можешь рассказать что делать при инциденте</span></button>
     <button type="button" class="check-item" data-checkid="19" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 19)"><span class="check-num">19</span><span class="check-box">[ ]</span><span class="check-text">Объясняешь разницу EDR / SIEM / SOAR / IDS / IPS</span></button>
     <button type="button" class="check-item" data-checkid="20" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 20)"><span class="check-num">20</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-комплаенса (ФСТЭК, ГОСТ Р 56939, КИИ, БДУ, 152-ФЗ)</span></button>
     <button type="button" class="check-item" data-checkid="21" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 21)"><span class="check-num">21</span><span class="check-box">[ ]</span><span class="check-text">Знаешь словарь РФ-инструментов (PT AI, Solar appScreener, CodeScoring, MaxPatrol, Kaspersky EDR)</span></button>
     <button type="button" class="check-item" data-checkid="22" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 22)"><span class="check-num">22</span><span class="check-box">[ ]</span><span class="check-text">Английский B2+ (для intl) или B1+ (для РФ + чтение доков)</span></button>
-    <button type="button" class="check-item" data-checkid="23" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 23)"><span class="check-num">23</span><span class="check-box">[ ]</span><span class="check-text">1+ принятый репорт на Standoff / BI.ZONE / HackerOne</span></button>
+    <button type="button" class="check-item" data-checkid="23" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 23)"><span class="check-num">23</span><span class="check-box">[ ]</span><span class="check-text">20+ часов на публичных VDP, 3+ отправленных репорта (принятый — бонус, не норматив)</span></button>
     <button type="button" class="check-item" data-checkid="24" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 24)"><span class="check-num">24</span><span class="check-box">[ ]</span><span class="check-text">10+ разборов реальных CVE по своему стеку в блоге</span></button>
     <button type="button" class="check-item" data-checkid="25" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 25)"><span class="check-num">25</span><span class="check-box">[ ]</span><span class="check-text">Manual code review: находишь уязвимости в DVNA/NodeGoat быстрее сканера</span></button>
     <button type="button" class="check-item" data-checkid="26" role="checkbox" aria-checked="false" onclick="toggleCheck(this, 26)"><span class="check-num">26</span><span class="check-box">[ ]</span><span class="check-text">Книги Agile Application Security + Alice and Bob прочитаны</span></button>
