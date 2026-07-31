@@ -886,7 +886,99 @@ body::after {
   .tools-section { padding: 24px 16px; }
 }
 
+/* цель прокрутки не должна уезжать под закреплённую панель */
+.phase, #final-gate { scroll-margin-top: 68px; }
+
+/* ============ STICKY NAV ============ */
+.sticky-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10, 14, 13, 0.94);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line-bright);
+  transform: translateY(-100%);
+  transition: transform 0.25s ease-out;
+}
+
+.sticky-nav.visible { transform: translateY(0); }
+
+.sticky-nav-inner {
+  max-width: 1280px; margin: 0 auto; padding: 8px 32px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+
+.snav-phases { display: flex; align-items: center; gap: 3px; }
+
+.snav-sep {
+  width: 1px; height: 20px; background: var(--line-bright); margin: 0 6px;
+}
+
+.snav-chip {
+  min-width: 34px; height: 44px; padding: 0 6px;
+  border: none; cursor: pointer; background: transparent;
+  font-family: inherit; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.05em; color: var(--text-dim);
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.snav-chip:hover { color: var(--text-bright); }
+.snav-chip.p0:hover, .snav-chip.p0.active { color: var(--text-dim); border-bottom-color: var(--text-dim); }
+.snav-chip.p1:hover, .snav-chip.p1.active { color: var(--info); border-bottom-color: var(--info); }
+.snav-chip.p2:hover, .snav-chip.p2.active { color: var(--accent); border-bottom-color: var(--accent); }
+.snav-chip.p3:hover, .snav-chip.p3.active { color: var(--purple); border-bottom-color: var(--purple); }
+.snav-chip.p4:hover, .snav-chip.p4.active { color: var(--orange); border-bottom-color: var(--orange); }
+.snav-chip.p5:hover, .snav-chip.p5.active { color: var(--pink); border-bottom-color: var(--pink); }
+.snav-chip.p6:hover, .snav-chip.p6.active { color: var(--warn); border-bottom-color: var(--warn); }
+.snav-chip.m1:hover, .snav-chip.m1.active { color: #fbbf24; border-bottom-color: #fbbf24; }
+.snav-chip.m2:hover, .snav-chip.m2.active { color: #fb923c; border-bottom-color: #fb923c; }
+.snav-chip.m3:hover, .snav-chip.m3.active { color: #f87171; border-bottom-color: #f87171; }
+.snav-chip.s1:hover, .snav-chip.s1.active { color: #ef4444; border-bottom-color: #ef4444; }
+.snav-chip.s2:hover, .snav-chip.s2.active { color: #dc2626; border-bottom-color: #dc2626; }
+
+.snav-actions { display: flex; gap: 4px; flex-shrink: 0; }
+
+.snav-btn {
+  height: 44px; min-width: 44px; padding: 0 10px;
+  background: transparent; border: 1px solid var(--line);
+  color: var(--text-dim); cursor: pointer;
+  font-family: inherit; font-size: 11px; letter-spacing: 0.05em;
+  transition: all 0.15s;
+}
+
+.snav-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+.snav-chip:focus-visible, .snav-btn:focus-visible, .to-top:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: -2px;
+}
+
+.to-top {
+  position: fixed; bottom: 20px; right: 20px; z-index: 99;
+  width: 44px; height: 44px;
+  background: var(--bg-elev); border: 1px solid var(--line-bright);
+  color: var(--text-dim); cursor: pointer;
+  font-family: inherit; font-size: 16px; line-height: 1;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s, color 0.15s, border-color 0.15s;
+}
+
+.to-top.visible { opacity: 1; pointer-events: auto; }
+.to-top:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 720px) {
+  .sticky-nav-inner { padding: 6px 12px; gap: 8px; }
+  /* 12 чипов не помещаются в 375px — даём ряду горизонтальный скролл */
+  .snav-phases {
+    overflow-x: auto; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch; flex: 1; min-width: 0;
+  }
+  .snav-phases::-webkit-scrollbar { display: none; }
+  .snav-chip { min-width: 30px; font-size: 10px; }
+  .snav-btn { padding: 0 7px; min-width: 38px; font-size: 10px; }
+  .snav-actions .snav-btn:last-child { display: none; }
+}
+
 @media print {
+  .sticky-nav, .to-top { display: none !important; }
   body::before, body::after { display: none; }
   .phase-body { max-height: none !important; }
   .phase { break-inside: avoid; }
@@ -904,6 +996,35 @@ body::after {
 </style>
 </head>
 <body>
+
+<!-- ============ STICKY NAV ============ -->
+<nav class="sticky-nav" id="stickyNav" aria-label="Навигация по фазам">
+  <div class="sticky-nav-inner">
+    <div class="snav-phases" role="group" aria-label="Фазы">
+      <button class="snav-chip p0" onclick="openPhase(0)" title="P0: Foundation">P0</button>
+      <button class="snav-chip p1" onclick="openPhase(1)" title="P1: DevOps + Observability">P1</button>
+      <button class="snav-chip p2" onclick="openPhase(2)" title="P2: AppSec Foundation">P2</button>
+      <button class="snav-chip p3" onclick="openPhase(3)" title="P3: DevSecOps Tooling">P3</button>
+      <button class="snav-chip p4" onclick="openPhase(4)" title="P4: K8s · Cloud · Supply Chain">P4</button>
+      <button class="snav-chip p5" onclick="openPhase(5)" title="P5: RU · Code review · BB · IR">P5</button>
+      <button class="snav-chip p6" onclick="openPhase(6)" title="P6: Soft skills · Job hunt">P6</button>
+      <span class="snav-sep" aria-hidden="true"></span>
+      <button class="snav-chip m1" onclick="openPhase('M1')" title="M1: первый год работы">M1</button>
+      <button class="snav-chip m2" onclick="openPhase('M2')" title="M2: глубина и архитектура">M2</button>
+      <button class="snav-chip m3" onclick="openPhase('M3')" title="M3: middle до senior">M3</button>
+      <button class="snav-chip s1" onclick="openPhase('S1')" title="S1: senior формирование">S1</button>
+      <button class="snav-chip s2" onclick="openPhase('S2')" title="S2: staff / principal / CISO">S2</button>
+    </div>
+    <div class="snav-actions">
+      <button class="snav-btn" onclick="openAll()" title="Развернуть все фазы">[+]</button>
+      <button class="snav-btn" onclick="closeAll()" title="Свернуть все фазы">[−]</button>
+      <button class="snav-btn" onclick="goGate()" title="К финальному чек-листу">gate</button>
+    </div>
+  </div>
+</nav>
+
+<button class="to-top" id="toTop" onclick="goTop()" aria-label="Наверх" title="Наверх">↑</button>
+
 <div class="container">
 
 <!-- ============ HEADER ============ -->
@@ -3186,6 +3307,54 @@ function loadProgress() {
   } catch(e) {}
 }
 window.addEventListener('DOMContentLoaded', loadProgress);
+
+/* ============ STICKY NAV ============ */
+function goTop() {
+  window.scrollTo({top: 0, behavior: reduceMotion() ? 'auto' : 'smooth'});
+}
+
+function goGate() {
+  const el = document.getElementById('final-gate');
+  if (el) el.scrollIntoView({behavior: reduceMotion() ? 'auto' : 'smooth'});
+}
+
+(function initStickyNav() {
+  const nav = document.getElementById('stickyNav');
+  const toTop = document.getElementById('toTop');
+  const chips = [...document.querySelectorAll('.snav-chip')];
+  const ids = ['0','1','2','3','4','5','6','M1','M2','M3','S1','S2'];
+  const phases = ids.map(id => document.getElementById('phase-' + id));
+
+  // порог показа — высота шапки, дальше навигация уже нужна
+  const threshold = () => {
+    const h = document.querySelector('.header');
+    return h ? h.offsetHeight : 400;
+  };
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      const show = y > threshold();
+      nav.classList.toggle('visible', show);
+      toTop.classList.toggle('visible', y > window.innerHeight);
+
+      // активная фаза — последняя, чья верхняя граница выше середины экрана
+      const mid = window.innerHeight / 2;
+      let active = -1;
+      phases.forEach((p, i) => {
+        if (p && p.getBoundingClientRect().top < mid) active = i;
+      });
+      chips.forEach((c, i) => c.classList.toggle('active', i === active));
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, {passive: true});
+  onScroll();
+})();
 </script>
 
 </body>
