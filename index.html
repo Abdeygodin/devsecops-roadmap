@@ -888,6 +888,14 @@ body::after {
   .tools-section { padding: 24px 16px; }
 }
 
+/* пометка о глубине проработки подсекции модулей */
+.depth-note {
+  font-size: 13px; line-height: 1.6; color: var(--text-dim);
+  border-left: 2px solid var(--phase-color);
+  padding: 8px 0 8px 12px; margin-bottom: 14px; max-width: 68ch;
+}
+.depth-note strong { color: var(--text-bright); font-weight: 500; }
+
 /* список входных треков со сроками в блоке «для кого» */
 .track-list { list-style: none; margin-top: 12px; display: grid; gap: 8px; }
 
@@ -1067,7 +1075,7 @@ body::after {
   <div class="briefing">
     <div class="briefing-item">
       <div class="label">Junior с нуля</div>
-      <div class="value accent">13–16 мес</div>
+      <div class="value accent">15–18 мес</div>
     </div>
     <div class="briefing-item">
       <div class="label">Middle с опытом</div>
@@ -1108,26 +1116,26 @@ body::after {
     <div class="how-to-use-block">
       <h3>для кого · и сколько это займёт</h3>
       <p>
-        Сумма фаз P0–P5 — 58 недель, это <strong>твой срок, если стартуешь с нуля</strong>.
+        Сумма фаз P0–P5 — 66 недель, это <strong>твой срок, если стартуешь с нуля</strong>.
         Всё, что быстрее, — за счёт фаз, которые ты уже закрыл на работе. Найди свою строку:
       </p>
       <ul class="track-list">
         <li>
-          <span class="track-when">13–16 мес</span>
+          <span class="track-when">15–18 мес</span>
           <strong>С нуля</strong> — иди по фазам P0→P6 последовательно, ничего не пропуская.
         </li>
         <li>
-          <span class="track-when">9–11 мес</span>
+          <span class="track-when">11–14 мес</span>
           <strong>Из разработки</strong> — P0 пробегаешь как чек-лист, P1 закрываешь частично
           (Docker/CI уже знаком), основной вес на P2–P5.
         </li>
         <li>
-          <span class="track-when">7–9 мес</span>
+          <span class="track-when">10–12 мес</span>
           <strong>Из DevOps</strong> — P0 и P1 это твоя текущая рабочая компетенция,
           реальный старт с P2 (AppSec). Самый быстрый вход.
         </li>
         <li>
-          <span class="track-when">10–12 мес</span>
+          <span class="track-when">13–16 мес</span>
           <strong>Из SOC / blue team</strong> — security mindset уже есть, добираешь
           P1 (DevOps) и P2 (AppSec). Специализация Detection Engineering — ближайшая к тебе.
         </li>
@@ -1222,9 +1230,9 @@ body::after {
       <span>Wk 1–10</span>
       <span>Mo 3–5</span>
       <span>Mo 6–7</span>
-      <span>Mo 8–9</span>
-      <span>Mo 10–12</span>
-      <span>Mo 13–14</span>
+      <span>Mo 8–10</span>
+      <span>Mo 11–13</span>
+      <span>Mo 14–15</span>
       <span>Parallel</span>
     </div>
   </div>
@@ -1760,7 +1768,7 @@ body::after {
         <div class="phase-id">P3</div>
         <div class="phase-info">
           <h2>DevSecOps Tooling · SAST, SCA, DAST, secrets, IaC, API security</h2>
-          <div class="phase-meta">~ 8 недель // <span>build the pipeline</span></div>
+          <div class="phase-meta">~ 11 недель // <span>build the pipeline</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -1941,6 +1949,12 @@ body::after {
           </div>
 
           <div class="weeks-block-title" style="margin-top:24px">// specialized — отдельные домены</div>
+          <div class="depth-note">
+            Эти четыре модуля берём <strong>обзорно</strong>: понимать суть, уметь говорить
+            на интервью, знать словарь. Глубина — уже на работе (M1), иначе P3 разрастается
+            вдвое. Исключение — API Security: её спрашивают вплотную везде, где есть
+            микросервисы, так что её проходим наравне с основными модулями фазы.
+          </div>
 
           <div class="module-grid">
             <div class="module">
@@ -2063,7 +2077,7 @@ body::after {
         <div class="phase-id">P4</div>
         <div class="phase-info">
           <h2>Kubernetes Security · Cloud Security · Supply Chain</h2>
-          <div class="phase-meta">~ 12 недель // <span>differentiation от обычного DevOps</span></div>
+          <div class="phase-meta">~ 15 недель // <span>differentiation от обычного DevOps</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -2228,6 +2242,11 @@ body::after {
                 IAM advanced: assume-role chains, condition keys, permission boundaries.
                 KMS: envelope encryption, key policies. GuardDuty + Security Hub + CloudTrail.
                 Аудит через <strong>Prowler</strong> или <strong>ScoutSuite</strong>.
+                <strong>Выбери ОДИН cloud и копай его вглубь</strong>, второй — на уровне
+                словаря и различий. Два облака одновременно на junior-этапе не осилить:
+                один этот модуль — 3–4 недели работы. Концепции переносятся между
+                провайдерами почти без потерь, а строчка «знаю AWS и YC поверхностно»
+                на интервью проигрывает строчке «прошёл аудит одного и починил findings».
               </div>
               <div class="module-tags">
                 <span class="tag intl">intl</span>
@@ -2309,7 +2328,7 @@ body::after {
         <div class="phase-id">P5</div>
         <div class="phase-info">
           <h2>RU specifics · Code review · Bug Bounty · Incident Response</h2>
-          <div class="phase-meta">~ 8 недель // <span>differentiation на российском рынке</span></div>
+          <div class="phase-meta">~ 10 недель // <span>differentiation на российском рынке</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -3298,7 +3317,7 @@ body::after {
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Сколько часов в неделю реально нужно тратить?</span><span class="arrow">▾</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Полная программа до Junior с нуля — это <strong>20–30 часов в неделю в течение 13–16 месяцев</strong> (сумма фаз P0–P5 — 58 недель). Два с половиной часа в день в среднем. Меньше — растягивается до 20–26 месяцев. Больше — выгорание. Лучше 25 часов стабильно, чем 50 часов пиками с просадками. Если приходишь из разработки, DevOps или SOC — часть фаз у тебя уже закрыта, срок сокращается до 7–12 месяцев; точная цифра по твоему треку — в блоке «для кого» вверху.</div></div>
+    <div class="faq-a"><div class="faq-a-inner">Полная программа до Junior с нуля — это <strong>20–30 часов в неделю в течение 15–18 месяцев</strong> (сумма фаз P0–P5 — 66 недель). Два с половиной часа в день в среднем. Меньше — растягивается до 22–28 месяцев. Больше — выгорание. Лучше 25 часов стабильно, чем 50 часов пиками с просадками. Если приходишь из разработки, DevOps или SOC — часть фаз у тебя уже закрыта, срок сокращается до 10–16 месяцев; точная цифра по твоему треку — в блоке «для кого» вверху.</div></div>
   </div>
 
   <div class="faq-item">
