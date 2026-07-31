@@ -2357,6 +2357,30 @@ body::after {
                 <span class="tag">interview</span>
               </div>
             </div>
+
+            <div class="module">
+              <div class="module-num">RU.5</div>
+              <div class="module-title">Windows / Active Directory базово</div>
+              <div class="module-desc">
+                Linux — не вся инфраструктура. В Сбере, ВТБ, Альфе и любом энтерпрайзе рядом
+                стоит Windows-периметр, и на собеседовании это всплывает.
+                <strong>AD</strong>: домен, лес, OU, Group Policy — на уровне «читаю структуру
+                и понимаю, где права». <strong>PowerShell</strong>: написать и прочитать
+                скрипт автоматизации, execution policy, PowerShell logging (script block
+                logging — то, что потом читает SOC). <strong>Windows event logs</strong> +
+                Sysmon, пересылка в SIEM. <strong>Kerberoasting / AS-REP roasting /
+                Pass-the-Hash</strong> — на уровне механики: почему работает и что смотреть
+                в логах. Не нужно становиться Windows-админом.
+                <strong>Кому обязательно</strong>: банки, госсектор, корпорации.
+                <strong>Кому можно пропустить</strong>: продуктовые tech-компании
+                (Яндекс, Авито, Ozon) — там Linux достаточно.
+              </div>
+              <div class="module-tags">
+                <span class="tag ru">ru</span>
+                <span class="tag">windows</span>
+                <span class="tag">ad</span>
+              </div>
+            </div>
           </div>
 
           <div class="weeks-block-title" style="margin-top:24px">// incident response basics</div>
@@ -2476,6 +2500,7 @@ body::after {
           <div class="exit">
             <ul class="exit-list">
               <li class="crit">Знаешь словарь РФ-комплаенса: ФСТЭК, ГОСТ Р 56939, 152-ФЗ, КИИ, БДУ</li>
+              <li>Читаешь структуру AD и PowerShell-скрипт, знаешь механику Kerberoasting (для банков/корпораций)</li>
               <li class="crit">Manual code review: находишь уязвимости в уязвимых проектах быстрее сканера</li>
               <li class="crit">Знаешь IR Lifecycle (NIST 800-61), можешь рассказать что делать при инциденте</li>
               <li>1+ принятый bug bounty report (Standoff/BI.ZONE/H1)</li>
@@ -3232,7 +3257,7 @@ body::after {
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Нужны ли мне знания PowerShell и Windows-инфраструктуры?</span><span class="arrow">▾</span></div>
-    <div class="faq-a"><div class="faq-a-inner"><strong>Для РФ-банков и крупных корпораций — да, минимум на уровне словаря.</strong> Active Directory, Group Policy, PowerShell для автоматизации, Windows event logs — это реальная среда у Сбера, ВТБ, Альфы, любого энтерпрайза. Не нужно становиться Windows-админом, но <strong>знать, как пишется PowerShell-скрипт, как читается AD-структура, что такое Kerberoasting/AS-REP roasting</strong> — обязательно для middle. Для tech-компаний (Яндекс, Авито, Ozon) — Linux достаточно.</div></div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Для РФ-банков и крупных корпораций — да, минимум на уровне словаря.</strong> Active Directory, Group Policy, PowerShell для автоматизации, Windows event logs — это реальная среда у Сбера, ВТБ, Альфы, любого энтерпрайза. Не нужно становиться Windows-админом, но <strong>знать, как пишется PowerShell-скрипт, как читается AD-структура, что такое Kerberoasting/AS-REP roasting</strong> — обязательно для middle. Конкретная программа — модуль RU.5 в фазе P5. Для tech-компаний (Яндекс, Авито, Ozon) — Linux достаточно.</div></div>
   </div>
 
   <div class="faq-item">
