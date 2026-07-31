@@ -888,6 +888,57 @@ body::after {
   .tools-section { padding: 24px 16px; }
 }
 
+/* ============ ВЫБОР ВХОДНОГО ТРЕКА ============ */
+.track-picker { display: flex; gap: 6px; flex-wrap: wrap; margin: 14px 0 10px; }
+
+.track-btn {
+  min-height: 44px; padding: 0 12px;
+  background: transparent; border: 1px solid var(--line-bright);
+  color: var(--text-dim); cursor: pointer;
+  font-family: inherit; font-size: 12px; letter-spacing: 0.05em;
+  transition: all 0.15s;
+}
+
+.track-btn:hover { color: var(--text-bright); border-color: var(--text-dim); }
+.track-btn.active { color: var(--bg); background: var(--accent); border-color: var(--accent); font-weight: 700; }
+.track-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.track-reset { margin-left: auto; }
+
+.track-summary {
+  font-size: 13px; line-height: 1.6; color: var(--accent);
+  border-left: 2px solid var(--accent); padding: 8px 0 8px 12px;
+  margin-bottom: 4px; max-width: 68ch;
+}
+.track-summary:empty { display: none; }
+
+/* фаза, которую пользователь уже закрыл на работе:
+   прячем модули, оставляем exit-критерии — фаза становится чек-листом */
+.phase.review .module-grid,
+.phase.review .weeks-block-title,
+.phase.review .depth-note,
+.phase.review .summary,
+.phase.review .deliverables { display: none; }
+
+.phase.review .phase-header { opacity: 0.75; }
+
+.review-badge {
+  display: none; margin-left: 8px; padding: 2px 7px;
+  background: var(--warn); color: var(--bg);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+  vertical-align: middle; white-space: nowrap;
+}
+.phase.review .review-badge { display: inline-block; }
+
+.phase.review .exit::before {
+  content: 'Ты уже проходил это на работе — просто проверь, что каждый пункт закрыт';
+  display: block; font-size: 13px; color: var(--warn);
+  margin-bottom: 10px; line-height: 1.5; max-width: 68ch;
+}
+
+.track-list li.dimmed { opacity: 0.4; }
+
+@media print { .track-picker { display: none; } }
+
 /* пометка о глубине проработки подсекции модулей */
 .depth-note {
   font-size: 13px; line-height: 1.6; color: var(--text-dim);
@@ -1119,6 +1170,14 @@ body::after {
         Сумма фаз P0–P5 — 66 недель, это <strong>твой срок, если стартуешь с нуля</strong>.
         Всё, что быстрее, — за счёт фаз, которые ты уже закрыл на работе. Найди свою строку:
       </p>
+      <div class="track-picker" role="group" aria-label="Выбор входного трека">
+        <button type="button" class="track-btn" data-track="zero"   onclick="setTrack('zero')">с нуля</button>
+        <button type="button" class="track-btn" data-track="dev"    onclick="setTrack('dev')">из разработки</button>
+        <button type="button" class="track-btn" data-track="devops" onclick="setTrack('devops')">из DevOps</button>
+        <button type="button" class="track-btn" data-track="soc"    onclick="setTrack('soc')">из SOC</button>
+        <button type="button" class="track-btn track-reset" data-track="all" onclick="setTrack('all')">показать всё</button>
+      </div>
+      <div class="track-summary" id="trackSummary" role="status" aria-live="polite"></div>
       <ul class="track-list">
         <li>
           <span class="track-when">15–18 мес</span>
@@ -1255,7 +1314,7 @@ body::after {
         <div class="phase-id">P0</div>
         <div class="phase-info">
           <h2>Foundation · Python + сети + английский</h2>
-          <div class="phase-meta">~ 10 недель // <span>самая важная фаза, не пропускать</span></div>
+          <div class="phase-meta">~ 10 недель // <span>самая важная фаза, не пропускать</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -1404,7 +1463,7 @@ body::after {
         <div class="phase-id">P1</div>
         <div class="phase-info">
           <h2>DevOps base + Observability</h2>
-          <div class="phase-meta">~ 12 недель // <span>prerequisite</span></div>
+          <div class="phase-meta">~ 12 недель // <span>prerequisite</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -1584,7 +1643,7 @@ body::after {
         <div class="phase-id">P2</div>
         <div class="phase-info">
           <h2>AppSec Foundation · mental models, OWASP, threat modeling, secure coding</h2>
-          <div class="phase-meta">~ 8 недель // <span>сердце DevSecOps</span></div>
+          <div class="phase-meta">~ 8 недель // <span>сердце DevSecOps</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -1768,7 +1827,7 @@ body::after {
         <div class="phase-id">P3</div>
         <div class="phase-info">
           <h2>DevSecOps Tooling · SAST, SCA, DAST, secrets, IaC, API security</h2>
-          <div class="phase-meta">~ 11 недель // <span>build the pipeline</span></div>
+          <div class="phase-meta">~ 11 недель // <span>build the pipeline</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -2077,7 +2136,7 @@ body::after {
         <div class="phase-id">P4</div>
         <div class="phase-info">
           <h2>Kubernetes Security · Cloud Security · Supply Chain</h2>
-          <div class="phase-meta">~ 15 недель // <span>differentiation от обычного DevOps</span></div>
+          <div class="phase-meta">~ 15 недель // <span>differentiation от обычного DevOps</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -2328,7 +2387,7 @@ body::after {
         <div class="phase-id">P5</div>
         <div class="phase-info">
           <h2>RU specifics · Code review · Bug Bounty · Incident Response</h2>
-          <div class="phase-meta">~ 10 недель // <span>differentiation на российском рынке</span></div>
+          <div class="phase-meta">~ 10 недель // <span>differentiation на российском рынке</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -2603,7 +2662,7 @@ body::after {
         <div class="phase-id">P6</div>
         <div class="phase-info">
           <h2>Soft skills · Резюме · Job Hunt</h2>
-          <div class="phase-meta">parallel // <span>идёт со всеми фазами одновременно</span></div>
+          <div class="phase-meta">parallel // <span>идёт со всеми фазами одновременно</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -3073,7 +3132,7 @@ body::after {
         <div class="phase-id">M1</div>
         <div class="phase-info">
           <h2>Первый год на работе <span class="tier-badge middle">middle-prep</span></h2>
-          <div class="phase-meta">~ 12 мес // <span>production experience — некомпенсируемо</span></div>
+          <div class="phase-meta">~ 12 мес // <span>production experience — некомпенсируемо</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -3120,7 +3179,7 @@ body::after {
         <div class="phase-id">M2</div>
         <div class="phase-info">
           <h2>Глубина и архитектура <span class="tier-badge middle">middle</span></h2>
-          <div class="phase-meta">~ 12 мес // <span>выбор специализации</span></div>
+          <div class="phase-meta">~ 12 мес // <span>выбор специализации</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -3157,7 +3216,7 @@ body::after {
         <div class="phase-id">M3</div>
         <div class="phase-info">
           <h2>Middle → Senior формирование <span class="tier-badge middle">middle+</span></h2>
-          <div class="phase-meta">~ 12 мес // <span>influence без формальной власти</span></div>
+          <div class="phase-meta">~ 12 мес // <span>influence без формальной власти</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -3204,7 +3263,7 @@ body::after {
         <div class="phase-id">S1</div>
         <div class="phase-info">
           <h2>Senior формирование <span class="tier-badge senior">senior</span></h2>
-          <div class="phase-meta">годы 4–5 // <span>стратегия и узкая экспертиза</span></div>
+          <div class="phase-meta">годы 4–5 // <span>стратегия и узкая экспертиза</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -3239,7 +3298,7 @@ body::after {
         <div class="phase-id">S2</div>
         <div class="phase-info">
           <h2>Staff / Principal / CISO <span class="tier-badge senior">staff+</span></h2>
-          <div class="phase-meta">годы 6+ // <span>top of the field</span></div>
+          <div class="phase-meta">годы 6+ // <span>top of the field</span><span class="review-badge">чек-лист</span></div>
         </div>
         <div class="phase-toggle">+</div>
       </div>
@@ -3524,6 +3583,55 @@ function loadProgress() {
   } catch(e) {}
 }
 window.addEventListener('DOMContentLoaded', loadProgress);
+
+/* ============ ВХОДНЫЕ ТРЕКИ ============ */
+/* review — фазы, которые пользователь уже закрыл на работе:
+   они схлопываются в чек-лист вместо полного раскрытия */
+const TRACKS = {
+  zero:   {label: 'с нуля',        when: '15–18 мес', review: [],     row: 0},
+  dev:    {label: 'из разработки', when: '11–14 мес', review: [0],    row: 1},
+  devops: {label: 'из DevOps',     when: '10–12 мес', review: [0, 1], row: 2},
+  soc:    {label: 'из SOC',        when: '13–16 мес', review: [0],    row: 3}
+};
+
+function setTrack(key) {
+  const track = TRACKS[key];
+
+  document.querySelectorAll('.track-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.track === key));
+
+  document.querySelectorAll('.phase[data-phase]').forEach(p => {
+    const i = parseInt(p.dataset.phase, 10);
+    p.classList.toggle('review', !!track && track.review.includes(i));
+  });
+
+  document.querySelectorAll('.track-list li').forEach((li, i) =>
+    li.classList.toggle('dimmed', !!track && i !== track.row));
+
+  const box = document.getElementById('trackSummary');
+  if (!track) {
+    box.textContent = '';
+  } else if (track.review.length) {
+    const names = track.review.map(i => 'P' + i).join(' и ');
+    const one = track.review.length === 1;
+    box.textContent = 'Трек «' + track.label + '»: ' + track.when + '. ' + names +
+      (one ? ' свёрнута' : ' свёрнуты') + ' в чек-лист — пробегись по критериям ' +
+      'и убедись, что пробелов нет. Основная работа начинается с P' +
+      (Math.max(...track.review) + 1) + '.';
+  } else {
+    box.textContent = 'Трек «' + track.label + '»: ' + track.when +
+      '. Идёшь по всем фазам последовательно, ничего не пропуская.';
+  }
+
+  try { key === 'all' ? localStorage.removeItem('dso_track')
+                      : localStorage.setItem('dso_track', key); } catch (e) {}
+}
+
+(function initTrack() {
+  let saved = null;
+  try { saved = localStorage.getItem('dso_track'); } catch (e) {}
+  if (saved && TRACKS[saved]) setTrack(saved);
+})();
 
 /* ============ STICKY NAV ============ */
 function goTop() {
