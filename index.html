@@ -1954,6 +1954,30 @@ body::after {
                 <span class="tag">pipeline</span>
               </div>
             </div>
+
+            <div class="module">
+              <div class="module-num">P3.12</div>
+              <div class="module-title">AI/LLM Security</div>
+              <div class="module-desc">
+                Новая поверхность атаки, которой пять лет назад не было, а сегодня она есть
+                почти в каждом продукте. <strong>OWASP Top 10 for LLM Applications</strong>:
+                prompt injection (direct и indirect — второй опаснее, инъекция приезжает
+                в контенте, который модель читает), insecure output handling (вывод модели
+                уходит в eval/SQL/HTML без санитизации), training data poisoning,
+                excessive agency — агенту дали права, которые он не должен иметь.
+                <strong>Безопасность AI-генерируемого кода в SDLC</strong>: кто ревьюит вывод
+                Copilot/Claude Code, как ловить внесённые уязвимости — обычный SAST в CI
+                ловит их так же, как рукописные, но объём кода на ревью растёт кратно.
+                <strong>Безопасность агентов и MCP-серверов</strong>: доверие к tool output,
+                разграничение прав агента, sandbox для исполнения. Практика: добавь
+                LLM-эндпоинт в pet-проект и сломай его prompt injection сам.
+              </div>
+              <div class="module-tags">
+                <span class="tag hot">interview</span>
+                <span class="tag">llm</span>
+                <span class="tag">owasp-llm</span>
+              </div>
+            </div>
           </div>
 
           <div class="exit">
@@ -1965,6 +1989,7 @@ body::after {
               <li>DefectDojo поднят, findings из всех сканеров стекаются</li>
               <li>Объясняешь разницу между SAST/SCA/DAST/IAST на доске</li>
               <li>Знаешь OWASP API Security Top 10, объясняешь BOLA/BFLA/IDOR с примерами</li>
+              <li>Знаешь OWASP Top 10 for LLM, объясняешь direct vs indirect prompt injection</li>
               <li>Знаешь OWASP SAMM / BSIMM / DSOMM, можешь оценить зрелость программы</li>
               <li>Понимаешь Jenkins pipeline (Declarative и Scripted), Shared Libraries</li>
             </ul>
@@ -2086,11 +2111,17 @@ body::after {
                 Software Bill of Materials — реестр компонентов в твоей системе. Syft для
                 генерации, форматы CycloneDX и SPDX. Подключи к CI, публикуй SBOM как артефакт
                 каждого билда. <strong>Это будущее требование комплаенса везде</strong>.
+                <strong>Модели — тоже зависимость</strong>: если в системе есть ML/LLM,
+                в цепочку поставки входят веса и датасеты. Provenance весов, typosquatting
+                на HuggingFace, произвольный код при десериализации pickle-чекпойнтов
+                (поэтому safetensors вместо pickle), AI-BOM как расширение SBOM.
+                Тот же принцип, что и с npm-пакетом: ты не знаешь, что внутри, пока не проверил.
               </div>
               <div class="module-tags">
                 <span class="tag hot">portfolio</span>
                 <span class="tag">syft</span>
                 <span class="tag">sbom</span>
+                <span class="tag">ai-bom</span>
               </div>
             </div>
 
