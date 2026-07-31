@@ -1671,10 +1671,15 @@ body::after {
                 TLS handshake, JWT (и его проблемы), key management basics.
                 <strong>PKI основы:</strong> CA hierarchy, certificate lifecycle (issue / renew / revoke),
                 CRL vs OCSP, cert rotation. «Serious Cryptography» Aumasson — как референс.
+                <strong>ГОСТ-криптография (РФ):</strong> ГОСТ Р 34.10-2012 (подпись) и
+                34.11-2012 «Стрибог» (хеш), КриптоПро CSP, ЭЦП и УКЭП, ГОСТ-TLS и чем он
+                отличается от обычного. В банках и госсекторе это не экзотика, а рабочая
+                повседневность — спрашивают.
               </div>
               <div class="module-tags">
                 <span class="tag">crypto</span>
                 <span class="tag">pki</span>
+                <span class="tag ru">gost</span>
               </div>
             </div>
 
@@ -1792,10 +1797,15 @@ body::after {
                 <strong>Trivy</strong> (универсальный), <strong>OWASP Dependency-Check</strong>,
                 Grype, OSV-Scanner. <strong>CodeScoring</strong> как российский игрок.
                 Понимание различия CVE vs GHSA vs БДУ ФСТЭК. Авто-обновления через Dependabot/Renovate.
+                <strong>Лицензионный комплаенс</strong> — вторая работа SCA, про которую забывают:
+                копилефт (GPL/AGPL) против пермиссивных (MIT/Apache), почему AGPL-зависимость
+                в проприетарном продукте — это юридический риск, а не «просто предупреждение».
+                FOSSA, ScanCode, license scan в Trivy. В РФ смыкается с Реестром ПО (см. RU.3).
               </div>
               <div class="module-tags">
                 <span class="tag">trivy</span>
                 <span class="tag">sca</span>
+                <span class="tag">license</span>
                 <span class="tag ru-must">ru</span>
               </div>
             </div>
@@ -2344,6 +2354,27 @@ body::after {
 
             <div class="module">
               <div class="module-num">RU.4</div>
+              <div class="module-title">Data security технически</div>
+              <div class="module-desc">
+                152-ФЗ говорит <em>что</em> защищать, этот модуль — <em>чем</em>.
+                <strong>Классификация данных</strong>: пока не знаешь, где лежат персданные,
+                защищать нечего — inventory и discovery PII идут первыми.
+                <strong>Шифрование at rest</strong>: на уровне диска, БД (TDE) и на уровне
+                поля — разные угрозы, разная цена. Управление ключами через Vault/KMS,
+                ротация. <strong>Маскирование и токенизация</strong> — самый недооценённый
+                пункт: копия прода в стейджинге с живыми персданными это утечка, которая
+                ждёт своего часа. Синтетика или маскирование для непрод-окружений.
+                Плюс контроль доступа к БД и аудит запросов.
+              </div>
+              <div class="module-tags">
+                <span class="tag">data-security</span>
+                <span class="tag">pii</span>
+                <span class="tag ru">ru</span>
+              </div>
+            </div>
+
+            <div class="module">
+              <div class="module-num">RU.5</div>
               <div class="module-title">РФ-инструменты обзорно</div>
               <div class="module-desc">
                 <strong>PT Application Inspector</strong> (SAST/DAST/IAST),
@@ -2359,7 +2390,7 @@ body::after {
             </div>
 
             <div class="module">
-              <div class="module-num">RU.5</div>
+              <div class="module-num">RU.6</div>
               <div class="module-title">Windows / Active Directory базово</div>
               <div class="module-desc">
                 Linux — не вся инфраструктура. В Сбере, ВТБ, Альфе и любом энтерпрайзе рядом
@@ -2394,11 +2425,19 @@ body::after {
                 Recovery → Lessons Learned</strong>. На каждом интервью спрашивают «что делать,
                 когда нашли активный инцидент». Знай шаги и порядок. Различай <strong>IOC</strong>
                 (indicators of compromise) и <strong>TTPs</strong> (MITRE ATT&amp;CK).
+                <strong>MITRE ATT&amp;CK предметно:</strong> матрица — это тактики (зачем
+                атакующий это делает: Initial Access, Persistence, Lateral Movement,
+                Exfiltration) и техники внутри них (как именно, T-номера). Разница с IOC
+                принципиальная: IOC — конкретный хеш или IP, живёт до первой пересборки
+                малвари; TTP — поведение, которое атакующему менять дорого. Поэтому детекты
+                мапят на техники ATT&amp;CK, а не на список хешей. Посмотри ATT&amp;CK Navigator
+                и покрытие своих детектов по матрице.
               </div>
               <div class="module-tags">
                 <span class="tag hot">interview</span>
                 <span class="tag">nist</span>
                 <span class="tag">ir</span>
+                <span class="tag">att&amp;ck</span>
               </div>
             </div>
 
@@ -3257,7 +3296,7 @@ body::after {
 
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)"><span class="q-mark">?</span><span class="q-text">Нужны ли мне знания PowerShell и Windows-инфраструктуры?</span><span class="arrow">▾</span></div>
-    <div class="faq-a"><div class="faq-a-inner"><strong>Для РФ-банков и крупных корпораций — да, минимум на уровне словаря.</strong> Active Directory, Group Policy, PowerShell для автоматизации, Windows event logs — это реальная среда у Сбера, ВТБ, Альфы, любого энтерпрайза. Не нужно становиться Windows-админом, но <strong>знать, как пишется PowerShell-скрипт, как читается AD-структура, что такое Kerberoasting/AS-REP roasting</strong> — обязательно для middle. Конкретная программа — модуль RU.5 в фазе P5. Для tech-компаний (Яндекс, Авито, Ozon) — Linux достаточно.</div></div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Для РФ-банков и крупных корпораций — да, минимум на уровне словаря.</strong> Active Directory, Group Policy, PowerShell для автоматизации, Windows event logs — это реальная среда у Сбера, ВТБ, Альфы, любого энтерпрайза. Не нужно становиться Windows-админом, но <strong>знать, как пишется PowerShell-скрипт, как читается AD-структура, что такое Kerberoasting/AS-REP roasting</strong> — обязательно для middle. Конкретная программа — модуль RU.6 в фазе P5. Для tech-компаний (Яндекс, Авито, Ozon) — Linux достаточно.</div></div>
   </div>
 
   <div class="faq-item">
