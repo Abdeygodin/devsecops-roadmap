@@ -872,6 +872,23 @@ body::after {
 .foot a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent-dim); }
 .foot a:hover { color: var(--info); border-color: var(--info); }
 
+/* Планшет и небольшой ноутбук. Сетки модулей/инструментов уже на auto-fit
+   и перестраиваются сами, а вот закреплённая панель на 768px вылезала
+   на 103px: 12 чипов (457px) + действия (351px) не влезали в 753px. */
+@media (max-width: 1024px) {
+  .container { padding: 24px 20px; }
+  .sticky-nav-inner { padding: 8px 20px; gap: 10px; }
+
+  .snav-phases {
+    overflow-x: auto; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch; flex: 1; min-width: 0;
+  }
+  .snav-phases::-webkit-scrollbar { display: none; }
+
+  .snav-search input { width: 132px; }
+  .snav-search input:focus { width: 190px; }
+}
+
 @media (max-width: 720px) {
   .container { padding: 24px 12px; }
   .header { padding: 24px 20px; }
